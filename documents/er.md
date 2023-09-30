@@ -30,10 +30,10 @@ This artefact contains the actors and their user stories of this system, with th
 | --- | --- |
 | User | Generic user that has access to public information such as search and view items. |
 | Visitor | Unauthenticated user that can register itself or sign-in the system. |
-| Authenticated User | User that can make purchases, manage their personal information, log out of the system, add items to favorites. |
-| Buyer | User that has made purchases. Can check it purchases historic, track their order, review an item that they have bought. |
-| Administrator | Authenticated user that is responsable for the management of products and users and supervisory and moderation functions, like delete offensive reviews. |
-| API | External OAuth APIs that can be used to register or authenticate into the system, track the purchase, do deliveries. |
+| Authenticated User | User that can make purchases, manage their personal information, log out of the account, add items to favorites. |
+| Buyer | User that has made purchases. Can check their purchase history, track their order, review an item that they have bought. |
+| Administrator | Authenticated user that is responsible for the management of products and users and supervisory and moderation functions, like delete offensive reviews. |
+| API | External OAuth APIs that can be used to register or authenticate into the system. |
 
 <figcaption align= "center">Table 1: Actor's description</figcaption>
 
