@@ -44,21 +44,19 @@ This artefact contains the actors and their user stories of this system, with th
 
 | Identifier | Name | Priority | Priority |
 | --- | --- | --- | --- |
-| US01 | Manage User Account | High | As an User, I want to be able to edit my account, so that I can update my information. |
-| US02 | Product Details | High | As an User, I want to see the product details, so that I can see a detailed representation of it. |
-| US03 | Add to Shopping Cart | High | As an User, I want to add products to the shopping cart, so that I can buy them later. |
-| US04 | Manage Shopping Cart | High | As an User, I want to manage my shopping cart, so that I can decide what I want to buy. |
-| US05 | Search products | High | As an User, I want to search for products, so that I can find what I'm looking for. |
-| US06 | Browse Product Categories | Medium | As a User, I want to view products from a selected category, so that I can explore all the products available from that category. |
-| US07 | Search by Filters | Medium | As a User, I want to be able to filter with some specific properties, so that I can narrow my search. |
-| US08 | View Reviews | Medium | As an User, I want to view products reviews, so that I can make an opinion about it. |
-| US09 | Home Page | Medium | As an User, I want to have access to the home page, so that I can have a brief presentation of the website. |
-| US10 | About Page | Medium | As an User, I want to see an About page, so that I can see a description of the website and its creators. |
-| US11 | FAQ Page | Medium | As an User, I want to see a FAQ page, so that I can get quick answers to commom questions. |
-| US12 | Consult Contacts | Medium | As a User, I want to be able to access contacts, so that I can come in touch with the platform creators. |
-| US13 | See User Account | Medium | As an User, I want to be able to search and view users' account, so that I can see other users reviews and information. |
-| US14 | Sorting options | Low | As a User, I want to be able to sort with some specific properties, so that I can easily see shop items. |
-| US15 | View Recommendations | Low | As an User, I want to view recommended products, so that I can view products suitable for me. |
+| US01 | Product Details | High | As a User, I want to able to see the product details, so that I can see a detailed representation of it. |
+| US02 | Search products | High | As a User, I want to able to search for products, so that I can find what I'm looking for. |
+| US03 | Browse Product Categories | Medium | As a User, I want to able to view products from a selected category, so that I can explore all the products available from that category. |
+| US04 | Search by Filters | Medium | As a User, I want to able to  filter with some specific properties, so that I can narrow down my search. |
+| US05 | View Reviews | Medium | As a User, I want to able to view a product's reviews, so that I can get a sense of the general opinion on it. |
+| US06 | Home Page | Medium | As a User, I want to able to have access to the home page, so that I can have a brief presentation of the website. |
+| US07 | About Page | Medium | As a User, I want to able to see an About page, so that I can see a description of the website and its creators. |
+| US08 | FAQ Page | Medium | As a User, I want to able to see a FAQ page, so that I can get quick answers to commom questions. |
+| US09 | Consult Contacts | Medium | As a User, I want to able to  access contacts, so that I can contact the platform owners.* |
+| US10 | See User Profile | Medium | As a User, I want to able to  view users' profiles, so that I can see other users reviews and information. |
+| US11 | Search User Profile | Medium | As a User, I want to able to  search user profiles, so that I can find specific users.
+| US12 | Sorting options | Low | As a User, I want to able to  sort with some specific properties, so that I can easily see shop items. |
+| US13 | View Recommendations | Low | As a User, I want to able to view recommended products, so that I can view products suitable for me. |
 
 
 <figcaption align= "center">Table 2: User's user stories</figcaption>
@@ -67,10 +65,11 @@ This artefact contains the actors and their user stories of this system, with th
 
 | Identifier | Name | Priority | Description |
 | --- | --- | --- | --- |
-| US16 | Sign-in | High | As a Visitor, I want to authenticate into the system, so that I can access privileged information. |
-| US17 | Sign-up | High | As a Visitor, I want to register myself into the system, so that I can authenticate myself into the system. |
-| US18 | External API Sign-in | Low | As a Visitor, I want to register a new account linked to my Google account, so that I can avoid to create a whole new account to use the platform.  |
-| US19 | External API Sign-up | Low | As a Vistor, I want to sign-in through my Google account, so that I can authenticate myself into the system. |
+| US14 | Sign-in | High | As a Visitor, I want to able to authenticate into the system, so that I can access privileged information. |
+| US15 | Sign-up | High | As a Visitor, I want to able to register myself into the system, so that I can authenticate myself into the system. |
+| US16 | Recover password | Medium | As an Visitor, I want to able to recover my password, so that I’m not locked out of my account if I forget it. |
+| US17 | External API Sign-in | Low | As a Visitor, I want to able to register a new account linked to my Google account, so that I can avoid to create a whole new account to use the platform.  |
+| US18 | External API Sign-up | Low | As a Vistor, I want to able to sign-in through my Google account, so that I can authenticate myself into the system. |
 
 
 <figcaption align= "center">Table 3: Visitor's user stories</figcaption>
@@ -79,17 +78,19 @@ This artefact contains the actors and their user stories of this system, with th
 
 | Identifier | Name | Priority | Description |
 | --- | --- | --- | --- |
-| US20 | Log in and out | High | As an Authenticated User, I want to log in and out of my account, so that I can use my account and close it when I’m away |
-| US21 | View profile | High | As an Authenticated User, I want to view my profile, so that I can see my personal data |
-| US22 | Edit profile | High | As an Authenticated User, I want to edit my profile, so I can alter my personal data |
-| US23 | Delete account | High | As an Authenticated User, I want to delete my account, so that I can remove my personal data from the site when I don’t want to use it anymore |
-| US24 | Add to cart/wishlist | Medium | As an Authenticated User, I want to add products to my cart/wishlist, so that I can keep track of products I’d like to buy |
-| US25 | View cart/wishlist | Medium | As an Authenticated User, I want to view my cart/wishlist, so that I can see what products I have previously saved there |
-| US26 | Remove from cart/wishlist | Medium | As an Authenticated User, I want to remove products from my cart/wishlist, so that I can stop keeping track of products I’m not interested in anymore |
-| US27 | Recover password | Medium | As an Authenticated User, I want to recover my password, so that I’m not locked out of my account if I forget it |
-| US28 | View Notifications | Low | As an Authenticated User, I want to view my notifications, so that I’m kept up to date about changes that might concern me. |
-| US29 | Product price change | Low | As an Authenticated User, I want to receive a notification if a product in my shopping cart or wish list changes price, so that I’m aware that the price of the product was altered |
-| US30 | Product availability | Low | As an Authenticated User, I want to receive a notification when a product in my cart or wish list is available again, so that I can I order that product |
+| US19 | Add to Shopping Cart | High | As an Authenticated User, I want to able to add products to the shopping cart, so that I can buy them later. |
+| US20 | Manage Shopping Cart | High | As an Authenticated User, I want to able to manage my shopping cart, so that I can decide what I want to buy. |
+| US21 | Log out | High | As an Authenticated User, I want to able to log in and out of my account, so that I can protect my personal information and ensure no unauthorized access to my account. |
+| US22 | View profile | High | As an Authenticated User, I want to able to view my profile, so that I can see my personal data |
+| US23 | Edit profile | High | As an Authenticated User, I want to able to edit my profile, so I can alter my personal data |
+| US24 | Delete account | High | As an Authenticated User, I want to able to delete my account, so that I can remove my personal data from the site when I don’t want to use it anymore |
+| US25 | Add wishlist | Medium | As an Authenticated User, I want to able to add products to my wishlist, so that I can keep track of products I’d like to buy. |
+| US26 | View wishlist | Medium | As an Authenticated User, I want to able to view my wishlist, so that I can see what products I have previously saved there. |
+| US27 | Remove from wishlist | Medium | As an Authenticated User, I want to able to remove products from my wishlist, so that I can stop keeping track of products I’m not interested in anymore. |
+| US28 | update password | Medium | As an Authenticated User, I want to able to update my password, so that I can enhance the security of my account and protect it from unauthorized access. |
+| US29 | View Notifications | Low | As an Authenticated User, I want to able to view my notifications, so that I’m kept up to date about changes that might concern me. |
+| US30 | Product price change | Low | As an Authenticated User, I want to able to receive a notification if a product in my shopping cart or wish list changes price, so that I’m aware that the price of the product was altered |
+| US31 | Product availability | Low | As an Authenticated User, I want to able to receive a notification when a product in my cart or wish list is available again, so that I can I order that product |
 
 <figcaption align= "center">Table 4: Authenticated User's user stories</figcaption>
 
@@ -97,15 +98,15 @@ This artefact contains the actors and their user stories of this system, with th
 
 | Identifier | Name | Priority | Description |
 | --- | --- | --- | --- |
-| US31 | Unban Account | Medium | As an Admin, I want to be able to unban a user that was previously banned, so that I can provide a second chance to a previously misbehaving user. |
-| US32 | Manage Catalog | Medium | As an Admin, I want to be able to add, edit and remove items from the shop's catalog, so that users get an updated list of the item's being sold. |
-| US33 | Manage Item Category | Medium | As an Admin, I want to be able to manage the category of an item, so that users may more easily find what they are looking for. | 
-| US34 | Delete Review | Medium | As an Admin, I want to be able to delete an item review, so that the platform is free from misinformation and inappropriateness. | 
-| US35 | Ban Account | Medium | As an Admin, I want to be able to ban a user's account (temporarily or permanently), so that i can punish misbehaving users. |
-| US36 | Manage Stock | Medium | As an Admin, I want to be able manage the shop's stock, so that users are aware when an item is sold off. |
-| US37 | View Users’ Purchase History | Medium | As an Admin, I want to be able to view the users’ purchase history, so that I can check what the users are buying. |
-| US38 | Manage Order Status | Medium | As an Admin, I want to be able to manage the status of orders, so that I can monitor the sale.|
-| US39 | Manage Item Description | Medium | As an Admin, I want to be able manage the descriptions of items, so that users get an accurate representation of what is being sold. |
+| US32 | Unban Account | Medium | As an Admin, I want to able to  unban a user that was previously banned, so that I can provide a second chance to a previously misbehaving user. |
+| US33 | Manage Catalog | Medium | As an Admin, I want to able to  add, edit and remove items from the shop's catalog, so that users get an updated list of the item's being sold. |
+| US34 | Manage Item Category | Medium | As an Admin, I want to able to  manage the category of an item, so that users may more easily find what they are looking for. | 
+| US35 | Delete Review | Medium | As an Admin, I want to able to  delete an item review, so that the platform is free from misinformation and inappropriateness. | 
+| US36 | Ban Account | Medium | As an Admin, I want to able to  ban a user's account (temporarily or permanently), so that i can punish misbehaving users. |
+| US37 | Manage Stock | Medium | As an Admin, I want to able to be able manage the shop's stock, so that users are aware when an item is sold off. |
+| US38 | View Users’ Purchase History | Medium | As an Admin, I want to able to  view the users’ purchase history, so that I can check what the users are buying. |
+| US39 | Manage Order Status | Medium | As an Admin, I want to able to  manage the status of orders, so that I can monitor the sale.|
+| US40 | Manage Item Description | Medium | As an Admin, I want to able to be able manage the descriptions of items, so that users get an accurate representation of what is being sold. |
 
 <figcaption align= "center">Table 5: Administrator's user stories</figcaption>
 
@@ -114,16 +115,16 @@ This artefact contains the actors and their user stories of this system, with th
 
 | Identifier | Name | Priority | Description |
 | --- | --- | --- | --- |
-| US40 | Review a game | High | As a Buyer, I want to write a review of a game that I have bought, so that other users can see what I thought of the game. |
-| US41 | Give games a score | High | As a Buyer, I want to be able rate a game from 1 to 5, so that other users have an idea of the quality of the game. |
-| US424 | Delete a game score | High | As a Buyer, I want to be able to delete the score I’ve given to a game, so that other users don’t see it. |
-| US43 | Check shop history | High | As a Buyer, I want to view my shop history, so that I can check my past purchases. |
-| US44 | Delete a game review | High | As a Buyer, I want to be able to delete a previous review I wrote about a game, so that other users can't read it. |
-| US45 | Edit a game review | Medium | As a Buyer, I want to be able to edit a review on a game that I bought, so that I can alter it in case I change my mind on the game. |
-| US46 | Payment approval | Medium | As a Buyer, I want to receive a notification when a payment gets approved, so that I know that my payment process was successful. |
-| US47 | Cancel order | Low | As a Buyer, I want to be able to cancel an order, so that I can get my money back if I accidentally bought an item I don’t want and it hasn’t been delivered yet. |
-| US48 | Change in order status | Low | As a Buyer, I want to receive a notification about changes in the order processing stage, so that I know what my order status is. |
-| US49 | Track order | Low | As a Buyer, I want to be able to track an order, so that I know the status of a purchased product. | 
+| US41 | Review a game | High | As a Buyer, I want to able to write a review of a game that I have bought, so that other users can see what I thought of the game. |
+| US42 | Give games a score | High | As a Buyer, I want to able to rate a game from 1 to 5, so that other users have an idea of the quality of the game. |
+| US43 | Delete a game score | High | As a Buyer, I want to able to  delete the score I’ve given to a game, so that other users don’t see it. |
+| US44 | Check purchase history | High | As a Buyer, I want to able to view my purchase history, so that I can check my past purchases. |
+| US45 | Delete a game review | High | As a Buyer, I want to able to  delete a previous review I wrote about a game, so that other users can't read it. |
+| US46 | Edit a game review | Medium | As a Buyer, I want to able to  edit a review on a game that I bought, so that I can alter it in case I change my mind on the game. |
+| US47 | Payment approval | Low | As a Buyer, I want to able to receive a notification when a payment gets approved, so that I know that my payment process was successful. |
+| US48 | Cancel order | Low | As a Buyer, I want to able to  cancel an order, so that I can get my money back if I accidentally bought an item I don’t want and it hasn’t been delivered yet. |
+| US49 | Change in order status | Low | As a Buyer, I want to able to receive a notification about changes in the order processing stage, so that I know what my order status is. |
+| US50 | Track order | Low | As a Buyer, I want to able to  track an order, so that I know the status of a purchased product. | 
 
 <figcaption align= "center">Table 6: Buyer's user stories</figcaption>
 
