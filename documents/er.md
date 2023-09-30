@@ -151,9 +151,9 @@ This artefact contains the actors and their user stories of this system, with th
 | --- | --- | --- |
 | TR01 | Availability | The system must be available 99 percent of the time in each 24-hour period. |
 | TR02 | Accessibility | The system must ensure that everyone can access and use the website, regardless of handicaps or browser of choice. |
-| TR03 | Usability | The system should be simple and easy to use. The platform is meant for users of all ages and levels of technical knowledge, so ease of use is very important. |
-| TR04 | Performance | The system should have response times shorter than 2 s to ensure the user's attention. The system should be accessible without the need to install other software, adopting standard web technologies. |
-| TR05 | Web application | The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). The system should be platform independent to allow for a wider user base. |
+| TR03 | **Usability** | **The system should be simple and easy to use. The platform is meant for users of all ages and levels of technical knowledge, so ease of use is very important.** |
+| TR04 | **Performance** | **The system should have response times shorter than 2 s to ensure the user's attention. The system should be accessible without the need to install other software, adopting standard web technologies.** |
+| TR05 | **Web application** | **The system should be implemented as a web application with dynamic pages (HTML5, JavaScript, CSS3 and PHP). The system should be platform independent to allow for a wider user base.** |
 | TR06 | Portability | The server-side system should work across multiple platforms (Linux, Mac OS, etc). |
 | TR07 | Database | The PostgreSQL database management system must be used. |
 | TR08 | Security | The system shall protect information from unauthorized access through the use of an authentication and verification system. |
