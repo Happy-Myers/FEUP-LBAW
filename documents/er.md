@@ -6,11 +6,11 @@ TODO
 
 GameSpace is your gateway to the world of gaming, offering a convenient way to explore and acquire a wide variety of games across genres and game consoles, all in one place. In an era where gamers want something centralized, user-friendly, and personalized gaming experiences, we are here to provide just that.
 
-Our platform offers a navigation system, allowing you to easily browse and discover games categorized by genre and platform, or simply filter them using the filter tool. Whether you are in a hurry for a specific title or just exploring new games, our search bar and filter tool will ensure that you find what you are looking for.
+Our platform offers a navigation system, allowing you to easily browse and discover games categorized by genre and platform, or simply filter them using the filter tool. Whether you are in a hurry for a specific title or just exploring new games, our search bar and filter tool will ensure that you find what you are looking for. Each game has its dedicated page, providing you with essential information and some valuable user reviews of your new wished game. Gain insights from other gamers and make informed decisions before adding games to your library.
 
-Each game has its dedicated page, providing you with essential information and some valuable user reviews of your new wished game. Gain insights from other gamers and make informed decisions before adding games to your library.
+We believe in making your gaming experience unique. Our recommendation engine analyzes your gaming preferences and past purchases to suggest some new titles that you might like. Regarding the payment method, user can add credits to his account, and once the user purchases its cart, it will be subtracted on his account.
 
-We believe in making your gaming experience unique. Our recommendation engine analyzes your gaming preferences and past purchases to suggest some new titles that you might like.
+Users will be distributed in three groups with different permissions: administrators, visitors and authenticated users. An administrator will have all the privileges of access and modification, such as update available products and delete offensive reviews, however, this user won't be allowed to purchase or review any item. In addition, the administrator will manage users accounts, like block and unblock accounts. A visitor user will only be able to navigate through the website, seeing all the content like products, reviews, and pages, without being able of making purchases. Finally, an user can gain perks once done login authentication, being an authenticated user and he will have privileges not only to make purchases and review items but also to assemble lists and manage their personal information. Authenticated user become a Buyer once finish shopping. 
 
 Never miss out on the bestsellers and your most-wanted titles! Add games to your wish list for future reference, and when you're sure of your choice, simply add them to your cart. Our user-friendly cart ensures a hassle-free checkout process.
 
@@ -33,7 +33,7 @@ This artefact contains the actors and their user stories of this system, with th
 | Authenticated User | User that can make purchases, manage their personal information, log out of the system, add items to favorites. |
 | Buyer | User that has made purchases. Can check it purchases historic, track their order, review an item that they have bought. |
 | Administrator | Authenticated user that is responsable for the management of products and users and supervisory and moderation functions, like delete offensive reviews. |
-| API | External OAuth APIs that can be used to register or authenticate into the system, track the purchase, do deliveries. |
+| API | External OAuth APIs that can be used to register or authenticate into the system. |
 
 <figcaption align= "center">Table 1: Actor's description</figcaption>
 
