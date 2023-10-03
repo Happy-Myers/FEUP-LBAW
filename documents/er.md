@@ -33,7 +33,7 @@ This artefact contains the actors and their user stories of this system, with th
 | Administrator | Authenticated user that is responsible for the management of products and users and supervisory and moderation functions, like delete offensive reviews. |
 | API | External OAuth APIs that can be used to register or authenticate into the system. |
 
-<figcaption align= "center">Table 1: Actor's description</figcaption>
+<figcaption align= "center">Table 1: Actors' descriptions</figcaption>
 
 
 ### 2. User Stories
