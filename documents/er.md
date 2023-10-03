@@ -161,6 +161,8 @@ This artefact contains the actors and their user stories of this system, with th
 
 <figcaption align= "center">Table 8: Technical requirements</figcaption>
 
+We chose these (TR03, TR04 and TR05) three requirements as the most important ones since we consider them to be the most important for the user's quality of life while using the site, for the reasons explained in their description: site respnsiveness, intuitiveness and flexibility accross platforms.
+
 #### 3.3. Restrictions
 
 | Identifier | Name | Description |
