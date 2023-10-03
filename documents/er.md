@@ -1,7 +1,5 @@
 # ER: Requirements Specification Component
 
-TODO
-
 ## A1: GameSpace
 
 GameSpace is your gateway to the world of gaming, offering a convenient way to explore and acquire a wide variety of games across genres and game consoles, all in one place. In an era where gamers want something centralized, user-friendly, and personalized gaming experiences, we are here to provide just that.
@@ -172,3 +170,7 @@ This artefact contains the actors and their user stories of this system, with th
 <figcaption align= "center">Table 9: Restrictions</figcaption>
 
 ## A3: Information Architecture
+
+### 1. Site Map
+
+![](images/sitemap.jpg)
