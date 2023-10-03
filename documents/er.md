@@ -19,7 +19,7 @@ This artefact contains the actors and their user stories of this system, with th
 
 ### 1. Actors
 
-![](https://i.imgur.com/YryzX5e.jpg)
+![](images/actors.jpg)
 
 <figcaption align= "center">Figure 1: Actors</figcaption></p>
 
