@@ -190,19 +190,19 @@ It aims to help to identify and describe the user requirements, raise new ones, 
 
 ![](images/wireframe1.jpg)
 
-<figcaption align= "center">Figure 3: Main menu's wireframe</figcaption></p>
+<figcaption align= "center">Figure 3: Main menu wireframe</figcaption></p>
 
 **UI02: User profile**
 
 ![](images/wireframe2.jpg)
 
-<figcaption align= "center">Figure 4: User profile's wireframe</figcaption></p>
+<figcaption align= "center">Figure 4: User profile wireframe</figcaption></p>
 
 **UI03: Product profile**
 
 ![](images/wireframe3.jpg)
 
-<figcaption align= "center">Figure 5: Product profile's wireframe</figcaption></p>
+<figcaption align= "center">Figure 5: Product page wireframe</figcaption></p>
 
 ## Revision History
 
