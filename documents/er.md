@@ -56,7 +56,7 @@ This artefact contains the actors and their user stories of this system, with th
 | US13 | View Recommendations | Low | As a User, I want to be able to view recommended products, so that I can view products suitbe able for me. |
 
 
-<figcaption align= "center">Tbe able 2: User's user stories</figcaption>
+<figcaption align= "center">Table 2: User's user stories</figcaption>
 
 #### 2.2. Visitor
 
@@ -69,7 +69,7 @@ This artefact contains the actors and their user stories of this system, with th
 | US18 | External API Sign-up | Low | As a Vistor, I want to be able to sign-in through my Google account, so that I can authenticate myself into the system. |
 
 
-<figcaption align= "center">Tbe able 3: Visitor's user stories</figcaption>
+<figcaption align= "center">Table 3: Visitor's user stories</figcaption>
 
 #### 2.3. Authenticated User
 
@@ -90,7 +90,7 @@ This artefact contains the actors and their user stories of this system, with th
 | US31 | Product price change | Low | As an Authenticated User, I want to be able to receive a notification if a product in my shopping cart or wish list changes price, so that I’m aware that the price of the product was altered |
 | US32 | Product availability | Low | As an Authenticated User, I want to be able to receive a notification when a product in my cart or wish list is availbe able again, so that I can I order that product |
 
-<figcaption align= "center">Tbe able 4: Authenticated User's user stories</figcaption>
+<figcaption align= "center">Table 4: Authenticated User's user stories</figcaption>
 
 #### 2.4. Administrator
 
@@ -106,7 +106,7 @@ This artefact contains the actors and their user stories of this system, with th
 | US40 | Manage Order Status | Medium | As an Admin, I want to be able to  manage the status of orders, so that I can monitor the sale.|
 | US41 | Manage Item Description | Medium | As an Admin, I want to be able to be be able manage the descriptions of items, so that users get an accurate representation of what is being sold. |
 
-<figcaption align= "center">Tbe able 5: Administrator's user stories</figcaption>
+<figcaption align= "center">Table 5: Administrator's user stories</figcaption>
 
 
 #### 2.5. Buyer
@@ -125,7 +125,7 @@ This artefact contains the actors and their user stories of this system, with th
 | US51 | Track order | Low | As a Buyer, I want to be able to track an order, so that I know the status of a purchased product. |
 | US52 | Address options | Low | As a Buyer, I want to be able to choose which of my addresses my order is sent to, so that it is sent to the most convenient place for me. |
 
-<figcaption align= "center">Tbe able 6: Buyer's user stories</figcaption>
+<figcaption align= "center">Table 6: Buyer's user stories</figcaption>
 
 ### 3. Supplementary Requirements
 
@@ -143,7 +143,7 @@ This artefact contains the actors and their user stories of this system, with th
 | BR08 | Single review and score | An authenticated user can only make one review and one score per item acquired. |    
 | BR09 | Review voting | A user can't vote on his own review. |
 
-<figcaption align= "center">Tbe able 7: Business rules </figcaption>
+<figcaption align= "center">Table 7: Business rules </figcaption>
 
 #### 3.2. Technical requirements
 
@@ -161,7 +161,7 @@ This artefact contains the actors and their user stories of this system, with th
 | TR10 | Scalability | The system must be prepared to deal with the growth in the number of users and their actions. |
 | TR11 | Ethics | The system must respect the ethical principles in software development (for example, personal user details, or usage data, should not be collected nor shared without full acknowledgement and authorization from its owner). |
 
-<figcaption align= "center">Tbe able 8: Technical requirements</figcaption>
+<figcaption align= "center">Table 8: Technical requirements</figcaption>
 
 We chose these three requirements (TR03, TR04 and TR05) as the most important ones since we consider them to be the most important for the user's quality of life while using the site, for the reasons explained in their description: site responsiveness, intuitiveness and flexibility accross platforms.
 
@@ -171,7 +171,7 @@ We chose these three requirements (TR03, TR04 and TR05) as the most important on
 | --- | --- | --- |
 | C01 | Deadline | The system should be ready to be used at the end of the semester. |
 
-<figcaption align= "center">Tbe able 9: Restrictions</figcaption>
+<figcaption align= "center">Table 9: Restrictions</figcaption>
 
 ## A3: Information Architecture
 
@@ -182,19 +182,27 @@ It aims to help to identify and describe the user requirements, raise new ones, 
 
 ![](images/sitemap.jpg)
 
+<figcaption align= "center">Figure 2: Sitemap</figcaption></p>
+
 ### 2. Wireframes
 
 **UI01: Main menu**
 
 ![](images/wireframe1.jpg)
 
+<figcaption align= "center">Figure 3: Main menu's wireframe</figcaption></p>
+
 **UI02: User profile**
 
 ![](images/wireframe2.jpg)
 
+<figcaption align= "center">Figure 4: User profile's wireframe</figcaption></p>
+
 **UI03: Product profile**
 
 ![](images/wireframe3.jpg)
+
+<figcaption align= "center">Figure 5: Product profile's wireframe</figcaption></p>
 
 ## Revision History
 
