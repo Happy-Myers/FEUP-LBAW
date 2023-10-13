@@ -8,7 +8,7 @@ The Conceptual Data Model contains the identification and description of the ent
 
 The UML diagram in Figure 1 shows the main entities, their relationships, attributes and domains. The multiplicity of relationships are present too.
 
-![](imagens/UML.png)
+![](images/UML.jpg)
 
 <figcaption align= "center">Figure 1: UML Class Diagram</figcaption></p>
 
@@ -77,13 +77,15 @@ Specification of additional domains:
 
 To validate the Relational Schema obtained from the Conceptual Data Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. 
 
-| **TABLE R01**   | user               |
+| **TABLE R01**   | User               |
 | --------------  | ---                |
-| **Keys**        | { id }, { email }, { username }, { NIF }  |
+| **Keys**        | { id }, { email }  |
 | **Functional Dependencies:** |       |
-| FD0101          | id → {name, username, email, password, NIF, picture, admin} |
-| FD0102          | email → {id, name, username, password, NIF, picture, admin} |
+| FD0101          | id → {email, name} |
+| FD0102          | email → {id, name} |
+| ...             | ...                |
 | **NORMAL FORM** | BCNF               |
+
 
 Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relational schema is also in the BCNF. Therefore, the schema does not need to be further normalised.  
 
@@ -92,10 +94,3 @@ Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relat
 
 
 ## A6: Indexes, triggers, transactions and database population
-
-This artifact displays the database workload, integral for managing the performance of the platform; indexes, integral for improving the performance of select queries; triggers, which automate tasks on the database; transactions, which assure data integrity during operations; and the database schema.
-
-### 1. Database Workload
-
-| **Relation reference** | **Relation Name** | **Order of magnitude**        | **Estimated growth** |
-| --- | --- | --- | --- |
