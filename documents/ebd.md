@@ -86,8 +86,29 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 
 Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relational schema is also in the BCNF. Therefore, the schema does not need to be further normalised.  
 
-
 ---
 
 
 ## A6: Indexes, triggers, transactions and database population
+
+
+> Brief presentation of the artifact goals.
+
+### 1. Database Workload
+ 
+> A study of the predicted system load (database load).
+> Estimate of tuples at each relation.
+
+| **Relation reference** | **Relation Name** | **Order of magnitude** | **Estimated growth** |
+| ------------------ | ------------- | ------------------------- | -------- |
+| RS01                | Platform        | tens | units per year |
+| RS02                | Category        | dozens | units per year |
+| RS03                | Cart        | thousands | hundreds per day |
+| RS04                | Product        | thousands | tens per day |
+| RS05                | Review        | thousands | tens per day |
+| RS06                | ReviewVote        | thousands | tens per day |
+| RS07                | User        | thousnds | dozens per day |
+| RS08                | Address        | thounds | no growth |
+| RS09                | FAQ        | tens | units per year |
+| RS10                | Wishlist        | thousands | hundreds per day |
+| RS11                | Purchase        | thousands | dozens per day |
