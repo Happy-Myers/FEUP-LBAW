@@ -84,13 +84,62 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | FD0103          | phoneNumber → {id, name, email, password, credits, permissions} |
 | **NORMAL FORM** | BCNF               |
 
-
 | **TABLE R02** | Address |
 | ------------- | ------- |
 | **Keys**      | {id}    |
 | **Functional Dependencies:** |
 | FD0201        | id -> {userId, street, city, country, postalCode} |
 | **NORMAL FORM** | BCNF |
+
+| **TABLE R03**   | Product            |
+| --------------  | ---                |
+| **Keys**        | { id } |
+| **Functional Dependencies:** |       |
+| FD0301          | id → { name, price, photo, score, description } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R04**   | Platform           |
+| --------------  | ---                |
+| **Keys**        | { id }, { name }   |
+| **Functional Dependencies:** |       |
+| FD0401          | id → { name } |
+| FD0401          | name → { id } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R05**   | Category           |
+| --------------  | ---                |
+| **Keys**        | { id }, { name }   |
+| **Functional Dependencies:** |       |
+| FD0501          | id → { name } |
+| FD0501          | name → { id } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R06**   | CategoryProduct    |
+| --------------  | ---                |
+| **Keys**        | { categoryId, productId }   |
+| **Functional Dependencies:** | none |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R07**   | Review             |
+| --------------  | ---                |
+| **Keys**        | { id }   |
+| **Functional Dependencies:** |       |
+| FD0701          | id → { productId, userId, score, comment } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R08**   | ReviewVote         |
+| --------------  | ---                |
+| **Keys**        | { id }   |
+| **Functional Dependencies:** |       |
+| FD0801          | id → { reviewId, userId, score } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R09**   | Cart               |
+| --------------  | ---                |
+| **Keys**        | { productId, userId }   |
+| **Functional Dependencies:** |       |
+| FD0901          | productId, userId → { quantity } |
+| **NORMAL FORM** | BCNF               |
 
 | **TABLE 10** | Wishlist |
 | ------------- | ------- |
