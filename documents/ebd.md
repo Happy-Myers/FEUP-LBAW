@@ -69,7 +69,6 @@ Specification of additional domains:
 
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
-| Today	      | DATE DEFAULT CURRENT_DATE      |
 | deliveryProgress    | ENUM ('Processing', 'Shipped', 'Delivered') |
 | userPermission    | ENUM ('User', 'Admin') |
 
