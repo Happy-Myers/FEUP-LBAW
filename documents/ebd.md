@@ -21,10 +21,8 @@ Additional business rules or restrictions are described in text as UML notes in 
 | BR01 | The total value of a purchase must be the sum of price of the purchased products. |
 | BR02 | Update products' score according to all existing reviews. |
 | BR03 | A user can only review a product that he has purchased. |
-| BR04 | A product's price must be a positive value. |
-| BR05 | A product must have its platform's required properties filled in. |
+| BR05 | A product must have its category's required properties filled in. |
 | BR06 | If the administrator removes a product, it will be removed from every cart and wishlist. |
-| - | - |
 | **BR07** | **A purchase's address must have to be in the user's addresses book.** |
 | **BR08** | **If the category has no products, it can not be added to the navigation bar. But, if that same category is in the navigation bar, it will be removed.** |
 
@@ -54,7 +52,7 @@ Relation schemas are specified using a textual compact notation.
 | R08                | cart (<u>id</u>, productId -> product, userId -> user, quantity __NN__ __CK__ > 0) |
 | R09                | wishlist (<u>id</u>, productId -> product, userId -> user) |
 | R10                | purchase (<u>id</u>, userId -> user, date __NN__ __CK__ >= TODAY, total __NN__ __CK__ > 0, deliveryProgress) |
-| R1                | faq (<u>id</u>, question __NN__, answer __NN__)
+| R11                | faq (<u>id</u>, question __NN__, answer __NN__)
 
 Legend:
 
