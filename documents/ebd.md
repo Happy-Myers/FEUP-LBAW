@@ -43,7 +43,7 @@ Relation schemas are specified using a textual compact notation.
 | Relation reference | Relation Compact Notation                        |
 | ------------------ | ------------------------------------------------ |
 | R01                | user (<u>id</u>, name __NN__, phoneNumber __UK__ __NN__, email __UK__ __NN__, password __NN__, credits __NN__, permissions __NN__)                    |
-| R02                | address (<u>id</u>, productId -> product, street __NN__, city __NN__, country __NN__, postalCode __NN__)
+| R02                | address (<u>id</u>, userId -> user, street __NN__, city __NN__, country __NN__, postalCode __NN__)
 | R03                | product (<u>id</u>, name __NN__, price __NN__ __CK__ price > 0, photo, score __NN__, description __NN__)
 | R04                | platform (<u>id</u>, name __NN__, productId -> product) |
 | R05                | category (<u>id</u>, name __NN__) |
@@ -85,7 +85,32 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | **NORMAL FORM** | BCNF               |
 
 
+| **TABLE R02** | Address |
+| ------------- | ------- |
+| **Keys**      | {id}    |
+| **Functional Dependencies:** |
+| FD0201        | id -> {userId, street, city, country, postalCode} |
+| **NORMAL FORM** | BCNF |
 
+| **TABLE 10** | Wishlist |
+| ------------- | ------- |
+| **Keys**      | {productId, userId} |
+| **Functional Dependencies:** | none |
+| **NORMAL FORM** | BCNF |
+
+| **TABLE R11** | Purchase |
+| ------------- | ------- |
+| **Keys**      | {id}    |
+| **Functional Dependencies:** |
+| FD1101        | id -> {userId, date, total, deliveryProgress} |
+| **NORMAL FORM** | BCNF |
+
+| **TABLE R12** | Faq |
+| ------------- | ------- |
+| **Keys**      | {id}    |
+| **Functional Dependencies:** |
+| FD1201        | id -> {question, answer} |
+| **NORMAL FORM** | BCNF |
 
 Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relational schema is also in the BCNF. Therefore, the schema does not need to be further normalised.  
 
