@@ -77,12 +77,14 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 
 | **TABLE R01**   | User               |
 | --------------  | ---                |
-| **Keys**        | { id }, { email }  |
+| **Keys**        | { id }, { email }, {phoneNumber}  |
 | **Functional Dependencies:** |       |
-| FD0101          | id → {email, name} |
-| FD0102          | email → {id, name} |
-| ...             | ...                |
+| FD0101          | id → {name, phoneNumber, email, password, credits, permissions} |
+| FD0102          | email → {id, name, phoneNumber, password, credits, permissions} |
+| FD0103          | phoneNumber → {id, name, email, password, credits, permissions} |
 | **NORMAL FORM** | BCNF               |
+
+
 
 
 Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relational schema is also in the BCNF. Therefore, the schema does not need to be further normalised.  
