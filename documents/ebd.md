@@ -77,13 +77,89 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 
 | **TABLE R01**   | User               |
 | --------------  | ---                |
-| **Keys**        | { id }, { email }  |
+| **Keys**        | { id }, { email }, {phoneNumber}  |
 | **Functional Dependencies:** |       |
-| FD0101          | id → {email, name} |
-| FD0102          | email → {id, name} |
-| ...             | ...                |
+| FD0101          | id → {name, phoneNumber, email, password, credits, permissions} |
+| FD0102          | email → {id, name, phoneNumber, password, credits, permissions} |
+| FD0103          | phoneNumber → {id, name, email, password, credits, permissions} |
 | **NORMAL FORM** | BCNF               |
 
+| **TABLE R02** | Address |
+| ------------- | ------- |
+| **Keys**      | {id}    |
+| **Functional Dependencies:** |
+| FD0201        | id -> {userId, street, city, country, postalCode} |
+| **NORMAL FORM** | BCNF |
+
+| **TABLE R03**   | Product            |
+| --------------  | ---                |
+| **Keys**        | { id } |
+| **Functional Dependencies:** |       |
+| FD0301          | id → { name, price, photo, score, description } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R04**   | Platform           |
+| --------------  | ---                |
+| **Keys**        | { id }, { name }   |
+| **Functional Dependencies:** |       |
+| FD0401          | id → { name } |
+| FD0401          | name → { id } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R05**   | Category           |
+| --------------  | ---                |
+| **Keys**        | { id }, { name }   |
+| **Functional Dependencies:** |       |
+| FD0501          | id → { name } |
+| FD0501          | name → { id } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R06**   | CategoryProduct    |
+| --------------  | ---                |
+| **Keys**        | { categoryId, productId }   |
+| **Functional Dependencies:** | none |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R07**   | Review             |
+| --------------  | ---                |
+| **Keys**        | { id }   |
+| **Functional Dependencies:** |       |
+| FD0701          | id → { productId, userId, score, comment } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R08**   | ReviewVote         |
+| --------------  | ---                |
+| **Keys**        | { id }   |
+| **Functional Dependencies:** |       |
+| FD0801          | id → { reviewId, userId, score } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE R09**   | Cart               |
+| --------------  | ---                |
+| **Keys**        | { productId, userId }   |
+| **Functional Dependencies:** |       |
+| FD0901          | productId, userId → { quantity } |
+| **NORMAL FORM** | BCNF               |
+
+| **TABLE 10** | Wishlist |
+| ------------- | ------- |
+| **Keys**      | {productId, userId} |
+| **Functional Dependencies:** | none |
+| **NORMAL FORM** | BCNF |
+
+| **TABLE R11** | Purchase |
+| ------------- | ------- |
+| **Keys**      | {id}    |
+| **Functional Dependencies:** |
+| FD1101        | id -> {userId, date, total, deliveryProgress} |
+| **NORMAL FORM** | BCNF |
+
+| **TABLE R12** | Faq |
+| ------------- | ------- |
+| **Keys**      | {id}    |
+| **Functional Dependencies:** |
+| FD1201        | id -> {question, answer} |
+| **NORMAL FORM** | BCNF |
 
 Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relational schema is also in the BCNF. Therefore, the schema does not need to be further normalised.  
 
@@ -92,3 +168,22 @@ Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relat
 
 
 ## A6: Indexes, triggers, transactions and database population
+
+### 1. Database Workload
+
+> A study of the predicted system load (database load).
+> Estimate of tuples at each relation.
+
+| **Relation reference** | **Relation Name** | **Order of magnitude** | **Estimated growth** |
+| ------------------ | ------------- | ------------------------- | -------- |
+| RS01                | Platform        | tens | units per year |
+| RS02                | Category        | dozens | units per year |
+| RS03                | Cart        | thousands | hundreds per day |
+| RS04                | Product        | thousands | tens per day |
+| RS05                | Review        | thousands | tens per day |
+| RS06                | ReviewVote        | thousands | tens per day |
+| RS07                | User        | thousnds | dozens per day |
+| RS08                | Address        | thounds | no growth |
+| RS09                | FAQ        | tens | units per year |
+| RS10                | Wishlist        | thousands | hundreds per day |
+| RS11                | Purchase        | thousands | dozens per day |
