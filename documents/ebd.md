@@ -42,17 +42,17 @@ Relation schemas are specified using a textual compact notation.
 
 | Relation reference | Relation Compact Notation                        |
 | ------------------ | ------------------------------------------------ |
-| R01                | user (<u>id</u>, name __NN__, phoneNumber __UK__ __NN__, email __UK__ __NN__, password __NN__, credits __NN__, permissions __NN__)                    |
-| R02                | address (<u>id</u>, productId -> product, street __NN__, city __NN__, country __NN__, postalCode __NN__) |
+| R01                | users (<u>id</u>, name __NN__, phone_number __UK__ __NN__, email __UK__ __NN__, password __NN__, credits __NN__, permissions __NN__)                    |
+| R02                | address (<u>id</u>, street __NN__, city __NN__, country __NN__, postal_code __NN__) |
 | R03                | platform (<u>id</u>, name __NN__) |
 | R04                | category (<u>id</u>, name __NN__) |
-| R05                | category_product (<u>categoryId</u> -> category, <u>productId</u> -> product) |
-| R06                | product (<u>id</u>, name __NN__, price __NN__ __CK__ price > 0, photo, score __NN__, description __NN__, platformId -> platform) |
-| R07                | review (<u>id</u>, productId -> product, userId -> user, score __NN__ __CK__ score > 0 and score <= 5, comment) |
-| R08                | reviewVote (<u>id</u>, reviewId -> review, userId -> user, score __NN__) |
-| R09                | cart (<u>productId</u> -> product, <u>userId</u> -> user, quantity __NN__ __CK__ quantity > 0) |
-| R10                | wishlist (<u>productId</u> -> product, <u>userId</u> -> user) |
-| R11                | purchase (<u>id</u>, userId -> user, date __NN__ __CK__ >= TODAY, total __NN__ __CK__ total > 0, deliveryProgress) |
+| R05                | product (<u>id</u>, name __NN__, price __NN__ __CK__ price > 0, photo, score __NN__, description __NN__, id_platform -> platform) |
+| R06                | category_product (<u>id_category</u> -> category, <u>id_product</u> -> product) |
+| R07                | review (<u>id</u>, id_product -> product, id_user -> users, score __NN__ __CK__ score > 0 and score <= 5, comment) |
+| R08                | review_vote (<u>id</u>, id_review -> review, id_user -> users, vote __NN__) |
+| R09                | cart (<u>id_product</u> -> product, <u>id_user</u> -> users, quantity __NN__ __CK__ quantity > 0) |
+| R10                | wishlist (<u>id_product</u> -> product, <u>id_user</u> -> users) |
+| R11                | purchase (<u>id</u>, id_user -> users, date NN DF Today, total __NN__ __CK__ total > 0, deliveryProgress) |
 | R12                | faq (<u>id</u>, question __NN__, answer __NN__) |
 
 Legend:
@@ -68,7 +68,7 @@ Specification of additional domains:
 
 | Domain Name | Domain Specification           |
 | ----------- | ------------------------------ |
-| deliveryProgress    | ENUM ('Processing', 'Shipped', 'Delivered') |
+| deliveryProgress  | ENUM ('Processing', 'Shipped', 'Delivered') |
 | userPermission    | ENUM ('User', 'Admin') |
 
 ### 3. Schema validation
