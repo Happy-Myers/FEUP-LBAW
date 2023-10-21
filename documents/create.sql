@@ -35,14 +35,14 @@ CREATE TABLE users (
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
     credits TEXT,
-    permissions userPermission NOT NULL,
+    permissions userPermission NOT NULL
 );
 
 CREATE TABLE addresss (
     id SERIAL PRIMARY KEY,
     street TEXT NOT NULL,
     city TEXT NOT NULL,
-    postal_code TEXT NOT NULL,
+    postal_code TEXT NOT NULL
 );
 
 CREATE TABLE platform (
