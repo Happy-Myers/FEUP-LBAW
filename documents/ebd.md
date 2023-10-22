@@ -23,8 +23,7 @@ Additional business rules or restrictions are described in text as UML notes in 
 | BR03 | A user can only review a product that he has purchased. |
 | BR05 | A product must have its category's required properties filled in. |
 | BR06 | If the administrator removes a product, it will be removed from every cart and wishlist. |
-| **BR07** | **A purchase's address must have to be in the user's addresses book.** |
-| **BR08** | **If the category has no products, it can not be added to the navigation bar. But, if that same category is in the navigation bar, it will be removed.** |
+| BR07 | A purchase's address must have to be in the user's addresses book. |
 
 
 ---
@@ -43,17 +42,18 @@ Relation schemas are specified using a textual compact notation.
 | Relation reference | Relation Compact Notation                        |
 | ------------------ | ------------------------------------------------ |
 | R01                | users (<u>id</u>, name __NN__, phone_number __UK__ __NN__, email __UK__ __NN__, password __NN__, credits __NN__, permissions __NN__)                    |
-| R02                | address (<u>id</u>, street __NN__, city __NN__, country __NN__, postal_code __NN__) |
-| R03                | platform (<u>id</u>, name __NN__) |
-| R04                | category (<u>id</u>, name __NN__) |
-| R05                | product (<u>id</u>, name __NN__, price __NN__ __CK__ price > 0, photo, score __NN__, description __NN__, id_platform -> platform) |
+| R02                | address (<u>id</u>, street __NN__, city __NN__, country __NN__, postal_code __NN__, <u>id_user</u> -> users) |
+| R03                | platform (<u>id</u>, name __NN__ __UK__) |
+| R04                | category (<u>id</u>, name __NN__ __UK__) |
+| R05                | product (<u>id</u>, name __NN__, price __NN__ __CK__ price > 0, photo, score __NN__ __CK__ score > 0 and score <= 5, description __NN__, hardware __NN__, publication_date __NN__ __CK__ publication_date <= Today __DF__ Today, id_platform -> platform) |
 | R06                | category_product (<u>id_category</u> -> category, <u>id_product</u> -> product) |
-| R07                | review (<u>id</u>, id_product -> product, id_user -> users, score __NN__ __CK__ score > 0 and score <= 5, comment) |
+| R07                | review (<u>id</u>, id_product -> product, id_user -> users, score __NN__ __CK__ score > 0 and score <= 5, date __DF__ Today, comment) |
 | R08                | review_vote (<u>id</u>, id_review -> review, id_user -> users, vote __NN__) |
 | R09                | cart (<u>id_product</u> -> product, <u>id_user</u> -> users, quantity __NN__ __CK__ quantity > 0) |
 | R10                | wishlist (<u>id_product</u> -> product, <u>id_user</u> -> users) |
-| R11                | purchase (<u>id</u>, id_user -> users, date NN DF Today, total __NN__ __CK__ total > 0, deliveryProgress) |
-| R12                | faq (<u>id</u>, question __NN__, answer __NN__) |
+| R11                | purchase (<u>id</u>, id_user -> users, date __NN__ __DF__ Today, total __NN__ __CK__ total > 0, deliveryProgress, <u>id_address</u> -> address) |
+| R12                | purchase_product (<u>id_purchase</u> -> purchase, <u>id_product</u> -> product )
+| R13                | faq (<u>id</u>, question __NN__, answer __NN__) |
 
 Legend:
 
