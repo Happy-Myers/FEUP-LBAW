@@ -91,14 +91,8 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | FD0201        | id -> {userId, street, city, country, postalCode} |
 | **NORMAL FORM** | BCNF |
 
-| **TABLE R03**   | Product            |
-| --------------  | ---                |
-| **Keys**        | { id } |
-| **Functional Dependencies:** |       |
-| FD0301          | id → { name, price, photo, score, description } |
-| **NORMAL FORM** | BCNF               |
 
-| **TABLE R04**   | Platform           |
+| **TABLE R03**   | Platform           |
 | --------------  | ---                |
 | **Keys**        | { id }, { name }   |
 | **Functional Dependencies:** |       |
@@ -106,7 +100,7 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | FD0401          | name → { id } |
 | **NORMAL FORM** | BCNF               |
 
-| **TABLE R05**   | Category           |
+| **TABLE R04**   | Category           |
 | --------------  | ---                |
 | **Keys**        | { id }, { name }   |
 | **Functional Dependencies:** |       |
@@ -114,9 +108,16 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | FD0501          | name → { id } |
 | **NORMAL FORM** | BCNF               |
 
+| **TABLE R05**   | Product            |
+| --------------  | ---                |
+| **Keys**        | { id } |
+| **Functional Dependencies:** |       |
+| FD0301          | id → { name, price, photo, score, description, id_platform } |
+| **NORMAL FORM** | BCNF               |
+
 | **TABLE R06**   | CategoryProduct    |
 | --------------  | ---                |
-| **Keys**        | { categoryId, productId }   |
+| **Keys**        | { id_category, id_product }   |
 | **Functional Dependencies:** | none |
 | **NORMAL FORM** | BCNF               |
 
@@ -124,26 +125,26 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | --------------  | ---                |
 | **Keys**        | { id }   |
 | **Functional Dependencies:** |       |
-| FD0701          | id → { productId, userId, score, comment } |
+| FD0701          | id → { id_product, id_user, score, comment } |
 | **NORMAL FORM** | BCNF               |
 
 | **TABLE R08**   | ReviewVote         |
 | --------------  | ---                |
 | **Keys**        | { id }   |
 | **Functional Dependencies:** |       |
-| FD0801          | id → { reviewId, userId, score } |
+| FD0801          | id → { id_review, id_user, score } |
 | **NORMAL FORM** | BCNF               |
 
 | **TABLE R09**   | Cart               |
 | --------------  | ---                |
-| **Keys**        | { productId, userId }   |
+| **Keys**        | { id_product, id_user }   |
 | **Functional Dependencies:** |       |
-| FD0901          | productId, userId → { quantity } |
+| FD0901          | id_product, id_user → { quantity } |
 | **NORMAL FORM** | BCNF               |
 
 | **TABLE 10** | Wishlist |
 | ------------- | ------- |
-| **Keys**      | {productId, userId} |
+| **Keys**      | {id_product, id_user} |
 | **Functional Dependencies:** | none |
 | **NORMAL FORM** | BCNF |
 
@@ -151,7 +152,7 @@ To validate the Relational Schema obtained from the Conceptual Data Model, all f
 | ------------- | ------- |
 | **Keys**      | {id}    |
 | **Functional Dependencies:** |
-| FD1101        | id -> {userId, date, total, deliveryProgress} |
+| FD1101        | id -> {id_user, date, total, deliveryProgress} |
 | **NORMAL FORM** | BCNF |
 
 | **TABLE R12** | Faq |
