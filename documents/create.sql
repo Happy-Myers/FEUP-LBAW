@@ -15,7 +15,7 @@ CREATE TYPE userPermission AS ENUM ('User', 'Admin');
 
 
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS addresss CASCADE;
+DROP TABLE IF EXISTS addresses  CASCADE;
 DROP TABLE IF EXISTS platform CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
 DROP TABLE IF EXISTS product CASCADE;
@@ -38,21 +38,22 @@ CREATE TABLE users (
     permissions userPermission NOT NULL
 );
 
-CREATE TABLE addresss (
+CREATE TABLE addresses  (
     id SERIAL PRIMARY KEY,
     street TEXT NOT NULL,
     city TEXT NOT NULL,
-    postal_code TEXT NOT NULL
+    postal_code TEXT NOT NULL,
+    id_user INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE platform (
     id SERIAL PRIMARY KEY, 
-    name TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE category (
     id SERIAL PRIMARY KEY, 
-    name TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE product (
@@ -61,8 +62,9 @@ CREATE TABLE product (
     price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0),
     photo TEXT,
     score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score > 0) AND (score <= 5)),
-    --publicationDate TIMESTAMP WITH TIME ZONE NOT NULL,
     description TEXT NOT NULL,
+    hardware BOOLEAN NOT NULL,
+    publication_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, -- CONSTRAINT pub_date_ck CHECK (publication_date <= now()),
     id_platform INTEGER REFERENCES platform(id) ON DELETE CASCADE
 );
 
@@ -74,11 +76,11 @@ CREATE TABLE category_product (
 
 CREATE TABLE review (
     id SERIAL PRIMARY KEY,
-    comment TEXT,
-    --date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-    score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score >= 0) OR (score <= 5)),
     id_user INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE
+    id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score >= 0) OR (score <= 5)),
+    date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+    comment TEXT
 );
 
 CREATE TABLE review_vote (
@@ -106,7 +108,14 @@ CREATE TABLE purchase (
     id_user INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total > 0),
-    delivery_progress deliveryProgress NOT NULL
+    delivery_progress deliveryProgress NOT NULL,
+    id_address INTEGER NOT NULL REFERENCES addresses(id) ON DELETE CASCADE
+);
+
+CREATE TABLE purchase_product (
+    id_purchase INTEGER NOT NULL REFERENCES purchase(id) ON DELETE CASCADE,
+    id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    PRIMARY KEY (id_purchase, id_product)
 );
 
 CREATE TABLE faq (
