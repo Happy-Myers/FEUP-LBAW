@@ -170,6 +170,8 @@ Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relat
 
 ## A6: Indexes, triggers, transactions and database population
 
+This artefact contains the physical schema of the database, the identification and characterisation of the indexes, the support of data integrity rules with triggers and the definition of the database user-defined functions. This artefact also contains the database's workload as well as the complete database creation script, including all SQL necessary to define all integrity constraints, indexes and triggers.
+
 ### 1. Database Workload
 
 > A study of the predicted system load (database load).
@@ -188,3 +190,55 @@ Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relat
 | RS09                | FAQ        | tens | units per year |
 | RS10                | Wishlist        | thousands | hundreds per day |
 | RS11                | Purchase        | thousands | dozens per day |
+
+
+
+#### 2.2. Full-text Search Indices 
+
+| **Index**           | IDX |
+| ---                 | --- |
+| **Relation**        | product |
+| **Attribute**       | name, description, platform |
+| **Type**            | GIN              |
+| **Clustering**      | No                |
+| **Justification**   | To look for products based on matching titles or words in the descritpion. The indexed types are not expected to change often so GIN type is used   |
+
+
+```sql
+-- Add column to product to store computed ts_vectors.
+ALTER TABLE product
+ADD COLUMN tsvectors TSVECTOR;
+
+-- Create a function to automatically update ts_vectors.
+CREATE FUNCTION product_search_update() RETURNS TRIGGER AS $$
+BEGIN
+ IF TG_OP = 'INSERT' THEN
+        NEW.tsvectors = (
+         setweight(to_tsvector('english', NEW.name), 'A') ||
+         setweight(to_tsvector('english', NEW.description), 'B') ||
+         setweight(to_tsvector('english', NEW.platform), 'C')
+        );
+ END IF;
+ IF TG_OP = 'UPDATE' THEN
+         IF (NEW.name <> OLD.name OR NEW.description <> OLD.description OR NEW.platform <> OLD.platform) THEN
+           NEW.tsvectors = (
+             setweight(to_tsvector('english', NEW.name), 'A') ||
+             setweight(to_tsvector('english', NEW.description), 'B') ||
+             setweight(to_tsvector('english', NEW.platform), 'C')
+           );
+         END IF;
+ END IF;
+ RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+-- Create a trigger before insert or update on product.
+CREATE TRIGGER product_search_update
+ BEFORE INSERT OR UPDATE ON product
+ FOR EACH ROW
+ EXECUTE PROCEDURE product_search_update();
+
+
+-- Finally, create a GIN index for ts_vectors.
+CREATE INDEX search_idx ON product USING GIN (tsvectors);
+```
