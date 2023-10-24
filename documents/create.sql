@@ -64,7 +64,7 @@ CREATE TABLE product (
     score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score > 0) AND (score <= 5)),
     description TEXT NOT NULL,
     hardware BOOLEAN NOT NULL,
-    publication_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, -- CONSTRAINT pub_date_ck CHECK (publication_date <= now()),
+    publication_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL CONSTRAINT pub_date_ck CHECK (publication_date <= now()),
     id_platform INTEGER REFERENCES platform(id) ON DELETE CASCADE
 );
 
@@ -91,10 +91,10 @@ CREATE TABLE review_vote (
 );
 
 CREATE TABLE cart (
-    id_user INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+    id_user INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
     quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
-    total FLOAT NOT NULL CONSTRAINT total_ck CHECK (total > 0)
+    PRIMARY KEY (id_user, id_product)
 );
 
 CREATE TABLE wishlist (
@@ -115,6 +115,7 @@ CREATE TABLE purchase (
 CREATE TABLE purchase_product (
     id_purchase INTEGER NOT NULL REFERENCES purchase(id) ON DELETE CASCADE,
     id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity > 0),
     PRIMARY KEY (id_purchase, id_product)
 );
 

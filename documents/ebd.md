@@ -52,7 +52,7 @@ Relation schemas are specified using a textual compact notation.
 | R09                | cart (<u>id_product</u> -> product, <u>id_user</u> -> users, quantity __NN__ __CK__ quantity > 0) |
 | R10                | wishlist (<u>id_product</u> -> product, <u>id_user</u> -> users) |
 | R11                | purchase (<u>id</u>, id_user -> users, date __NN__ __DF__ Today, total __NN__ __CK__ total > 0, deliveryProgress, <id_address -> addresses) |
-| R12                | purchase_product (<u>id_purchase</u> -> purchase, <u>id_product</u> -> product )
+| R12                | purchase_product (<u>id_purchase</u> -> purchase, <u>id_product</u> -> product, quantity __NN__ __CK__ quantity > 0)
 | R13                | faq (<u>id</u>, question __NN__, answer __NN__) |
 
 Legend:
