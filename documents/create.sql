@@ -64,7 +64,7 @@ CREATE TABLE product (
     score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score > 0) AND (score <= 5)),
     description TEXT NOT NULL,
     hardware BOOLEAN NOT NULL,
-    publication_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL CONSTRAINT pub_date_ck CHECK (publication_date <= now()),
+    publication_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, -- CONSTRAINT pub_date_ck CHECK (publication_date <= now()),
     id_platform INTEGER REFERENCES platform(id) ON DELETE CASCADE
 );
 
