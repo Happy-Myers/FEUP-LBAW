@@ -57,7 +57,7 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER clear_cart AFTER INSERT
 ON purchase
-EXECUTE PROCEDURE check_cart();
+EXECUTE PROCEDURE clear_cart();
 
 
 /*delete from wishlist*/
@@ -66,16 +66,16 @@ CREATE FUNCTION clear_wishlist() RETURNS TRIGGER AS
 $BODY$
 BEGIN
     DELETE FROM wishlist
-    WHERE id_user = New.id_user
+    WHERE id_user = (SELECT id_user FROM purchase WHERE id = New.id_purchase) AND id_product = NEW.id_product
 END
 $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER clear_wishlist AFTER INSERT
-ON purchase
-EXECUTE PROCEDURE check_cart();
+ON purchase_product
+EXECUTE PROCEDURE clear_wishlist();
 
-
+/**/
 
 
 
