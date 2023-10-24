@@ -98,9 +98,9 @@ CREATE TABLE cart (
 );
 
 CREATE TABLE wishlist (
-    id SERIAL PRIMARY KEY,
     id_user INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE
+    id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
+    PRIMARY KEY (id_user, id_product)
 );
 
 CREATE TABLE purchase (
