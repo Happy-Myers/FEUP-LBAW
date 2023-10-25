@@ -404,3 +404,78 @@ ON purchase_product
 FOR EACH ROW
 EXECUTE PROCEDURE clear_wishlist();
 ```
+
+### 4. Transactions
+
+Transactions are used to assure the integrity of the data when multiple operations are necessary.
+
+| Transaction     | TRAN01                              |
+| --------------- | ----------------------------------- |
+| **Description**     | Inserting a new Order |
+| **Justification**   | This transaction ensures that when a purchase is added to the database all its associated Purchase_Product tables are correctly added (or else it fails). This prevents purchases from going through with missing items. |
+| **Isolation level** | SERIALIZABLE |
+| **Complete SQL Code**                                   ||
+```BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+BEGIN TRY
+    BEGIN
+        INSERT INTO purchase (id_user, total, delivery_progress)
+        VALUES ($user_id, $total, $progress_status);
+
+        SET $purchase_id = SCOPE_IDENTITY();
+    END
+
+    INSERT INTO purchase_product (id_purchase, id_product, quantity)
+    SELECT $purchase_id, $product_id, $quantity
+    FROM $products;
+
+    COMMIT;
+END TRY
+BEGIN CATCH
+    ROLLBACK;
+END CATCH;
+
+END TRANSACTION;
+```
+
+| Transaction     | TRAN02                              |
+| --------------- | ----------------------------------- |
+| **Description**     | Viewing the Cart |
+| **Justification**   | This transaction ensures that when a user checks their cart all the items in their cart are shown (failing to have all the items will fail to show the cart). It is read only since it only uses selects. |
+| **Isolation level** | SERIALIZABLE READ ONLY |
+| **Complete SQL Code**                                   ||
+```BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
+
+SELECT product.id, product.name, product.price, product.photo, product.description, product.hardware, cart.quantity
+FROM product
+INNER JOIN cart ON product.id = cart.id_product
+WHERE cart.id_user = $user_id;
+
+END TRANSACTION;
+```
+
+| Transaction     | TRAN03                              |
+| --------------- | ----------------------------------- |
+| **Description**     | Insert a new product with associated category |
+| **Justification**   | This transaction is necessary to maintain data consistency when adding new products to the catalog, so that they always are in at least one category. The isolation level is Repeatable Read as to not do any of the inserts without the other.  |
+| **Isolation level** | REPEATABLE READ |
+| **Complete SQL Code**   ||                                
+```BEGIN TRANSACTION;
+
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+-- Insert product
+INSERT INTO product (name, price, photo, score, description, hardware, publication_date, id_platform)
+	VALUES ($name, $price, $photo, $score, $description, $hardware, $publication_date, $id_platform)
+	RETURNING id;
+
+-- Insert product into a category
+INSERT INTO category_product (id_category, id_product)
+	VALUES ($id_platform, id);
+
+END TRANSACTION;
+```
