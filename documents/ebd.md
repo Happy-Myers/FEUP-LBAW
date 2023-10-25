@@ -272,3 +272,105 @@ CREATE TRIGGER product_search_update
 -- Finally, create a GIN index for ts_vectors.
 CREATE INDEX search_idx ON product USING GIN (tsvectors);
 ```
+
+### 3. Triggers
+
+| **Trigger**     | TRIGGER01                                                     |
+| ---             | ---                                                           |
+| **Description** | A product's score is updated everytime a review is submitted. |
+| **SQL code**                                                                    |
+```sql
+CREATE FUNCTION update_product_score() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE product 
+    SET score = (AVG(score) FROM review WHERE id_product = New.id_product) WHERE id = New.id_product 
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_score AFTER INSERT OR UPDATE OR DELETE ON review
+FOR EACH ROW
+EXECUTE PROCEDURE update_product_score();
+```
+
+| **Trigger**     | TRIGGER02                                                            |
+| ---             | ---                                                                  |
+| **Description** | After a purchase is made, decrease the stock of all bought products. |
+| **SQL code**                                                                           |
+```sql
+CREATE FUNCTION update_stock() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE product
+    SET quantity = quantity - New.quantity WHERE id = New.id_product;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_stock AFTER INSERT ON purchase_product
+FOR EACH ROW
+EXECUTE PROCEDURE update_stock();
+```
+
+| **Trigger**     | TRIGGER03                                                                         |
+| ---             | ---                                                                               |
+| **Description** | A product can't be added to the cart in a quantity higher than the current stock. |
+| **SQL code**                                                                                        |
+```sql
+CREATE FUNCTION check_cart_quantity() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF
+        NOT EXISTS(SELECT quantity FROM product WHERE id = New.id_product AND quantity >= New.quantity)
+    THEN
+        RAISE EXCEPTION 'Not enough items of %', New.id_product
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER check_valid_cart BEFORE INSERT
+ON cart
+EXECUTE PROCEDURE check_cart_quantity();
+```
+
+| **Trigger**     | TRIGGER04                                     |
+| ---             | ---                                           |
+| **Description** | The cart is cleared after a purchase is made. |
+| **SQL code**                                                    |
+```sql
+CREATE FUNCTION clear_cart() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM cart
+    WHERE id_user = New.id_user
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER clear_cart AFTER INSERT
+ON purchase
+EXECUTE PROCEDURE clear_cart();
+```
+
+| **Trigger**     | TRIGGER04                                                                   |
+| ---             | ---                                                                         |
+| **Description** | After a purchase, all bought products are removed from the user's wishlist. |
+| **SQL code**                                                                                  |
+```sql
+CREATE FUNCTION clear_wishlist() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM wishlist
+    WHERE id_user = (SELECT id_user FROM purchase WHERE id = New.id_purchase) AND id_product = NEW.id_product
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER clear_wishlist AFTER INSERT
+ON purchase_product
+FOR EACH ROW
+EXECUTE PROCEDURE clear_wishlist();
+```

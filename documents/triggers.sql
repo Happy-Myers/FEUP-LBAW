@@ -10,6 +10,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER update_score AFTER INSERT OR UPDATE OR DELETE ON review
+FOR EACH ROW
 EXECUTE PROCEDURE update_product_score();
 
 /*remove stock from product after purchase*/
@@ -23,6 +24,7 @@ $BODY$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER update_stock AFTER INSERT ON purchase_product
+FOR EACH ROW
 EXECUTE PROCEDURE update_stock();
 
 /*can't add over the current stock to cart*/
@@ -73,9 +75,10 @@ LANGUAGE plpgsql;
 
 CREATE TRIGGER clear_wishlist AFTER INSERT
 ON purchase_product
+FOR EACH ROW
 EXECUTE PROCEDURE clear_wishlist();
 
-/**/
+
 
 
 
