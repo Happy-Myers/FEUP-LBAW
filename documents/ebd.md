@@ -51,7 +51,7 @@ Relation schemas are specified using a textual compact notation.
 | R08                | review_vote (<u>id</u>, id_review -> review, id_user -> users, vote __NN__) |
 | R09                | cart (<u>id_product</u> -> product, <u>id_user</u> -> users, quantity __NN__ __CK__ quantity > 0) |
 | R10                | wishlist (<u>id_product</u> -> product, <u>id_user</u> -> users) |
-| R11                | purchase (<u>id</u>, id_user -> users, date __NN__ __DF__ Today, total __NN__ __CK__ total > 0, deliveryProgress, <id_address -> addresses) |
+| R11                | purchase (<u>id</u>, id_user -> users, date __NN__ __DF__ Today, total __NN__ __CK__ total > 0, deliveryProgress, id_address -> addresses) |
 | R12                | purchase_product (<u>id_purchase</u> -> purchase, <u>id_product</u> -> product, quantity __NN__ __CK__ quantity > 0)
 | R13                | faq (<u>id</u>, question __NN__, answer __NN__) |
 
@@ -75,91 +75,98 @@ Specification of additional domains:
 
 To validate the Relational Schema obtained from the Conceptual Data Model, all functional dependencies are identified and the normalization of all relation schemas is accomplished. 
 
-| **TABLE R01**   | User               |
-| --------------  | ---                |
-| **Keys**        | { id }, { email }, {phoneNumber}  |
-| **Functional Dependencies:** |       |
+| **TABLE R01**   | user                                                            |
+| --------------  | ---                                                             |
+| **Keys**        | { id }, { email }, {phoneNumber}                                |
+| **Functional Dependencies:**                                                      |         
 | FD0101          | id → {name, phoneNumber, email, password, credits, permissions} |
 | FD0102          | email → {id, name, phoneNumber, password, credits, permissions} |
 | FD0103          | phoneNumber → {id, name, email, password, credits, permissions} |
-| **NORMAL FORM** | BCNF               |
+| **NORMAL FORM** | BCNF                                                            |
 
-| **TABLE R02** | Address |
-| ------------- | ------- |
-| **Keys**      | {id}    |
-| **Functional Dependencies:** |
-| FD0201        | id -> {userId, street, city, country, postalCode} |
-| **NORMAL FORM** | BCNF |
+| **TABLE R02** | address                                            |
+| ------------- | -------                                            |
+| **Keys**      | {id}                                               |
+| **Functional Dependencies:**                                       |
+| FD0201        | id -> {id_user, street, city, country, postalCode} |
+| **NORMAL FORM** | BCNF                                             | 
 
 
-| **TABLE R03**   | Platform           |
+| **TABLE R03**   | platform           |
 | --------------  | ---                |
 | **Keys**        | { id }, { name }   |
-| **Functional Dependencies:** |       |
-| FD0401          | id → { name } |
-| FD0401          | name → { id } |
+| **Functional Dependencies:**         |
+| FD0401          | id → { name }      |
+| FD0401          | name → { id }      |
 | **NORMAL FORM** | BCNF               |
 
-| **TABLE R04**   | Category           |
+| **TABLE R04**   | category           |
 | --------------  | ---                |
 | **Keys**        | { id }, { name }   |
-| **Functional Dependencies:** |       |
-| FD0501          | id → { name } |
-| FD0501          | name → { id } |
+| **Functional Dependencies:**         |
+| FD0501          | id → { name }      |
+| FD0501          | name → { id }      |
 | **NORMAL FORM** | BCNF               |
 
-| **TABLE R05**   | Product            |
-| --------------  | ---                |
-| **Keys**        | { id } |
-| **Functional Dependencies:** |       |
-| FD0301          | id → { name, price, photo, score, description, id_platform } |
-| **NORMAL FORM** | BCNF               |
+| **TABLE R05**   | product                                                                                  |
+| --------------  | ---                                                                                      |
+| **Keys**        | { id }                                                                                   |
+| **Functional Dependencies:**                                                                               |
+| FD0301          | id → { name, price, photo, score, description, hardware, publication_date, id_platform } |
+| **NORMAL FORM** | BCNF                                                                                     |
 
-| **TABLE R06**   | CategoryProduct    |
-| --------------  | ---                |
-| **Keys**        | { id_category, id_product }   |
-| **Functional Dependencies:** | none |
-| **NORMAL FORM** | BCNF               |
+| **TABLE R06**   | categoryProduct             |
+| --------------  | ---                         |
+| **Keys**        | { id_category, id_product } |
+| **Functional Dependencies:** | none           |
+| **NORMAL FORM** | BCNF                        |
 
-| **TABLE R07**   | Review             |
-| --------------  | ---                |
-| **Keys**        | { id }   |
-| **Functional Dependencies:** |       |
-| FD0701          | id → { id_product, id_user, score, comment } |
-| **NORMAL FORM** | BCNF               |
+| **TABLE R07**   | review                                             |
+| --------------  | ---                                                |
+| **Keys**        | { id }                                             |
+| **Functional Dependencies:**                                         |
+| FD0701          | id → { id_product, id_user, score, date, comment } |
+| **NORMAL FORM** | BCNF                                               |
 
-| **TABLE R08**   | ReviewVote         |
-| --------------  | ---                |
-| **Keys**        | { id }   |
-| **Functional Dependencies:** |       |
-| FD0801          | id → { id_review, id_user, score } |
-| **NORMAL FORM** | BCNF               |
+| **TABLE R08**   | reviewVote                        |
+| --------------  | ---                               |
+| **Keys**        | { id }                            |
+| **Functional Dependencies:**                        |
+| FD0801          | id → { id_review, id_user, vote } |
+| **NORMAL FORM** | BCNF                              |
 
-| **TABLE R09**   | Cart               |
-| --------------  | ---                |
-| **Keys**        | { id_product, id_user }   |
-| **Functional Dependencies:** |       |
+| **TABLE R09**   | cart                               |
+| --------------  | ---                                |
+| **Keys**        | { id_product, id_user }            |
+| **Functional Dependencies:**                         |
 | FD0901          | id_product, id_user → { quantity } |
-| **NORMAL FORM** | BCNF               |
+| **NORMAL FORM** | BCNF                               |
 
-| **TABLE 10** | Wishlist |
-| ------------- | ------- |
+| **TABLE 10** | wishlist               |
+| ------------- | -------               |
 | **Keys**      | {id_product, id_user} |
-| **Functional Dependencies:** | none |
-| **NORMAL FORM** | BCNF |
+| **Functional Dependencies:** | none   |
+| **NORMAL FORM** | BCNF                |
 
-| **TABLE R11** | Purchase |
+| **TABLE R11** | purchase |
 | ------------- | ------- |
 | **Keys**      | {id}    |
 | **Functional Dependencies:** |
-| FD1101        | id -> {id_user, date, total, deliveryProgress} |
+| FD1101        | id -> {id_user, date, total, deliveryProgress, id_address} |
 | **NORMAL FORM** | BCNF |
 
-| **TABLE R12** | Faq |
+|**TABLE R12**  | purchase_product |
+| ------------- | ---------------  | 
+| **Keys** | {id_purchase, id_product } |
+| **Functional Dependencies:**          |
+| FD1201   |  id_purchase, id_product -> { quantity } |
+| **NORMAL FORM** | BCNF    |
+
+| **TABLE R13** | faq |
 | ------------- | ------- |
 | **Keys**      | {id}    |
 | **Functional Dependencies:** |
-| FD1201        | id -> {question, answer} |
+| FD1301        | id -> {question, answer} |
 | **NORMAL FORM** | BCNF |
 
 Given that all the relations are in the Boyce-Codd Normal Form (BCNF), the relational schema is also in the BCNF. Therefore, the schema does not need to be further normalised.  
@@ -246,16 +253,14 @@ BEGIN
  IF TG_OP = 'INSERT' THEN
         NEW.tsvectors = (
          setweight(to_tsvector('english', NEW.name), 'A') ||
-         setweight(to_tsvector('english', NEW.description), 'B') ||
-         setweight(to_tsvector('english', NEW.platform), 'C')
+         setweight(to_tsvector('english', NEW.description), 'B')
         );
  END IF;
  IF TG_OP = 'UPDATE' THEN
-         IF (NEW.name <> OLD.name OR NEW.description <> OLD.description OR NEW.platform <> OLD.platform) THEN
+         IF (NEW.name <> OLD.name OR NEW.description <> OLD.description) THEN
            NEW.tsvectors = (
              setweight(to_tsvector('english', NEW.name), 'A') ||
-             setweight(to_tsvector('english', NEW.description), 'B') ||
-             setweight(to_tsvector('english', NEW.platform), 'C')
+             setweight(to_tsvector('english', NEW.description), 'B')
            );
          END IF;
  END IF;
@@ -272,4 +277,106 @@ CREATE TRIGGER product_search_update
 
 -- Finally, create a GIN index for ts_vectors.
 CREATE INDEX search_idx ON product USING GIN (tsvectors);
+```
+
+### 3. Triggers
+
+| **Trigger**     | TRIGGER01                                                     |
+| ---             | ---                                                           |
+| **Description** | A product's score is updated everytime a review is submitted. |
+| **SQL code**                                                                    |
+```sql
+CREATE FUNCTION update_product_score() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE product 
+    SET score = (AVG(score) FROM review WHERE id_product = New.id_product) WHERE id = New.id_product 
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_score AFTER INSERT OR UPDATE OR DELETE ON review
+FOR EACH ROW
+EXECUTE PROCEDURE update_product_score();
+```
+
+| **Trigger**     | TRIGGER02                                                            |
+| ---             | ---                                                                  |
+| **Description** | After a purchase is made, decrease the stock of all bought products. |
+| **SQL code**                                                                           |
+```sql
+CREATE FUNCTION update_stock() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    UPDATE product
+    SET quantity = quantity - New.quantity WHERE id = New.id_product;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER update_stock AFTER INSERT ON purchase_product
+FOR EACH ROW
+EXECUTE PROCEDURE update_stock();
+```
+
+| **Trigger**     | TRIGGER03                                                                         |
+| ---             | ---                                                                               |
+| **Description** | A product can't be added to the cart in a quantity higher than the current stock. |
+| **SQL code**                                                                                        |
+```sql
+CREATE FUNCTION check_cart_quantity() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    IF
+        NOT EXISTS(SELECT quantity FROM product WHERE id = New.id_product AND quantity >= New.quantity)
+    THEN
+        RAISE EXCEPTION 'Not enough items of %', New.id_product
+    END IF;
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER check_valid_cart BEFORE INSERT
+ON cart
+EXECUTE PROCEDURE check_cart_quantity();
+```
+
+| **Trigger**     | TRIGGER04                                     |
+| ---             | ---                                           |
+| **Description** | The cart is cleared after a purchase is made. |
+| **SQL code**                                                    |
+```sql
+CREATE FUNCTION clear_cart() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM cart
+    WHERE id_user = New.id_user
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER clear_cart AFTER INSERT
+ON purchase
+EXECUTE PROCEDURE clear_cart();
+```
+
+| **Trigger**     | TRIGGER04                                                                   |
+| ---             | ---                                                                         |
+| **Description** | After a purchase, all bought products are removed from the user's wishlist. |
+| **SQL code**                                                                                  |
+```sql
+CREATE FUNCTION clear_wishlist() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    DELETE FROM wishlist
+    WHERE id_user = (SELECT id_user FROM purchase WHERE id = New.id_purchase) AND id_product = NEW.id_product
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER clear_wishlist AFTER INSERT
+ON purchase_product
+FOR EACH ROW
+EXECUTE PROCEDURE clear_wishlist();
 ```
