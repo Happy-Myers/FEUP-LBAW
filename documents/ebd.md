@@ -189,7 +189,7 @@ This artefact contains the physical schema of the database, the identification a
 | RS05                | Review        | thousands | tens per day |
 | RS06                | ReviewVote        | thousands | tens per day |
 | RS07                | User        | thousands | dozens per day |
-| RS08                | Address        | thounds | units per day |
+| RS08                | Address        | thousands | units per day |
 | RS09                | FAQ        | tens | units per year |
 | RS10                | Wishlist        | thousands | hundreds per day |
 | RS11                | Purchase        | thousands | dozens per day |
@@ -230,6 +230,7 @@ CREATE INDEX price_products ON product USING btree (price);
 ```sql
 CREATE INDEX product_reviews ON reviews USING hash (id_product);     
 ```                                                 
+
 
 #### 2.2. Full-text Search Indices 
 
@@ -286,16 +287,22 @@ CREATE INDEX search_idx ON product USING GIN (tsvectors);
 | **Description** | A product's score is updated everytime a review is submitted. |
 | **SQL code**                                                                    |
 ```sql
-CREATE FUNCTION update_product_score() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION update_product_score() 
+RETURNS TRIGGER 
+AS
 $BODY$
 BEGIN
     UPDATE product 
-    SET score = (AVG(score) FROM review WHERE id_product = New.id_product) WHERE id = New.id_product 
-END
+    SET score = (SELECT AVG(score) FROM review WHERE id_product = NEW.id_product) 
+    WHERE id = NEW.id_product;
+    RETURN NEW;
+END;
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER update_score AFTER INSERT OR UPDATE OR DELETE ON review
+CREATE TRIGGER update_score 
+AFTER INSERT OR UPDATE OR DELETE 
+ON review
 FOR EACH ROW
 EXECUTE PROCEDURE update_product_score();
 ```
@@ -305,16 +312,22 @@ EXECUTE PROCEDURE update_product_score();
 | **Description** | After a purchase is made, decrease the stock of all bought products. |
 | **SQL code**                                                                           |
 ```sql
-CREATE FUNCTION update_stock() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION update_stock() 
+RETURNS TRIGGER 
+AS
 $BODY$
 BEGIN
     UPDATE product
-    SET quantity = quantity - New.quantity WHERE id = New.id_product;
-END
+    SET quantity = quantity - NEW.quantity 
+    WHERE id = NEW.id_product;
+    RETURN NEW;
+END;
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER update_stock AFTER INSERT ON purchase_product
+CREATE TRIGGER update_stock 
+AFTER INSERT 
+ON purchase_product
 FOR EACH ROW
 EXECUTE PROCEDURE update_stock();
 ```
@@ -324,21 +337,23 @@ EXECUTE PROCEDURE update_stock();
 | **Description** | A product can't be added to the cart in a quantity higher than the current stock. |
 | **SQL code**                                                                                        |
 ```sql
-CREATE FUNCTION check_cart_quantity() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION check_cart_quantity() 
+RETURNS TRIGGER 
+AS
 $BODY$
 BEGIN
-    IF
-        NOT EXISTS(SELECT quantity FROM product WHERE id = New.id_product AND quantity >= New.quantity)
-    THEN
-        RAISE EXCEPTION 'Not enough items of %', New.id_product
+    IF NOT EXISTS (SELECT quantity FROM product WHERE id = NEW.id_product AND quantity >= NEW.quantity) THEN
+        RAISE EXCEPTION 'Not enough items of %', NEW.id_product;
     END IF;
     RETURN NEW;
-END
+END;
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER check_valid_cart BEFORE INSERT
+CREATE TRIGGER check_valid_cart 
+BEFORE INSERT 
 ON cart
+FOR EACH ROW
 EXECUTE PROCEDURE check_cart_quantity();
 ```
 
@@ -347,17 +362,22 @@ EXECUTE PROCEDURE check_cart_quantity();
 | **Description** | The cart is cleared after a purchase is made. |
 | **SQL code**                                                    |
 ```sql
-CREATE FUNCTION clear_cart() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION clear_cart() 
+RETURNS TRIGGER 
+AS
 $BODY$
 BEGIN
     DELETE FROM cart
-    WHERE id_user = New.id_user
-END
+    WHERE id_user = NEW.id_user;
+    RETURN NEW;
+END;
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER clear_cart AFTER INSERT
+CREATE TRIGGER clear_cart 
+AFTER INSERT 
 ON purchase
+FOR EACH ROW 
 EXECUTE PROCEDURE clear_cart();
 ```
 
@@ -366,16 +386,20 @@ EXECUTE PROCEDURE clear_cart();
 | **Description** | After a purchase, all bought products are removed from the user's wishlist. |
 | **SQL code**                                                                                  |
 ```sql
-CREATE FUNCTION clear_wishlist() RETURNS TRIGGER AS
+CREATE OR REPLACE FUNCTION clear_wishlist() 
+RETURNS TRIGGER 
+AS
 $BODY$
 BEGIN
     DELETE FROM wishlist
-    WHERE id_user = (SELECT id_user FROM purchase WHERE id = New.id_purchase) AND id_product = NEW.id_product
-END
+    WHERE id_user = (SELECT id_user FROM purchase WHERE id = NEW.id_purchase) AND id_product = NEW.id_product;
+    RETURN NEW;
+END;
 $BODY$
 LANGUAGE plpgsql;
 
-CREATE TRIGGER clear_wishlist AFTER INSERT
+CREATE TRIGGER clear_wishlist 
+AFTER INSERT 
 ON purchase_product
 FOR EACH ROW
 EXECUTE PROCEDURE clear_wishlist();
