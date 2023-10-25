@@ -173,9 +173,6 @@ This artefact contains the physical schema of the database, the identification a
 
 ### 1. Database Workload
 
-> A study of the predicted system load (database load).
-> Estimate of tuples at each relation.
-
 | **Relation reference** | **Relation Name** | **Order of magnitude** | **Estimated growth** |
 | ------------------ | ------------- | ------------------------- | -------- |
 | RS01                | Platform        | tens | units per year |
@@ -191,37 +188,41 @@ This artefact contains the physical schema of the database, the identification a
 | RS11                | Purchase        | thousands | dozens per day |
 
 
-### 2. Proposed Indices
+### 2. Proposed Indexes
 
-#### 2.1. Performance Indices
+We used indexes to increase the database performance by letting it to find specific rows faster. An index defined on a column that is part of a join condition can also speed up queries that make use of join.
+
+#### 2.1. Performance Indexes
  
-> Indices proposed to improve performance of the identified queries.
+There are some queries that are expected to take a long time to execute. Using performance indexes, the performance of a select query can be improved in exchange for an increased execution time of update, delete and insert kind of operations. Despite that, some of the tables can benefit from increased speed in searches.
 
 | **Index**           | IDX01                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Cardinality**     | Attribute cardinality: low/medium/high |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
+| **Relation**        | product                                |
+| **Attribute**       | price                                  |
+| **Type**            | B-tree                                 |
+| **Cardinality**     | high                                   |
+| **Clustering**      | yes                                    |
+| **Justification**   | To allow searching for products that have their price lower than a certain value faster. B-tree and clustering to maintain the data sorted and to allow for quick range queries. | 
 | `SQL code`                                                  ||
 
-``` 
-CREATE INDEX categoryid_products ON products USING hash (category_id);
-```
-
+```sql
+CREATE INDEX price_products ON product USING btree (price);
+```                                                  
 
 | **Index**           | IDX02                                  |
 | ---                 | ---                                    |
-| **Relation**        | Relation where the index is applied    |
-| **Attribute**       | Attribute where the index is applied   |
-| **Type**            | B-tree, Hash, GiST or GIN              |
-| **Cardinality**     | Attribute cardinality: low/medium/high |
-| **Clustering**      | Clustering of the index                |
-| **Justification**   | Justification for the proposed index   |
+| **Relation**        | review                                 |
+| **Attribute**       | id_product                             |
+| **Type**            | hash                                   |
+| **Cardinality**     | medium                                 |
+| **Clustering**      | yes                                    |
+| **Justification**   | To expedite the retrieval of product reviews based on the associated id_product. A hash index is selected to optimize the lookup speed for specific product reviews.                 |
 | `SQL code`                                                  ||
 
+```sql
+CREATE INDEX product_reviews ON reviews USING hash (id_product);     
+```                                                 
 
 #### 2.2. Full-text Search Indices 
 
