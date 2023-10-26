@@ -506,14 +506,14 @@ CREATE TYPE deliveryProgress AS ENUM ('Processing', 'Shipped', 'Delivered');
 CREATE TYPE userPermission AS ENUM ('User', 'Admin');
 
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS addresses;
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS addresses  CASCADE;
 DROP TABLE IF EXISTS platform CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
-DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS product CASCADE;
 DROP TABLE IF EXISTS category_product CASCADE;
-DROP TABLE IF EXISTS review;
-DROP TABLE IF EXISTS review_vote;
+DROP TABLE IF EXISTS review CASCADE;
+DROP TABLE IF EXISTS review_vote CASCADE;
 DROP TABLE IF EXISTS cart CASCADE;
 DROP TABLE IF EXISTS wishlist CASCADE;
 DROP TABLE IF EXISTS purchase CASCADE;
@@ -620,20 +620,9 @@ CREATE TABLE faq (
 
 ### A.2. Database population
 
-```sql
-DELETE FROM users;
-DELETE FROM addresses ;
-DELETE FROM platform;
-DELETE FROM category;
-DELETE FROM product;
-DELETE FROM category_product;
-DELETE FROM review;
-DELETE FROM review_vote;
-DELETE FROM cart;
-DELETE FROM wishlist;
-DELETE FROM purchase;
-DELETE FROM faq;
+Here is a short part of the populate.sql file.
 
+```sql
 INSERT INTO users (id, name, phone_number, email, password, credits, permissions)
 VALUES
   (1, 'Jane Smith', '555-555-5555', 'jane.smith@example.com', 'jane123', '75.00', 'User'),
@@ -730,14 +719,13 @@ VALUES
   ('How can I contact customer support?', 'You can contact our customer support team at support@example.com.'),
   ('Do you offer international shipping?', 'Yes, we offer international shipping to most countries.');
 ```
-
 ---
 
 ## Revision History
 
 ## GROUP23154, 27/11/2023
 
-* Group member 1 João Brandão Alves, up202108670@fe.up.pt
+* Group member 1 João Brandão Alves, up202108670@fe.up.pt (Editor)
 * Group member 2 Eduardo Machado Teixeira de Sousa, up202103342@fe.up.pt
 * Group member 3 Gonçalo Carvalho Marques, up202006874@fe.up.pt
-* Group member 4 Carlos Daniel Santos Reis, up201805156@fc.up.pt (Editor)
+* Group member 4 Carlos Daniel Santos Reis, up201805156@fc.up.pt
