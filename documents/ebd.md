@@ -506,7 +506,7 @@ CREATE TYPE deliveryProgress AS ENUM ('Processing', 'Shipped', 'Delivered');
 CREATE TYPE userPermission AS ENUM ('User', 'Admin');
 
 
-DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS addresses  CASCADE;
 DROP TABLE IF EXISTS platform CASCADE;
 DROP TABLE IF EXISTS category CASCADE;
