@@ -479,3 +479,12 @@ INSERT INTO category_product (id_category, id_product)
 
 END TRANSACTION;
 ```
+
+## Revision History
+
+## GROUP23154, 27/11/2023
+
+* Group member 1 João Brandão Alves, up202108670@fe.up.pt
+* Group member 2 Eduardo Machado Teixeira de Sousa, up202103342@fe.up.pt
+* Group member 3 Gonçalo Carvalho Marques, up202006874@fe.up.pt
+* Group member 4 Carlos Daniel Santos Reis, up201805156@fc.up.pt
