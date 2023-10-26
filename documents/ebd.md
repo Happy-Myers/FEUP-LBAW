@@ -415,7 +415,8 @@ Transactions are used to assure the integrity of the data when multiple operatio
 | **Justification**   | This transaction ensures that when a purchase is added to the database all its associated Purchase_Product tables are correctly added (or else it fails). This prevents purchases from going through with missing items. |
 | **Isolation level** | SERIALIZABLE |
 | **Complete SQL Code**                                   ||
-```BEGIN TRANSACTION;
+```sql
+BEGIN TRANSACTION;
 
 SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 
@@ -446,7 +447,8 @@ END TRANSACTION;
 | **Justification**   | This transaction ensures that when a user checks their cart all the items in their cart are shown (failing to have all the items will fail to show the cart). It is read only since it only uses selects. |
 | **Isolation level** | SERIALIZABLE READ ONLY |
 | **Complete SQL Code**                                   ||
-```BEGIN TRANSACTION;
+```sql
+BEGIN TRANSACTION;
 
 SET TRANSACTION ISOLATION LEVEL SERIALIZABLE READ ONLY;
 
@@ -464,7 +466,8 @@ END TRANSACTION;
 | **Justification**   | This transaction is necessary to maintain data consistency when adding new products to the catalog, so that they always are in at least one category. The isolation level is Repeatable Read as to not do any of the inserts without the other.  |
 | **Isolation level** | REPEATABLE READ |
 | **Complete SQL Code**   ||                                
-```BEGIN TRANSACTION;
+```sql
+BEGIN TRANSACTION;
 
 SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 
@@ -487,4 +490,4 @@ END TRANSACTION;
 * Group member 1 João Brandão Alves, up202108670@fe.up.pt
 * Group member 2 Eduardo Machado Teixeira de Sousa, up202103342@fe.up.pt
 * Group member 3 Gonçalo Carvalho Marques, up202006874@fe.up.pt
-* Group member 4 Carlos Daniel Santos Reis, up201805156@fc.up.pt
+* Group member 4 Carlos Daniel Santos Reis, up201805156@fc.up.pt (Editor)
