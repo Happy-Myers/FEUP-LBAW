@@ -228,7 +228,7 @@ CREATE INDEX price_products ON product USING btree (price);
 | `SQL code`                                                  ||
 
 ```sql
-CREATE INDEX product_reviews ON reviews USING hash (id_product);     
+CREATE INDEX product_reviews ON review USING hash (id_product);     
 ```                                                 
 
 
