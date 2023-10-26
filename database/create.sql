@@ -61,7 +61,7 @@ CREATE TABLE product (
     name TEXT NOT NULL,
     price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0),
     photo TEXT,
-    score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score > 0) AND (score <= 5)),
+    score FLOAT NOT NULL CONSTRAINT score_ck CHECK ((score > 0) AND (score <= 5)),
     description TEXT NOT NULL,
     hardware BOOLEAN NOT NULL,
     publication_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL CONSTRAINT pub_date_ck CHECK (publication_date <= now()),
@@ -78,7 +78,7 @@ CREATE TABLE review (
     id SERIAL PRIMARY KEY,
     id_user INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     id_product INTEGER NOT NULL REFERENCES product(id) ON DELETE CASCADE,
-    score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score >= 0) OR (score <= 5)),
+    score INTEGER NOT NULL CONSTRAINT score_ck CHECK ((score > 0) OR (score <= 5)),
     date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
     comment TEXT
 );

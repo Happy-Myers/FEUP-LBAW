@@ -234,7 +234,7 @@ CREATE INDEX product_reviews ON reviews USING hash (id_product);
 
 #### 2.2. Full-text Search Indices 
 
-| **Index**           | IDX |
+| **Index**           | IDX03 |
 | ---                 | --- |
 | **Relation**        | product |
 | **Attribute**       | name, description, platform |
