@@ -1,18 +1,30 @@
 # EAP: Architecture Specification and Prototype
 
-> Project vision.
-
 ## A7: Web Resources Specification
 
 This artifact describes the web api that will be developed, remarking the resources needed, Its properties and JSON responses. This api includes creating, reading, updating and deleting operations for each resource.
 
 ### 1. Overview
 
-> Identify and overview the modules that will be part of the application.  
+| Module ID | Description |
+| --------- | ----------- |
+| M01: Authentication and Profile | Manages web resources related to user authentication and user profile information, including basic user details and addresses. |
+| M02: Products and Categories | Handles web resources for searching, filtering, and listing available products for users. |
+| M03: Management Area | Administers web resources for website management, allowing the viewing and editing of purchases, managing properties, categories, and FAQs. |
+| M04: Product and Reviews | Controls web resources concerning products and their associated reviews. It also covers adding and editing product details. |
+| M05: Static Pages | Oversees web resources responsible for static content and pages, including 'about,' 'contact,' and 'FAQ' pages. |
+| M06: Cart and Wishlist | Manages web resources for users' shopping cart and wishlist. |
 
 ### 2. Permissions
 
-> Define the permissions used by each module, necessary to access its data and features.  
+This segment describes the permissions used in the last section (modules) to settle the conditions of access to resources.
+
+| Identifier | Name | Description |
+|------------|------|-------------|
+| VST | Visitor | An unauthenticated user. |
+| USR | User | An authenticated user. |
+| OWN | Owner | The owner of a post, comment, profile. |
+| ADM | Administrator | Platform administrator. |
 
 ### 3. OpenAPI Specification
 
