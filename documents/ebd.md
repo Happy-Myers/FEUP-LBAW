@@ -228,7 +228,7 @@ CREATE INDEX price_products ON product USING btree (price);
 | `SQL code`                                                  ||
 
 ```sql
-CREATE INDEX product_reviews ON reviews USING hash (id_product);     
+CREATE INDEX product_reviews ON review USING hash (id_product);     
 ```                                                 
 
 
@@ -719,7 +719,6 @@ VALUES
   ('How can I contact customer support?', 'You can contact our customer support team at support@example.com.'),
   ('Do you offer international shipping?', 'Yes, we offer international shipping to most countries.');
 ```
-
 ---
 
 ## Revision History
