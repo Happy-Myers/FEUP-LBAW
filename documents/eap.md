@@ -1,34 +1,30 @@
 # EAP: Architecture Specification and Prototype
 
 ## A7: Web Resources Specification
-
-This artifact describes the web api that will be developed, remarking the resources needed, Its properties and JSON responses. This api includes creating, reading, updating and deleting operations for each resource.
+Project modules are identified and briefly described to organize how they are presented in the yaml document.
 
 ### 1. Overview
 
-| Module ID | Description |
-| --------- | ----------- |
-| M01: Authentication and Profile | Manages web resources related to user authentication and user profile information, including basic user details and addresses. |
-| M02: Products and Categories | Handles web resources for searching, filtering, and listing available products for users. |
-| M03: Management Area | Administers web resources for website management, allowing the viewing and editing of purchases, managing properties, categories, and FAQs. |
-| M04: Product and Reviews | Controls web resources concerning products and their associated reviews. It also covers adding and editing product details. |
-| M05: Static Pages | Oversees web resources responsible for static content and pages, including 'about,' 'contact,' and 'FAQ' pages. |
-| M06: Cart and Wishlist | Manages web resources for users' shopping cart and wishlist. |
+| Module | Description |
+| --- | --- |
+| **M01: Authentication and Individual Profile** | Web resources associated with user authentication and individual profile management. Includes the following system features: login/logout, registration, credential recovery, view and edit personal profile information. |
+| **M02: Products** | Web resource associated with the search and listing of the products available to the user. |
+| **M03: Reviews and Wishlist** | Web resources associated with reviews and wishlist. Includes the following system features: view review, add reviews, edit reviews and delete reviews; add items to wish list and remove items from the wish list. |
+| **M04: Cart** | Web resources associated with the management of the cart. |
+| **M05: Static pages** | Static pages like: about us, main features and contacts. |
+| **MO06: Management Area** | Web resources associated with website management, specifically: view and edit purchases, view, edit, add and delete properties, view, edit, add and delete categories and view, add and delete faqs. |
 
 ### 2. Permissions
 
-This segment describes the permissions used in the last section (modules) to settle the conditions of access to resources.
-
-| Identifier | Name | Description |
-|------------|------|-------------|
-| VST | Visitor | An unauthenticated user. |
-| USR | User | An authenticated user. |
-| OWN | Owner | The owner of a post, comment, profile. |
-| ADM | Administrator | Platform administrator. |
+|  |  |  |
+| -- | -- | -- |
+| **PUB** | Public | Users without privileges |
+| **USR** | User | Authenticated users |
+| **OWN** | Owner | User that are owners of the information |
+| **ADM** | Administrator | System administrators |
 
 ### 3. OpenAPI Specification
 
-> OpenAPI specification in YAML format to describe the vertical prototype's web resources.
 
 > Link to the `a7_openapi.yaml` file in the group's repository.
 
