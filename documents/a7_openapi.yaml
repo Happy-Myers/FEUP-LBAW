@@ -20,3 +20,83 @@ tags:
   - name: 'M04: Cart'
   - name: 'M05: Static Pages'
   - name: 'MO06: Management Area'
+
+paths:
+  /login: # Falta descrição
+    get:
+      operationId: R101
+      summary: 'R101: Login's Form'
+      description: 'Provide login form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: ''
+    post:
+      operationId: R102
+      summary: 'R102: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '302':
+          description: ''
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Go to previous page.'
+                302Error:
+                  description: 'Failed authentication. Go to previous page.'
+
+  /logout:
+
+  /signup:
+  /user/{username}:
+  /user/{username}/edit:
+  /user/{username}/settings:
+  /api/change_name:
+  /api/change_username:
+  /api/change_email:
+  /api/change_password:
+  /user/{username}/delete_account:
+
+  # Necessário?
+  /api/member/{username}:
+  /api/member/{username}/follow:
+  /api/member/{username}/report:
+  /api/member/{username}/posts/{page}:
+  /api/member/{username}/comments/{page}:
+
+  /home:
+
+  /product/{id_product}:
+
+  /cart:
+  /wishlist:
+
+
+  /search:
+  /search/{query}:
+  /api/search/produts:
+
+  /admin:
+
+  /about:
+  /404:
