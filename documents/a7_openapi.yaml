@@ -20,3 +20,141 @@ tags:
   - name: 'M04: Cart'
   - name: 'M05: Static Pages'
   - name: 'MO06: Management Area'
+
+paths:
+  /login:
+    get:
+      operationId: R101
+      summary: "R101: Login Form"
+      description: "Provide form for authentication. Access: PUB"
+      tags:
+        - "M01: Authentication and Individual Profile"
+      responses:
+        "200":
+          description: "Ok. Show Login form (UI02)"
+
+    post:
+      operationId: R102
+      summary: 'R102: Login Action'
+      description: 'Processes the login form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+              required:
+                - email
+                - password
+
+      responses:
+        "302":
+          description: "Redirect after processing the login credentials."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: "Successful login. Redirect to homepage."
+                  value: "/users/{id}"
+                302Admin:
+                  description: 'Successful authentication. Redirect to admin dashboard.'
+                  value: '/dashboard'
+                302Failure:
+                  description: "Failed login. Redirect to login form."
+                  value: "/login"
+
+  /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to Homepage'
+                  value: '/homepage'
+
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show sign-up form (UI03)'
+
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                phone_number:
+                  type: integer
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                credits:
+                  type: integer
+                admin:
+                  type: boolean
+              required:
+                - name
+                - username
+                - phone_number
+                - email
+                - password
+                - credits
+                - admin
+
+      responses:
+        "302":
+          description: "Redirect after processing the new user sign-up form."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: "Successful registration. Redirect to user profile."
+                  value: "/users/{id}"
+                302Failure:
+                  description: "Failed registration. Redirect to sign-up form."
+                  value: "/signup"
