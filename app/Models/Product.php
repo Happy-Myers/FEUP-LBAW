@@ -14,6 +14,8 @@ class Product extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['name', 'stock', 'price', 'score', 'description', 'hardware', 'publication_date'];
+
     public function platform(): BelongsTo{
         return $this->belongsTo(Platform::class);
     }

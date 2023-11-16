@@ -12,6 +12,8 @@ class Address extends Model
     use HasFactory;
     public $timestamps = false;
 
+    protected $fillable = ['street', 'city', 'postal_code'];
+
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
     }
