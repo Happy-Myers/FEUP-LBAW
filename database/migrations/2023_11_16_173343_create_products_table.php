@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('stock');
-            $table->unsignedFloat('price');
+            $table->unsignedFloat('price')->index();
             $table->string('image')->nullable();
             $table->unsignedFloat('score');
             $table->longText('description')->nullable();
