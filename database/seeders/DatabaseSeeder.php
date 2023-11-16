@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -13,9 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $path = base_path('database/thingy-seed.sql');
-        $sql = file_get_contents($path);
-        DB::unprepared($sql);
-        $this->command->info('Database seeded!');
+        User::factory(5)->create();
     }
 }
