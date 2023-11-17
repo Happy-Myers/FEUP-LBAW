@@ -78,4 +78,8 @@ class User extends Authenticatable
     public function purchases(): HasMany{
         return $this->hasMany(Purchase::class);
     }
+
+    public function notification(): HasMany{
+        return $this->hasMany(Notification::class);
+    }
 }
