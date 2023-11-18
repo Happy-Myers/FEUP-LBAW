@@ -19,9 +19,9 @@ return new class extends Migration
         AS
         \$BODY$
         BEGIN
-            UPDATE product 
-            SET score = (SELECT AVG(score) FROM reviews WHERE id_product = NEW.id_product) 
-            WHERE id = NEW.id_product;
+            UPDATE products 
+            SET score = (SELECT AVG(score) FROM reviews WHERE product_id = NEW.product_id) 
+            WHERE id = NEW.product_id;
             RETURN NEW;
         END;
         \$BODY$
@@ -39,9 +39,9 @@ return new class extends Migration
         AS
         \$BODY$
         BEGIN
-            UPDATE product
-            SET quantity = quantity - NEW.quantity 
-            WHERE id = NEW.id_product;
+            UPDATE products
+            SET stock = stock - NEW.quantity 
+            WHERE id = NEW.product_id;
             RETURN NEW;
         END;
         \$BODY$
@@ -60,8 +60,8 @@ return new class extends Migration
         AS
         \$BODY$
         BEGIN
-            IF NOT EXISTS (SELECT quantity FROM product WHERE id = NEW.id_product AND quantity >= NEW.quantity) THEN
-                RAISE EXCEPTION 'Not enough items of %', NEW.id_product;
+            IF NOT EXISTS (SELECT stock FROM products WHERE id = NEW.product_id AND stock >= NEW.quantity) THEN
+                RAISE EXCEPTION 'Not enough items of %', NEW.product_id;
             END IF;
             RETURN NEW;
         END;
@@ -82,7 +82,7 @@ return new class extends Migration
         \$BODY$
         BEGIN
             DELETE FROM cart
-            WHERE id_user = NEW.id_user;
+            WHERE user_id = NEW.user_id;
             RETURN NEW;
         END;
         \$BODY$
@@ -102,7 +102,7 @@ return new class extends Migration
         \$BODY$
         BEGIN
             DELETE FROM wishlist
-            WHERE id_user = (SELECT id_user FROM purchases WHERE id = NEW.id_purchase) AND id_product = NEW.id_product;
+            WHERE user_id = (SELECT user_id FROM purchases WHERE id = NEW.purchase_id) AND product_id = NEW.product_id;
             RETURN NEW;
         END;
         \$BODY$

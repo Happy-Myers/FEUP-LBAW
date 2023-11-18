@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class AddressFactory extends Factory
         return [
             'street' => fake()->streetAddress(),
             'city' => fake()->city(),
-            'postal_code' => fake()->postcode()
+            'postal_code' => fake()->postcode(),
+            'user_id' => User::find(fake()->numberBetween(1,20))
         ];
     }
 }

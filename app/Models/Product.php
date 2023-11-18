@@ -20,8 +20,8 @@ class Product extends Model
         return $this->belongsTo(Platform::class);
     }
 
-    public function categories(): HasMany{
-        return $this->hasMany(Category::class);
+    public function categories(): BelongsToMany{
+        return $this->belongsToMany(Category::class);
     }
 
     public function reviews(): HasMany{
@@ -32,8 +32,8 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'cart', 'product_id', 'user_id')->using(Cart::class)->withPivot('quantity');
     }
     
-    public function wishlist(): HasMany{
-        return $this->hasMany(User::class);
+    public function wishlist(): BelongsToMany{
+        return $this->belongsToMany(User::class, 'wishlist');
     }
 
     public function product_purchase(): BelongsToMany{

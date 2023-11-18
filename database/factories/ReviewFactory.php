@@ -17,7 +17,11 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => fake()->numberBetween(1,20),
+            'product_id' => fake()->numberBetween(1,20),
+            'score' => fake()->numberBetween(1,5),
+            'date' => fake()->dateTimeBetween('-1 year', 'now'),
+            'comment' => fake()->boolean(20) ? fake()->sentence() : null
         ];
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('message');
             $table->timestamp('created_at');
-            $table->timestamp('dismissed_at');
+            $table->timestamp('dismissed_at')->nullable();
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

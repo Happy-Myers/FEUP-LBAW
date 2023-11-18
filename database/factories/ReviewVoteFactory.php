@@ -17,7 +17,9 @@ class ReviewVoteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'vote' => fake()->boolean(),
+            'user_id' => fake()->numberBetween(1,20),
+            'review_id' => fake()->numberBetween(1,20),
         ];
     }
 }
