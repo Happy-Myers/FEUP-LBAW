@@ -1,7 +1,7 @@
 openapi: 3.0.0
 
 info:
-  version: '1.0'
+  version: '1.1'
   title: 'LBAW GameSpace Web API'
   description: 'Web Resources Specification (A7) for GameSpace'
 
@@ -22,16 +22,17 @@ tags:
   - name: 'MO06: Management Area'
 
 paths:
-  /login: # Falta descrição
+  /login:
     get:
       operationId: R101
-      summary: 'R101: Login's Form'
-      description: 'Provide login form. Access: PUB'
+      summary: "R101: Login Form"
+      description: "Provide form for authentication. Access: PUB"
       tags:
-        - 'M01: Authentication and Individual Profile'
+        - "M01: Authentication and Individual Profile"
       responses:
-        '200':
-          description: ''
+        "200":
+          description: "Ok."
+
     post:
       operationId: R102
       summary: 'R102: Login Action'
@@ -47,56 +48,510 @@ paths:
               properties:
                 email:
                   type: string
+                  format: email
                 password:
                   type: string
+                  format: password
               required:
                 - email
                 - password
+
       responses:
-        '302':
-          description: ''
+        "302":
+          description: "Redirect after processing the login credentials."
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Go to previous page.'
-                302Error:
-                  description: 'Failed authentication. Go to previous page.'
+                  description: "Successful login. Redirect to homepage."
+                  value: "/users/{id}"
+                302Admin:
+                  description: 'Successful authentication. Redirect to admin dashboard.'
+                  value: '/dashboard'
+                302Failure:
+                  description: "Failed login. Redirect to login form."
+                  value: "/login"
 
   /logout:
+    post:
+      operationId: R103
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR, ADM'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: 'Redirect after processing logout.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful logout. Redirect to Homepage'
+                  value: '/homepage'
 
-  /signup:
-  /user/{username}:
-  /user/{username}/edit:
-  /user/{username}/settings:
-  /api/change_name:
-  /api/change_username:
-  /api/change_email:
-  /api/change_password:
-  /user/{username}/delete_account:
+  /register:
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok.'
 
-  # Necessário?
-  /api/member/{username}:
-  /api/member/{username}/follow:
-  /api/member/{username}/report:
-  /api/member/{username}/posts/{page}:
-  /api/member/{username}/comments/{page}:
+    post:
+      operationId: R105
+      summary: 'R105: Register Action'
+      description: 'Processes the new user registration form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
 
-  /home:
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                username:
+                  type: string
+                phone_number:
+                  type: integer
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                credits:
+                  type: integer
+                admin:
+                  type: boolean
+              required:
+                - name
+                - username
+                - phone_number
+                - email
+                - password
+                - credits
+                - admin
+
+      responses:
+        "302":
+          description: "Redirect after processing the new user sign-up form."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: "Successful registration. Redirect to user profile."
+                  value: "/users/{id}"
+                302Failure:
+                  description: "Failed registration. Redirect to sign-up form."
+                  value: "/signup"
+
+  /api/{username}/purchasehistory:
+    post:
+      operationId: R106
+      summary: 'R106: Purchase History Page'
+      description: "Returns user's purchase history. Access: OWN"
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: page
+          schema:
+            type: string
+          description: 'Specifies the number of the page for the query'
+          required: true
+      responses:
+        '200':
+          description: 'Success'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+
+  /{username}:
+    get:
+      operationId: R107
+      summary: 'R107: User Profile'
+      description: 'Page that shows user information. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          description: 'Specifies the member username'
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+        '404':
+          description: 'User not found.'
+
+  /{username}/edit:
+    get:
+      operationId: R108
+      summary: 'R108: Edit Profile Form'
+      description: 'Page that allows a user to update his information. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          description: 'Specifies the member username'
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+        '404':
+          description: 'User not found.'
+
+    patch:
+      operationId: R109
+      summary: 'R109: Edit Profile Action'
+      description: 'Allows a user to edit his information. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          description: 'Specifies the member username'
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                bio:
+                  type: string
+              required:
+                - name
+                - bio
+      responses:
+        '302':
+          description: 'Redirect member after editing profile.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Member information edited successfully. Redirects member to their profile page.'
+                  value: '/user/{username}'
+                302Failure:
+                  description: 'Member information editing failed. Stay in edit page.'
+                  value: '/user/{username}/edit'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+        '404':
+          description: 'Member not found'
 
   /product/{id_product}:
+    get:
+      operationId: R201
+      summary: 'R201: Show procuct page'
+      description: "Show a page and it product. Access:PUB"
+      tags:
+        - 'M02: Products'
+      parameters:
+        - in: path
+          name: id_product
+          schema:
+            type: integer
+          required: true
+          description: 'Specifies the id of the product'
+      responses:
+        '200':
+          description: 'Ok.'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Product not found'
 
-  /cart:
-  /wishlist:
+  /product/{id_product}/edit:
+    get:
+      operationId: R202
+      summary: 'R202: Shows product edit page'
+      description: 'Allows the admin to edit a product page. Access: ADM'
+      tags:
+        - 'M02: Products'
+      parameters:
+        - in: path
+          name: id_product
+          schema:
+            type: integer
+          description: 'Specifies the id of the product to be edited'
+          required: true
+      responses:
+        '200':
+          description: 'Ok.'
+        '400':
+          description: 'Bad Request'
+        '404':
+          description: 'Invalid product id'
 
+    patch:
+      operationId: R203
+      summary: 'R203: Edit a product'
+      description: 'Edits the content of a product. Access: ADM'
+      tags:
+        - 'M02: Products'
+      parameters:
+        - in: path
+          name: id_product
+          schema:
+            type: integer
+          description: 'Specifies the id of the product to be edited'
+          required: true
+      responses:
+        '302':
+          description: 'Redirect after updating the product content.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edition. Redirect to product page.'
+                  value: '/post/{id_product}'
+                302Error:
+                  description: 'Failed edition. Redirect to edit page.'
+                  value: '/post/{id_product}/edit'
+        '403':
+          description: 'Forbidden access'
+        '400':
+          description: 'Bad Request'
+
+  /product/create:
+    get:
+      operationId: R204
+      summary: 'R204: Shows page to create a product'
+      description: 'Allows admin to access page to create a product. Access: ADM'
+      tags:
+        - 'M02: Products'
+      responses:
+        '200':
+          description: 'Ok.'
+        '400':
+          description: 'Bad Request.'
+
+    post:
+      operationId: R205
+      summary: 'R206: Adds a new product'
+      description: 'Allows admin to create a new product. Access: ADM'
+      tags:
+        - 'M02: Products'
+      responses:
+        '200':
+          description: 'Ok.'
+        '400':
+          description: 'Bad Request.'
+
+  /product/{id_product}/cart:
+    post:
+      operationId: R208
+      summary: 'R208: Add to Cart'
+      description: 'Add a product to the Cart. Access: USR'
+      tags:
+        - 'M02: products'
+
+      requestBody:
+       required: true
+       content:
+         application/x-www-form-urlencoded:
+           schema:
+             type: object
+             properties:
+               productId:
+                type: integer
+                required:
+                - productId
+
+      responses:
+        '302':
+         description: 'Redirect after processing product information'
+         headers:
+           Location:
+             schema:
+               type: string
+             examples:
+               302Success:
+                 description: 'Successfully added product to Cart. Redirect to products page.'
+                 value: '/product'
+               302Error:
+                 description: 'Failed to add product to Cart. Redirect to products page.'
+                 value: '/product'
 
   /search:
-  /search/{query}:
-  /api/search/produts:
+    get:
+      operationId: R206
+      summary: "R206: Search Page"
+      description: "Show Search Page. Access: PUB"
+      tags:
+        - "M02: Products"
 
-  /admin:
+      parameters:
+        - in: query
+          name: query
+          description: "String used for full-text search"
+          schema:
+            type: string
+          required: true
 
-  /about:
-  /404:
+      responses:
+        '302':
+            description: 'Redirect after processing the information.'
+            headers:
+                Location:
+                  schema:
+                      type: string
+                  examples:
+                      302Success:
+                        description: 'Redirect to search questions.'
+                        value: '/search/products'
+
+  /search/products:
+    get:
+      operationId: R207
+      summary: "R207: Get products results"
+      description: "Returns search results. Access: PUB"
+      tags:
+        - "M02: Products"
+
+      parameters:
+        - in: query
+          name: query
+          description: "String used for full-text search"
+          schema:
+            type: string
+          required: true
+
+      responses:
+        "200":
+          description: "OK."
+
+  /cart/{id}:
+   get:
+      operationId: R401
+      summary: 'R401: Cart Form'
+      description: 'Display the Cart. Access: OWN'
+
+      tags:
+       - 'M04: Cart'
+
+      parameters:
+       - in: path
+         name: id
+         schema:
+           type: integer
+         required: true
+
+      responses:
+       '200':
+         description: "Ok."
+
+  /cart/checkout:
+    post:
+      operationId: R402
+      summary: 'R402: Cart Checkout'
+      description: 'Checkout all products on Cart. Access: OWN'
+
+      tags:
+        - 'M04: Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                id_user:
+                  type: integer
+                id_product:
+                  type: integer
+                total:
+                  type: number
+                id_address:
+                  type: integer
+                quantity:
+                  type: integer
+              required:
+                - id_user
+                - id_product
+                - total
+                - id_address
+                - quantity
+
+      responses:
+        '200':
+          description: "Ok. Checkout successful"
+        '400':
+          description: "Error. Bad Request"
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                400type1:
+                  description: "Failed checkout. Redirect to cart."
+                  value: "/cart/{id}"
+        '404':
+          description: "Error. Not Found"
+
+  /cart/delete:
+    delete:
+      operationId: R403
+      summary: 'R403: Delete Cart Product'
+      description: 'Remove a product from the Cart. Access: OWN'
+
+      tags:
+        - 'M04: Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                id_user:
+                  type: integer
+                id_product:
+                  type: integer
+              required:
+                - id_user
+                - id_product
+
+      responses:
+        '200':
+          description: "Ok."
+        '400':
+          description: "Error. Bad Request"
+        '404':
+          description: "Error. Not Found"

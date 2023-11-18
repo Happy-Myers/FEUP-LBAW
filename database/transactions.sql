@@ -1,26 +1,15 @@
 -- TRAN01
 BEGIN TRANSACTION;
 
-SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+INSERT INTO purchase (id_user, total, delivery_progress)
+VALUES ($user_id, $total, $progress_status)
+RETURNING id INTO $purchase_id;
 
-BEGIN TRY
-    BEGIN
-        INSERT INTO purchase (id_user, total, delivery_progress)
-        VALUES ($user_id, $total, $progress_status);
+INSERT INTO purchase_product (id_purchase, id_product, quantity)
+SELECT $purchase_id, pp.id_product, pp.quantity
+FROM UNNEST($products) pp(id_product INT, quantity INT);
 
-        SET $purchase_id = SCOPE_IDENTITY();
-    END
-
-    INSERT INTO purchase_product (id_purchase, id_product, quantity)
-    SELECT $purchase_id, $product_id, $quantity
-    FROM $products;
-
-    COMMIT;
-END TRY
-BEGIN CATCH
-    ROLLBACK;
-END CATCH;
-
+COMMIT;
 END TRANSACTION;
 
 --TRAN02

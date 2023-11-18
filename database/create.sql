@@ -61,6 +61,7 @@ CREATE TABLE product (
     name TEXT NOT NULL,
     price FLOAT NOT NULL CONSTRAINT price_ck CHECK (price > 0),
     photo TEXT,
+    quantity INTEGER NOT NULL CONSTRAINT quantity_ck CHECK (quantity >= 0), 
     score FLOAT NOT NULL CONSTRAINT score_ck CHECK ((score > 0) AND (score <= 5)),
     description TEXT NOT NULL,
     hardware BOOLEAN NOT NULL,

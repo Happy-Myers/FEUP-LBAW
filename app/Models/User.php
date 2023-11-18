@@ -3,13 +3,14 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 // Added to define Eloquent relationships.
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -25,8 +26,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'phone_number',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -36,7 +38,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        //'remember_token',
     ];
 
     /**
@@ -45,15 +47,39 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        //'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
     /**
      * Get the cards for a user.
      */
-    public function cards(): HasMany
+    public function addresses(): HasMany
     {
-        return $this->hasMany(Card::class);
+        return $this->hasMany(Address::class);
+    }
+
+    public function reviews(): HasMany{
+        return $this->hasMany(Review::class);
+    }
+
+    public function review_vote(): BelongsToMany {
+        return $this->belongsToMany(Review::class, 'review_vote', 'user_id', 'review_id')->using(ReviewVote::class)->withPivot('vote');
+    }
+
+    public function cart(): BelongsToMany {
+        return $this->belongsToMany(Product::class, 'cart', 'user_id', 'product_id')->using(Cart::class)->withPivot('quantity');
+    }
+
+    public function wishlist(): BelongsToMany {
+        return $this->belongsToMany(Product::class, 'wishlist');
+    }
+
+    public function purchases(): HasMany{
+        return $this->hasMany(Purchase::class);
+    }
+
+    public function notification(): HasMany{
+        return $this->hasMany(Notification::class);
     }
 }
