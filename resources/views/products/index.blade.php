@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-layout>
     <div class="d-flex flex-column">
         <div class="container-fluid mt-5" id="homeProductGrid">
             @foreach($productsList as $product)
@@ -8,4 +6,4 @@
             @endforeach
         </div>
     </div>
-@endsection
+</x-layout>

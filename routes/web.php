@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
 use App\Models\Product;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,6 @@ use App\Models\Product;
 |
 */
 
-
 //Common Resource Routes:
 // index - Show all listings
 // show - Show single listing
@@ -26,7 +25,6 @@ use App\Models\Product;
 // update - update listing
 // destroy - Delete listing
 
-/*
 // Login
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
@@ -35,8 +33,8 @@ Route::post('/logout', [UserController::class, 'logout']);
 //Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
-*/
 
+// Products
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
