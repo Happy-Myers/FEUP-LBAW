@@ -160,3 +160,22 @@ body {
     border-color: #9b4dca;
   }
   
+  .product-card {
+    border: 0.1em solid #66c0f4;  
+    overflow: hidden; 
+    margin: 1em;
+    padding: 1em;
+  }
+
+  #homeProductGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+    gap: 2em;
+    margin: 2em 5em 0em 5em;
+  }
+
+  @media (max-width: 576px) {
+    #homeProductGrid {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+  }
