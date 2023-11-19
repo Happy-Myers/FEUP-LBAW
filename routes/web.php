@@ -33,5 +33,4 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 
-Route::get('/', [UserController::class, 'home']);
 

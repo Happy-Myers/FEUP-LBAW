@@ -37,7 +37,7 @@ class UserController extends Controller
 
         auth()->logout();
 
-        request()->session()->invalidate();1
+        request()->session()->invalidate();
 
         request()->session()->regenerateToken();
 
