@@ -1,8 +1,12 @@
 <x-layout>
-    <div class="d-flex flex-column">
-        <div class="container-fluid mt-5" id="homeProductGrid">
+    @include('components.carousel')
+    <div class="vh-100 maingrid">
+        <h2 class="highlights">Highlights</h2>
+        <div class="container-fluid mt-4" id="homeProductGrid">
             @foreach($productsList as $product)
-                @include('components.card', ['product' => $product])
+                <div>
+                    @include('components.card', ['product' => $product])
+                </div>
             @endforeach
         </div>
     </div>

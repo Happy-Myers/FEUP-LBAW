@@ -1,16 +1,33 @@
   
+:root {
+  --black: #171a21;
+  --blue: #66c0f4;
+  --dark-blue: #1b2838;
+  --grey-blue: #2a475e;
+  --grey: #c7d5e0;
+}
 .product-card {
-  border: 0.1em solid #66c0f4;  
-  overflow: hidden; 
+  border: 0.1em solid #66c0f4;   
   margin: 1em;
   padding: 1em;
 }
 
 #homeProductGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-  gap: 2em;
-  margin: 2em 5em 0em 5em;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 2em;
+
+}
+
+.maingrid {
+  margin: 0 7em;
+}
+
+.highlights {
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
 @media (max-width: 576px) {
@@ -50,10 +67,80 @@ main {
 }
 
 main form {
-  padding:8vh 0;
+  padding: 8vh 0;
 }
 
 .navbar-brand:hover {
   color: white;
 }
 
+#homeCarousel .carousel-indicators button {
+  background-color: #fff; 
+  border: 1px solid var(--dark-blue);
+}
+
+#homeCarousel .carousel-indicators .active {
+  background-color: var(--grey);
+}
+
+
+#homeCarousel .carousel-inner img {
+  height: 30em; 
+  object-fit: cover; 
+}
+
+#homeCarousel .carousel-caption h5 {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.product {
+  background-color: var(--black);
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-template-rows: 5em auto 8em 3em;
+  grid-column-gap: 2em;
+  grid-row-gap: 0.5em;
+  margin: 2em 10em;
+}
+  
+.images { 
+  grid-area: 2 / 1 / 4 / 2; 
+}
+.name { 
+  grid-area: 1 / 1 / 2 / 2; 
+  padding-top: 1em;
+  margin-left: 1.5em;
+}
+.details { 
+  grid-area: 1 / 2 / 5 / 3; 
+}
+.buttons { 
+  grid-area: 4 / 1 / 5 / 2;
+}
+
+.buttons .buy {
+  background-color: var(--grey-blue);
+  color: var(--blue);
+  padding: 0.5em 2em;
+  border: 0.05em solid var(--blue); 
+  border-radius: 0.5em; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.buttons .buy:hover {
+  background-color: var(--blue);
+  color: #fff;
+  padding: 0.5em 2em;
+  border-color: var(--grey-blue);
+}
+
+.card-text {
+  font-weight: lighter;
+  margin-left: 0.1em;
+}
+
+.platform-info {
+  font-size: 0.5em; 
+  font-weight: lighter; 
+}

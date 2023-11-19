@@ -22,4 +22,13 @@ class ProductController extends Controller
             'current' => null
         ]);
     }
+
+    public function show($id){
+        $product = Product::findOrFail($id);
+        $product->load('platform', 'categories', 'reviews', 'cart', 'wishlist', 'product_purchase');
+    
+        return view('products.show', [
+            'product' => $product,
+        ]);
+    }
 }
