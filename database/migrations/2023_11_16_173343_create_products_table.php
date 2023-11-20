@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('hardware');
             $table->date('publication_date')->default(now());
             $table->unsignedBigInteger('platform_id');
+            $table->timestamps();
 
             $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade');
         });
