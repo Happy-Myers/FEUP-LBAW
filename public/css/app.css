@@ -1,3 +1,11 @@
+:root {
+  --black: #171a21;
+  --blue: #66c0f4;
+  --dark-blue: #1b2838;
+  --grey-blue: #2a475e;
+  --grey: #c7d5e0;
+}
+
 .navbar {
   background-color: #000a12;
 }
@@ -28,7 +36,7 @@ main {
   background: linear-gradient(180deg, rgba(0,10,18,1) 0%, rgba(1,73,124,1) 100%);
 }
 
-main form {
+main form#auth {
   padding:8vh 0;
 }
 
@@ -36,3 +44,18 @@ main form {
   color: white;
 }
 
+.buy {
+  background-color: var(--grey-blue);
+  color: var(--blue);
+  padding: 0.5em 2em;
+  border: 0.05em solid var(--blue); 
+  border-radius: 0.5em; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.buy:hover {
+  background-color: var(--blue);
+  color: #fff;
+  padding: 0.5em 2em;
+  border-color: var(--grey-blue);
+}

@@ -35,4 +35,4 @@ Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 
 Route::get('/', [ReviewController::class, 'show']);
-
+Route::post('/reviews', [ReviewController::class, 'store']);
