@@ -456,7 +456,7 @@ paths:
         "200":
           description: "OK."
 
-  /cart/{id}:
+  /cart/{id_user}:
    get:
       operationId: R401
       summary: 'R401: Cart Form'
@@ -521,7 +521,7 @@ paths:
               examples:
                 400type1:
                   description: "Failed checkout. Redirect to cart."
-                  value: "/cart/{id}"
+                  value: "/cart/{id_user}"
         '404':
           description: "Error. Not Found"
 

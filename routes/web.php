@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -32,5 +33,10 @@ Route::post('/logout', [UserController::class, 'logout']);
 //Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
+
+// Products
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
+
 
 
