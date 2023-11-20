@@ -19,5 +19,13 @@ class ReviewController extends Controller
             'score' => ['required', 'integer', 'between:1,5'],
             'comment' => ['nullable', 'string', 'max:200'],
         ]);
+
+        $formFields['user_id'] = auth()->id();
+
+        $formFields['date'] = now();
+
+        Review::create($formFields);
+
+        return back();
     }
 }
