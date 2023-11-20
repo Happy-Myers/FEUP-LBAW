@@ -1,4 +1,6 @@
   
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root {
   --black: #171a21;
   --blue: #66c0f4;
@@ -6,16 +8,21 @@
   --grey-blue: #2a475e;
   --grey: #c7d5e0;
 }
+
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
 .product-card {
   border: 0.1em solid #66c0f4;   
   margin: 1em;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 #homeProductGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
   grid-column-gap: 1em;
   grid-row-gap: 2em;
 
@@ -119,7 +126,7 @@ main form {
   grid-area: 4 / 1 / 5 / 2;
 }
 
-.buttons .buy {
+.buy {
   background-color: var(--grey-blue);
   color: var(--blue);
   padding: 0.5em 2em;
@@ -128,7 +135,7 @@ main form {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.buttons .buy:hover {
+.buy:hover {
   background-color: var(--blue);
   color: #fff;
   padding: 0.5em 2em;
@@ -143,4 +150,48 @@ main form {
 .platform-info {
   font-size: 0.5em; 
   font-weight: lighter; 
+}
+
+.genres {
+  margin: 1em 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.genre {
+  margin: 0 0.1em;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5em;
+}
+
+.pagination a, .pagination span {
+  margin: 0 0.2em;
+  padding: 0.5em 0.9em;
+  border: 0.05em solid var(--grey-blue);
+  background-color: var(--black);
+  color: var(--blue);
+  text-decoration: none;
+  border-radius: 0.2em;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  border: 0.08em solid var(--blue);
+  background-color: var(--black);
+  color: var(--grey);
+}
+
+#page-link {
+  background-color: aqua;
+  color: var(--blue);
+}
+
+.pagination .disabled {
+  cursor: not-allowed;
 }

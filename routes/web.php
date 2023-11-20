@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,4 +37,6 @@ Route::post('/users', [UserController::class, 'store']);
 // Products
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
+
+
 

@@ -1,27 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Product;
-use Illuminate\Http\Request;
+use App\Models\Category;
 
-class ProductController extends Controller
-{
-    public function index()
-    {
-        $products = Product::all();
-        $productsList = array();
+class ProductController extends Controller {
 
-        for($i = 0; $i < 4; $i++){
-            array_push($productsList, $products[rand(0, count($products) - 1)]);
-        }
-
+    public function index(){
+        $topProducts = Product::orderBy('score', 'desc')->take(4)->get();
+        $otherProducts = Product::latest()->filter(request(['category', 'search']))->paginate(8);
+        $categories = Category::all();
+    
         return view('products.index', [
-            'productsList' => $productsList,
-            'breadcrumbs' => [],
-            'current' => null
+            'topProducts' => $topProducts,
+            'otherProducts' => $otherProducts,
+            'categories' => $categories,
         ]);
     }
+    
 
     public function show($id){
         $product = Product::findOrFail($id);
@@ -31,4 +27,5 @@ class ProductController extends Controller
             'product' => $product,
         ]);
     }
+    
 }

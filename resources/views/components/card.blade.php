@@ -11,10 +11,12 @@
                          <img src="{{ asset($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                     </a>
 
-                    <div class="d-flex justify-content-center align-items-center">
+                    <div class="d-flex justify-content-center align-items-center mt-3">
                          <h4 class="price">{{ $product->price }}€</h4>
                     </div>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <div class="text-center mt-2">
+                         <button class="btn btn-primary buy">Add To Cart</button>
+                     </div>
                </div>
           </div>
      </div>
