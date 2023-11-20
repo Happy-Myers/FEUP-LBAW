@@ -3,7 +3,7 @@
       <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-fluid" style="max-height: 300px;">
   </div>
   <div class="container mb-4">
-      <form method = "POST" action = "/users" class="col-md-4 mx-auto">
+      <form method = "POST" action = "/users" class="col-md-4 mx-auto" id="auth">
           @csrf
           <div class="mb-3">
             <label for="name" class="form-label text-white">Name</label>

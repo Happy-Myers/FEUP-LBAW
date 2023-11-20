@@ -1,5 +1,11 @@
+@php
+  $hasCommented = $reviews->contains(function ($review){
+    return $review->user_id == auth()->id() && $review->comment != null;
+  });
+@endphp
+
 <x-layout>
-    <div class="pb-4 product">
+    <div class="pb-4 product text-white">
         <h1 class="card-title mt-3 ms-4">
             {{ $product->name }}
             @if($product->platform->name !== 'PC')
@@ -48,4 +54,25 @@
             <button class="btn btn-primary buy ms-2">Add To Wishlist</button>
         </div>
     </div>
+    <div class="container mt-5">
+      @auth
+        @unless ($hasCommented)
+          <x-review-form :product="$product->id"/>
+        @endunless
+      @endauth
+      @unless(count($reviews) == 0)
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card bg-dark text-white border border-white ms-5 me-5 mt-4 mb-4">
+        @foreach ($reviews as $review)
+                <x-review :review="$review"/> 
+                @if(!$loop->last) 
+                  <hr />
+                @endif
+        @endforeach
+            </div>
+          </div>
+        </div>  
+      @endunless
+  </div>
 </x-layout>

@@ -1,5 +1,4 @@
-  
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
 
 :root {
   --black: #171a21;
@@ -7,40 +6,6 @@
   --dark-blue: #1b2838;
   --grey-blue: #2a475e;
   --grey: #c7d5e0;
-}
-
-body {
-  font-family: 'Oswald', sans-serif;
-}
-
-.product-card {
-  border: 0.1em solid #66c0f4;   
-  margin: 1em;
-  padding: 0.5em;
-}
-
-#homeProductGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  grid-column-gap: 1em;
-  grid-row-gap: 2em;
-
-}
-
-.maingrid {
-  margin: 0 7em;
-}
-
-.highlights {
-  margin-top: 1em;
-  margin-left: 1em;
-}
-
-@media (max-width: 576px) {
-  #homeProductGrid {
-      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-  }
 }
 
 .navbar {
@@ -73,57 +38,12 @@ main {
   background: linear-gradient(180deg, rgba(0,10,18,1) 0%, rgba(1,73,124,1) 100%);
 }
 
-main form {
-  padding: 8vh 0;
+main form#auth {
+  padding:8vh 0;
 }
 
 .navbar-brand:hover {
   color: white;
-}
-
-#homeCarousel .carousel-indicators button {
-  background-color: #fff; 
-  border: 1px solid var(--dark-blue);
-}
-
-#homeCarousel .carousel-indicators .active {
-  background-color: var(--grey);
-}
-
-
-#homeCarousel .carousel-inner img {
-  height: 30em; 
-  object-fit: cover; 
-}
-
-#homeCarousel .carousel-caption h5 {
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.product {
-  background-color: var(--black);
-  display: grid;
-  grid-template-columns: 60% 1fr;
-  grid-template-rows: 5em auto 8em 3em;
-  grid-column-gap: 2em;
-  grid-row-gap: 0.5em;
-  margin: 2em 10em;
-}
-  
-.images { 
-  grid-area: 2 / 1 / 4 / 2; 
-}
-.name { 
-  grid-area: 1 / 1 / 2 / 2; 
-  padding-top: 1em;
-  margin-left: 1.5em;
-}
-.details { 
-  grid-area: 1 / 2 / 5 / 3; 
-}
-.buttons { 
-  grid-area: 4 / 1 / 5 / 2;
 }
 
 .buy {
@@ -142,14 +62,94 @@ main form {
   border-color: var(--grey-blue);
 }
 
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+.product-card {	
+  border: 0.1em solid #66c0f4;  
+  margin: 1em;
+  padding: 0.5em;
+}
+
+#homeProductGrid {
+  display: grid;	
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 2em;	
+}
+
+.maingrid {	
+  margin: 0 7em;
+}
+
+.highlights {
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+@media (max-width: 576px) {
+  #homeProductGrid {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+}
+
+#homeCarousel .carousel-indicators button {
+  background-color: #fff;
+  border: 1px solid var(--dark-blue);
+}
+
+#homeCarousel .carousel-indicators .active {
+  background-color: var(--grey);
+}
+
+#homeCarousel .carousel-inner img {
+  height: 30em;
+  object-fit: cover;
+}
+
+#homeCarousel .carousel-caption h5 {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.product {
+  background-color: var(--black);
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-template-rows: 5em auto 8em 3em;
+  grid-column-gap: 2em;
+  grid-row-gap: 0.5em;
+  margin: 2em 10em;
+}
+
+.images {
+  grid-area: 2 / 1 / 4 / 2;
+}
+
+.name {
+  grid-area: 1 / 1 / 2 / 2;
+  padding-top: 1em;
+  margin-left: 1.5em;
+}
+
+.details {
+  grid-area: 1 / 2 / 5 / 3;
+}
+
+.buttons {
+  grid-area: 4 / 1 / 5 / 2;
+}
+
 .card-text {
   font-weight: lighter;
   margin-left: 0.1em;
 }
 
 .platform-info {
-  font-size: 0.5em; 
-  font-weight: lighter; 
+  font-size: 0.5em;
+  font-weight: lighter;
 }
 
 .genres {
@@ -185,11 +185,6 @@ main form {
   border: 0.08em solid var(--blue);
   background-color: var(--black);
   color: var(--grey);
-}
-
-#page-link {
-  background-color: aqua;
-  color: var(--blue);
 }
 
 .pagination .disabled {
