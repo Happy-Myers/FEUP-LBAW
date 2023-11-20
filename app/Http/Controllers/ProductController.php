@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
 
@@ -22,9 +23,12 @@ class ProductController extends Controller {
     public function show($id){
         $product = Product::findOrFail($id);
         $product->load('platform', 'categories', 'reviews', 'cart', 'wishlist', 'product_purchase');
-    
+
+        $reviews = Review::get()->where('product_id', $id)->whereNotNull('comment');
+
         return view('products.show', [
             'product' => $product,
+            'reviews' => $reviews, 
         ]);
     }
     

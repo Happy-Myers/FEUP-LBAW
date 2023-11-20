@@ -1,7 +1,7 @@
 <x-layout>
     @include('components.carousel')
     <div class="auto maingrid">
-        <h2 class="highlights">Highlights</h2>
+        <h2 class="highlights text-white">Highlights</h2>
         <div class="container-fluid mt-4" id="homeProductGrid">
             @foreach($topProducts as $product1)
                 <div>
@@ -9,7 +9,7 @@
                 </div>
             @endforeach
         </div>
-        <h2 class="highlights">Game Genres</h2>
+        <h2 class="highlights text-white">Game Genres</h2>
         <div class="d-flex flex-row genres">
             @foreach ($categories as $category)
                 <div class="text-center genre" data-category-id="{{ $category->name }}">
@@ -19,7 +19,7 @@
                 </div>
             @endforeach
         </div>
-        <h2 class="highlights">More Products</h2>
+        <h2 class="highlights text-white">More Products</h2>
         <div class="container-fluid mt-4" id="homeProductGrid">
             @foreach($otherProducts as $product2)
                 <div>

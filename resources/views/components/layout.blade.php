@@ -81,7 +81,7 @@
         <main>
                {{$slot}}
         </main>
-        <footer class="text-center text-lg-start text-white mt-auto" style="background-color: ##01497C">
+        <footer class="text-center text-lg-start text-white mt-auto" style="background-color: #1b2838">
           <section class="d-flex justify-content-between p-4" style="background-color: #01497C">
             <div class="me-5">
               <span>Get connected with us on social networks:</span>

@@ -13,7 +13,7 @@ class Review extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['score', 'comment'];
+    protected $fillable = ['score', 'comment', 'user_id', 'product_id', 'date'];
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);

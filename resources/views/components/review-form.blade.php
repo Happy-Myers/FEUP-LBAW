@@ -2,10 +2,11 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card bg-dark text-white border border-white m-5">
+        <div class="card bg-dark text-white border border-white ms-5 me-5 mt-1 mb-2">
             <div class="card-body">
                 <form method="POST" action="/reviews" id="reviewForm">
                     @csrf
+                    <input type="hidden" name="product_id" value="{{$product}}"/>
                     <div class="d-flex justify-content-end align-items-center">
                         <strong class="text-white">Score: </strong>
                         <span class="text-warning stars">
@@ -22,7 +23,7 @@
                     </div>
                     <div>
                         <label for="comment" class="text-white">Comment:</label>
-                        <textarea class="form-control" id="comment" name="comment" rows="4" maxlength="200" required></textarea>
+                        <textarea class="form-control" id="comment" name="comment" rows="4" maxlength="200"></textarea>
                         <div id="charCount" class="text-white text-end mt-1">200</div>
                     </div>
                     <div>

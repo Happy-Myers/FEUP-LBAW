@@ -7,12 +7,6 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public function show(){
-        return view('review',[
-            'review' => Review::find(2)
-        ]);
-    }
-
     public function store(){
         $formFields = request()->validate([
             'product_id' => 'required',
@@ -24,7 +18,13 @@ class ReviewController extends Controller
 
         $formFields['date'] = now();
 
-        Review::create($formFields);
+        $review = Review::where('product_id', $formFields['product_id'])
+            ->where('user_id', $formFields['user_id'])->first();
+        
+        if($review == null)    
+            Review::create($formFields);
+        else
+            $review->update($formFields);
 
         return back();
     }
