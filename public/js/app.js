@@ -16,8 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
               currentStar.classList.add('fas');
               currentStar = currentStar.previousElementSibling;
           }
-
-          document.getElementById('selectedScore').textContent = value + ' / 5';
           document.getElementById('score').value = value;
       });
   });

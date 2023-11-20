@@ -35,4 +35,7 @@ Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 
 Route::get('/', [ReviewController::class, 'show']);
+
+//Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');

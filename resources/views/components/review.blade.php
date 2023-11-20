@@ -6,7 +6,6 @@
     $user = $review->user;
 @endphp
 
-
 <div class="row">
     <div class="col-md-12">
         <div class="card bg-dark text-white border border-white m-5">
@@ -39,6 +38,17 @@
                             </span>
                         </div>
                     </div>
+                    @auth
+                    @if(auth()->id() == $review->user->id)
+                    <form method="POST" action="/reviews/{{$review->id}}" class="mb-3">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn text-danger" type="submit">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                    @endif
+                    @endauth
                 </div>
                 <div class="mt-2">
                     <p class="mb-0 text-white">
@@ -49,3 +59,4 @@
         </div>    
     </div>
 </div>
+
