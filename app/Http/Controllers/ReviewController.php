@@ -28,4 +28,13 @@ class ReviewController extends Controller
 
         return back();
     }
+
+    public function destroy(Review $review){
+        if($review->user_id != auth()->id()){
+            abort(403, 'Unauthorized Action');
+        }
+
+        $review->delete();
+        return back();
+    }
 }
