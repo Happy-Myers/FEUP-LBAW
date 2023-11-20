@@ -45,6 +45,18 @@
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @auth
+                        <li>
+                          <a class="nav-link" href="/wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                            Wishlist
+                        </a>                          
+                        </li>
+                        <li>
+                          <a class="nav-link" href="/cart">
+                            <i class="fa-solid fa-car"></i>
+                            Cart
+                        </a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/profile">
                                 <i class="fa-solid fa-user"></i>
