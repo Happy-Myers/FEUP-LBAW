@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +40,14 @@ Route::post('/users', [UserController::class, 'store']);
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
+// Cart
+Route::get('/cart', [CartController::class, 'index']);
+Route::post('/cart', [CartController::class, 'add']);
+Route::delete('/cart', [CartController::class, 'delete']);
+Route::post('/cart/edit', [CartController::class, 'increment']);
+Route::post('/cart/edit', [CartController::class, 'decrement']);
 
-
+//! Wishlist
+Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::post('/wishlist/edit', [WishlistController::class, 'add']);
+Route::delete('/wishlist/edit', [WishlistController::class, 'delete']);

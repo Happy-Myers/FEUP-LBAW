@@ -11,6 +11,14 @@
 
 body {
   font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background-color: var(--black);
 }
 
 .product-card {
@@ -71,6 +79,7 @@ body {
 
 main {
   background: linear-gradient(180deg, rgba(0,10,18,1) 0%, rgba(1,73,124,1) 100%);
+  flex: 1;
 }
 
 main form {
@@ -187,11 +196,45 @@ main form {
   color: var(--grey);
 }
 
-#page-link {
-  background-color: aqua;
+.pagination .disabled {
+  cursor: not-allowed;
+}
+
+.table {
+  background-color: var(--black);
+}
+
+.table thead th {
+  background-color: var(--black);
   color: var(--blue);
 }
 
-.pagination .disabled {
-  cursor: not-allowed;
+.button1 {
+  padding: 0.5em;
+  background-color: var(--grey-blue);
+  border: 0.1em solid var(--blue);
+  border-radius: 0.2em;
+  text-decoration: none;
+}
+
+.button2 {
+  padding: 0.5em;
+  color: red;
+  background-color: #610000;
+  border: 0.1em solid red;
+  border-radius: 0.2em;
+}
+
+.button1 a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+form {
+  padding: 0 !important;
+}
+
+.checkout {
+  padding: 2em 1em;
+  background-color: var(--black);
 }
