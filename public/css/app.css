@@ -200,15 +200,6 @@ main form {
   cursor: not-allowed;
 }
 
-.table {
-  background-color: var(--black);
-}
-
-.table thead th {
-  background-color: var(--black);
-  color: var(--blue);
-}
-
 .button1 {
   padding: 0.5em;
   background-color: var(--grey-blue);
@@ -238,3 +229,29 @@ form {
   padding: 2em 1em;
   background-color: var(--black);
 }
+
+
+table, th, td {
+  border: 0.1em solid var(--blue);
+}
+
+th, td {
+  vertical-align: middle;
+}
+
+.table {
+  background-color: var(--black);
+}
+
+
+.table thead th {
+  background-color: var(--black);
+  color: var(--blue);
+}
+
+.table tbody td {
+  background-color: var(--black);
+  color: var(--blue);
+  border: 0.1em solid var(--blue);
+}
+

@@ -49,10 +49,10 @@ class CartController extends Controller {
             'total' => $total,
           ]);
           */
-
+          $user = User::find(14);
           return view('users.cart', [
-               'user' => 1,
-               'cart' => 1,
+               'user' => 14,
+               'cart' =>  $user->cart()->get(),
                'total' => 500,
              ]);
      }

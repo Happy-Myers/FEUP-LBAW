@@ -41,7 +41,7 @@
             @enderror
           </div>
           <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary">Register</button>
               <a class="button button-outline mt-2 mx-auto" href="/login">Already have an account?</a>
           </div>
       </form>

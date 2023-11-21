@@ -6,15 +6,19 @@
          <section class="d-flex justify-content-around">
              <table class="table">
                  <thead>
-                     <tr class="text-center">
-                         <th scope="col">Image</th>
-                         <th scope="col">Name</th>
-                         <th scope="col">Amount</th>
-                         <th scope="col">Price</th>
-                     </tr>
+                    <tr class="text-center">
+                        <th scope="col">Remove</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Price</th>
+                    </tr>
                  </thead>
                  <tbody>
                      <!-- foreach de produtos aqui -->
+                     @foreach ($cart as $product)
+                        @include('components.cartproduct', ['product' => $product])
+                     @endforeach
                  </tbody>
              </table>
  
