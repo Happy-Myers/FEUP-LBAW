@@ -44,7 +44,11 @@
             </h6>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-3 buttons"> <!-- Falta adicionar função aos botões -->
-            <button class="btn btn-primary buy me-2">Add To Cart</button>
+          <form method="POST" action="/cart/{{$product->id}}">
+            @csrf
+            <button type="submit" class="btn btn-primary buy me-2">Add To Cart</button>
+          </form>
+            
             <button class="btn btn-primary buy ms-2">Add To Wishlist</button>
         </div>
     </div>

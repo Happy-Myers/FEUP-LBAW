@@ -38,12 +38,12 @@ Route::post('/users', [UserController::class, 'store']);
 
 // Products
 Route::get('/', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
+Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // Cart
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
-Route::post('/cart', [CartController::class, 'create'])->middleware('auth');
-Route::delete('/cart/{id}', [CartController::class, 'destroy'])->middleware('auth');
+Route::post('/cart/{product}', [CartController::class, 'create'])->middleware('auth');
+Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
 
 //! Wishlist
 Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');;

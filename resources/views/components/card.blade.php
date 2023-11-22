@@ -1,3 +1,5 @@
+@props(['product'])
+
 <div class="card">
      <div class="card m-1 h-100 product-card">
           <div class="card-body d-flex flex-column justify-content-center">
@@ -15,7 +17,10 @@
                          <h4 class="price">{{ $product->price }}€</h4>
                     </div>
                     <div class="text-center mt-2">
-                         <button class="btn btn-primary buy">Add To Cart</button>
+                         <form method="POST" action="/cart/{{$product->id}}">
+                              @csrf
+                              <button type="submit" class="btn btn-primary buy">Add To Cart</button>                         
+                         </form>
                      </div>
                </div>
           </div>

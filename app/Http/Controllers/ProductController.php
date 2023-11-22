@@ -19,10 +19,7 @@ class ProductController extends Controller {
     }
     
 
-    public function show($id){
-        $product = Product::findOrFail($id);
-        $product->load('platform', 'categories', 'reviews', 'cart', 'wishlist', 'product_purchase');
-    
+    public function show(Product $product){
         return view('products.show', [
             'product' => $product,
         ]);
