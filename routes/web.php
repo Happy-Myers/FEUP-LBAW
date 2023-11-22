@@ -35,6 +35,6 @@ Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 
 
-Route::controller(ProfileController::class)->group(function () {
-    Route::get('/users/{id}', 'show');
-});
+Route::get('/users/{user}', [UserController::class, 'show']);
+Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');
+Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth');
