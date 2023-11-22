@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); 
+
+:root {
+  --black: #171a21;
+  --blue: #66c0f4;
+  --dark-blue: #1b2838;
+  --grey-blue: #2a475e;
+  --grey: #c7d5e0;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+
 .navbar {
   background-color: #000a12;
 }
@@ -36,3 +55,45 @@ main form {
   color: white;
 }
 
+.card {
+  border: 0.1em solid var(--grey-blue);
+}
+
+.card-header, .card-body, .card {
+  background-color: var(--black); 
+  color: white;
+}
+
+.card-header {
+  margin: 0.7em 1em;
+  padding: 0em;
+}
+
+.card-body {
+  padding: 0em;
+  margin: 0.5em
+}
+
+img {
+  margin-left: 1em;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  padding: 0em;
+  margin: 0em 2em 1em 5em;
+}
+
+.align-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+}
+
+.buttons {
+  margin: 0 0.5em;
+}
+
+.address-box {
+  margin: 0 1.5em;
+}
