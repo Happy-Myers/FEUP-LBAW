@@ -20,9 +20,16 @@ class CartController extends Controller {
   
   public function create(Product $product){
     $user = auth()->user();
-    $user->cart()->attach($product->id, ['quantity' => 1]);
+    $cart = $user->cart()->where('product_id', $product->id)->get();
 
-    return redirect('/cart');
+    if($cart->isempty()){
+      $user->cart()->attach($product->id, ['quantity' => 1]);
+    }
+    else{
+      $cart[0]->pivot->update(['quantity' => $cart[0]->pivot->quantity + 1]);
+    }
+
+    return back();
   }
   
   public function destroy(Product $product){
