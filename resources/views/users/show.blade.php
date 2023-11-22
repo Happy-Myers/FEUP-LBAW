@@ -75,9 +75,9 @@
                         </div>
                     @endforeach
                     <div class="collapse navbar-collapse justify-content-between" id="addAddress">
-                        <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
+                        <form class="d-flex mx-auto" method="post" action="/addresses">
                             @csrf
-                            @method('PUT')
+                            @method('POST')
                             <input class="form-control me-2" type="text" name="label" placeholder="Label">
                             <input class="form-control me-2" type="text" name="street" placeholder="Address">
                             <input class="form-control me-2" type="text" name="city" placeholder="City">

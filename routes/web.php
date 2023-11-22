@@ -67,6 +67,7 @@ Route::get('/users/{user}', [UserController::class, 'show']);
 //Address
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');
 Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth');
+Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth');
 
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);

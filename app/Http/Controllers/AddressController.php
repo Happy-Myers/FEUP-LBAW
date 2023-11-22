@@ -32,5 +32,18 @@ class AddressController extends Controller
 
         return back();
     }
+    public function store(){
+        $formFields = request()->validate([
+            'label' => 'required',
+            'street' => ['required', 'string', 'max:100'],
+            'city' => ['required', 'string', 'max:50'],
+            'postal_code' => ['required', 'string', 'max:15'],
+        ]);
+        $formFields['user_id'] = auth()->id();
+
+        Address::create($formFields);
+
+        return back();
+    }
 }
 
