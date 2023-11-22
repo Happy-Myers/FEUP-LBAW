@@ -45,7 +45,7 @@
                 <div class="card mt-3 mb-5" >
                     <div class="card-header" style="background-color: #00101C; color: white; display: flex; justify-content: space-between; vertical-align: center;">
                         Saved Addresses
-                        <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#addAddressModal" style="color: white;">
+                        <button type="button" class="navbar-toggler btn btn-link btn-lg" data-bs-toggle="collapse" data-bs-target="#addAddress" aria-controls="addAddress" aria-expanded="false" aria-label="Toggle navigation"style="color: white;">
                             +
                         </button>
                     </div>
@@ -54,8 +54,8 @@
                             <div class="address-box">
                                 <h5>{{ $address->label }}</h5>
                                 <p>{{ $address->street }} {{ $address->city }} {{ $address->postal_code }}</p>
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
-                                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress" aria-controls="editAddress" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
+                                <div class="collapse navbar-collapse justify-content-between" id="editAddress">
                                     <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
                                         @csrf
                                         @method('PUT')
@@ -74,6 +74,18 @@
                             </div>
                         </div>
                     @endforeach
+                    <div class="collapse navbar-collapse justify-content-between" id="addAddress">
+                        <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
+                            @csrf
+                            @method('PUT')
+                            <input class="form-control me-2" type="text" name="label" placeholder="Label">
+                            <input class="form-control me-2" type="text" name="street" placeholder="Address">
+                            <input class="form-control me-2" type="text" name="city" placeholder="City">
+                            <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code">
+                            <button class="btn btn-outline-success" type="submit">Save</button>
+                        </form>
+                    </div>                            
+
                 </div>
             </div>
         </div>
