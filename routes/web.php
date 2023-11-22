@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +35,14 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store']);
 
+// Products
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::get('/users/{user}', [UserController::class, 'show']);
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');
 Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth');
+
+//Reviews
+Route::post('/reviews', [ReviewController::class, 'store']);
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
