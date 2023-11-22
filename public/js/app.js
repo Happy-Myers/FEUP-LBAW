@@ -3,6 +3,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let quantityInputs = document.querySelectorAll('.quantity-input');
     let csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 
+    function updateTotalPrice(){
+        let priceSpans = document.querySelectorAll('.price');
+
+        let totalPrice = Array.from(priceSpans).reduce(function (total, priceSpan){
+            return total + parseFloat(priceSpan.textContent);
+        }, 0);
+
+        let totalElement = document.querySelector('.total-price');
+
+        totalElement.textContent = totalPrice.toFixed(2) + '€';
+    }
+
     quantityInputs.forEach(function(input) {
         input.addEventListener('input', function() {
             let productId = input.getAttribute('data-product-id');
@@ -24,6 +36,12 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(function(data) {
                 console.log(data);
+
+                let priceSpan = input.parentElement.nextElementSibling.querySelector('.price');
+
+                priceSpan.textContent = (quantity * data.price).toFixed(2) + '€';
+
+                updateTotalPrice();
             })
             .catch(function(error) {
                 console.error(error);

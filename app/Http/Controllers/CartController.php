@@ -48,7 +48,8 @@ class CartController extends Controller {
     $cart = $user->cart()->where('product_id', $product->id)->first();
     if($cart){
       $cart->pivot->update(['quantity' => request()->input('quantity')]);
-      return response()->json(['message' => 'Quantity updated successfully'], 200);
+
+      return response()->json(['message' => 'Quantity updated successfully', 'price' => $product->price], 200);
     }
 
     return response()->json(['message' => 'Cart item not found'], 404);

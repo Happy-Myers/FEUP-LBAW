@@ -23,6 +23,6 @@
      </td>
    
      <td class="cart-entry">
-          <span>{{$cart->pivot->quantity * $cart->price}}€</span>
+          <span class="price">{{$cart->pivot->quantity * $cart->price}}€</span>
      </td>
 </tr>					
