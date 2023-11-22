@@ -46,6 +46,7 @@ Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
 Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth');
 Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
 Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
+Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth');
 
 //! Wishlist
 Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');

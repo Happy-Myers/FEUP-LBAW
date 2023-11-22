@@ -20,13 +20,13 @@ class CartController extends Controller {
   
   public function store(Product $product){
     $user = auth()->user();
-    $cart = $user->cart()->where('product_id', $product->id)->get();
+    $cart = $user->cart()->where('product_id', $product->id)->first();
 
-    if($cart->isempty()){
+    if(!$cart){
       $user->cart()->attach($product->id, ['quantity' => 1]);
     }
     else{
-      $cart[0]->pivot->update(['quantity' => $cart[0]->pivot->quantity + 1]);
+      $cart->pivot->update(['quantity' => $cart->pivot->quantity + 1]);
     }
 
     return back();
@@ -40,5 +40,17 @@ class CartController extends Controller {
   public function clear(){
     auth()->user()->cart()->detach();
     return back();
+  }
+
+  public function update(Product $product){
+    $user = auth()->user();
+
+    $cart = $user->cart()->where('product_id', $product->id)->first();
+    if($cart){
+      $cart->pivot->update(['quantity' => request()->input('quantity')]);
+      return response()->json(['message' => 'Quantity updated successfully'], 200);
+    }
+
+    return response()->json(['message' => 'Cart item not found'], 404);
   }
 }
