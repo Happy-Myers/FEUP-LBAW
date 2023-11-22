@@ -37,7 +37,9 @@
                        </div>
                    </form>
            
-                   <form class="m-2" method="POST" action=""> <!-- adicionar action aqui -->
+                   <form class="m-2" method="POST" action="/cart"> 
+                        @csrf
+                        @method('DELETE')
                        <button class="button2" type="submit">
                            Clear Cart
                        </button>

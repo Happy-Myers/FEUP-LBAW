@@ -6,8 +6,7 @@ use App\Models\Product;
 
 class CartController extends Controller {
   public function index(){
-    $user = auth()->user();
-    $carts = $user->cart;
+    $carts = auth()->user()->cart;
     $total = 0;
     foreach($carts as $cart){
       $total += $cart->pivot->quantity * $cart->price;
@@ -27,8 +26,12 @@ class CartController extends Controller {
   }
   
   public function destroy(Product $product){
-    $user = auth()->user();
-    $user->cart()->detach($product->id);
+    auth()->user()->cart()->detach($product->id);
+    return back();
+  }
+
+  public function clear(){
+    auth()->user()->cart()->detach();
     return back();
   }
 }

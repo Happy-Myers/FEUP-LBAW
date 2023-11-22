@@ -29,12 +29,12 @@ use App\Http\Controllers\WishlistController;
 
 // Login
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
 // Products
 Route::get('/', [ProductController::class, 'index']);
@@ -44,8 +44,12 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
 Route::post('/cart/{product}', [CartController::class, 'create'])->middleware('auth');
 Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
+Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
 
 //! Wishlist
-Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');;
-Route::post('/wishlist/edit', [WishlistController::class, 'add'])->middleware('auth');;
-Route::delete('/wishlist/edit', [WishlistController::class, 'delete'])->middleware('auth');;
+Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');
+Route::post('/wishlist/{product}', [WishlistController::class, 'add'])->middleware('auth');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'delete'])->middleware('auth');
+
+// Purchase
+Route::post('/checkout', [PurchaseController::class, 'create'])->middleware('auth');
