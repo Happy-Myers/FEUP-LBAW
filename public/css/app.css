@@ -8,6 +8,49 @@
   --grey: #c7d5e0;
 }
 
+body {
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.card {
+  background-color: var(--black);
+}
+
+.product-card {
+  border: 0.1em solid #66c0f4;   
+  margin: 1em;
+  padding: 0.5em;
+}
+
+#homeProductGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  grid-column-gap: 1em;
+  grid-row-gap: 2em;
+
+}
+
+.maingrid {
+  margin: 0 7em;
+}
+
+.highlights {
+  margin-top: 1em;
+  margin-left: 1em;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  #homeProductGrid {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+}
+
 .navbar {
   background-color: #000a12;
 }
@@ -18,7 +61,7 @@
 }
 
 .navbar-nav .nav-link:hover {
-  color: #1a9fff;
+  color: var(--blue);
 }
 
 .bi-list {
@@ -36,6 +79,7 @@
 
 main {
   background: linear-gradient(180deg, rgba(0,10,18,1) 0%, rgba(1,73,124,1) 100%);
+  flex: 1;
 }
 
 main form#auth {
@@ -190,3 +234,86 @@ body {
 .pagination .disabled {
   cursor: not-allowed;
 }
+
+.button1 {
+  padding: 0.5em;
+  color: var(--blue);
+  background-color: var(--grey-blue);
+  border: 0.1em solid var(--blue);
+  border-radius: 0.2em;
+  text-decoration: none;
+}
+
+.button2 {
+  padding: 0.5em;
+  color: red;
+  background-color: #610000;
+  border: 0.1em solid red;
+  border-radius: 0.2em;
+}
+
+.button1 a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+form {
+  padding: 0 !important;
+}
+
+.checkout {
+  padding: 2em 1em;
+  background-color: var(--black);
+  width: 25em;
+  height: 12em;
+  border: 0.1em solid var(--grey-blue);
+}
+
+
+table, th, td {
+  border: 0.1em solid var(--grey-blue);
+}
+
+th, td {
+  vertical-align: middle;
+}
+
+.table {
+  background-color: var(--black);
+}
+
+
+.table thead th {
+  background-color: var(--black);
+  color: var(--blue);
+  border: 0.1em solid var(--grey-blue);
+}
+
+.table tbody td {
+  background-color: var(--black);
+  color: var(--blue);
+  border: 0.1em solid var(--grey-blue);
+}
+
+
+.quantity-input {
+  width: 3em;
+  padding: 0.3em;
+  text-align: center;
+  border: 0.05em solid var(--blue);
+  border-radius: 5px;
+  background-color: var(--black);
+  color: var(--blue);
+}
+
+
+.quantity-input:focus,
+.quantity-input:hover {
+  border-color: var(--blue);
+  box-shadow: 0 0 5px var(--blue);
+}
+
+.price {
+  color: white;
+}
+

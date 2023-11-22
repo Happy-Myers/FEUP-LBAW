@@ -5,7 +5,7 @@
         <div class="container-fluid mt-4" id="homeProductGrid">
             @foreach($topProducts as $product1)
                 <div>
-                    @include('components.card', ['product' => $product1])
+                    <x-card :product="$product1"/>
                 </div>
             @endforeach
         </div>
@@ -23,7 +23,7 @@
         <div class="container-fluid mt-4" id="homeProductGrid">
             @foreach($otherProducts as $product2)
                 <div>
-                    @include('components.card', ['product' => $product2])
+                    <x-card :product="$product2"/>
                 </div>
             @endforeach
         </div>    

@@ -20,11 +20,8 @@ class ProductController extends Controller {
     }
     
 
-    public function show($id){
-        $product = Product::findOrFail($id);
-        $product->load('platform', 'categories', 'reviews', 'cart', 'wishlist', 'product_purchase');
-
-        $reviews = Review::get()->where('product_id', $id)->whereNotNull('comment');
+    public function show(Product $product){
+        $reviews = $product->reviews()->whereNotNull('comment')->get();
 
         return view('products.show', [
             'product' => $product,

@@ -25,16 +25,16 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function cart(): BelongsToMany{
-        return $this->belongsToMany(User::class, 'cart', 'product_id', 'user_id')->using(Cart::class)->withPivot('quantity');
+    public function carts(): BelongsToMany{
+        return $this->belongsToMany(User::class, 'cart')->using(Cart::class)->withPivot('quantity');
     }
     
     public function wishlist(): BelongsToMany{
         return $this->belongsToMany(User::class, 'wishlist');
     }
 
-    public function product_purchase(): BelongsToMany{
-        return $this->belongsToMany(Purchase::class, 'product_purchase', 'product_id', 'purchase_id')->using(ProductPurchase::class)->withPivot('quantity');
+    public function purchases(): BelongsToMany{
+        return $this->belongsToMany(Purchase::class)->using(ProductPurchase::class)->withPivot('quantity');
     }
 
     public function scopeFilter($query, array $filters){

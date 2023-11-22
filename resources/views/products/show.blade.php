@@ -5,8 +5,8 @@
 @endphp
 
 <x-layout>
-    <div class="pb-4 product text-white">
-        <h1 class="card-title mt-3 ms-4">
+    <div class="pb-4 product">
+        <h1 class="card-title mt-3 ms-4 text-white">
             {{ $product->name }}
             @if($product->platform->name !== 'PC')
                 <span class="platform-info">({{ $product->platform->name }})</span>
@@ -15,14 +15,14 @@
         <div class="images">
             <img src="{{ asset('images/godofwar.jpg') }}" class="img-fluid" alt="IMG1">
         </div>
-        <div class="details"> 
+        <div class="details text-white"> 
             <img src="{{ asset('images/assassinscreed.jpg') }}" class="img-fluid" alt="IMG1">
-            <h3 class="mt-3 mb-2">Product Description</h3>
-            <p class="card-text">{{ $product->description }}</p>
+            <h3 class="mt-3 mb-2 me-3">Product Description</h3>
+            <p class="card-text me-3">{{ $product->description }}</p>
 
-            <h6 class="card-text"><strong>Price:</strong> {{ $product->price }}€</h6>
-            <h6 class="card-text"><strong>Release Date:</strong> {{ $product->publication_date }}</h6>
-            <h6 class="card-text"><strong>Score:</strong> 
+            <h6 class="card-text me-3"><strong>Price:</strong> {{ $product->price }}€</h6>
+            <h6 class="card-text me-3"><strong>Release Date:</strong> {{ $product->publication_date }}</h6>
+            <h6 class="card-text me-3"><strong>Score:</strong> 
                 @for ($i = 1; $i <= 5; $i++)
                   @if ($i <= $product->score)
                     &#9733;
@@ -31,7 +31,7 @@
                   @endif
                 @endfor
             </h6>
-            <h6 class="card-text">
+            <h6 class="card-text me-3">
                 <strong>Stock:</strong> 
                 @if ($product->stock >= 1)
                   Available
@@ -39,7 +39,7 @@
                   Out of stock
                 @endif
             </h6>  
-            <h6 class="card-text">
+            <h6 class="card-text me-3">
                 <strong>Genres:</strong>
                 @foreach ($product->categories as $category)
                   {{ $category->name }}
@@ -50,8 +50,14 @@
             </h6>
         </div>
         <div class="d-flex justify-content-center align-items-center mt-3 buttons"> <!-- Falta adicionar função aos botões -->
-            <button class="btn btn-primary buy me-2">Add To Cart</button>
-            <button class="btn btn-primary buy ms-2">Add To Wishlist</button>
+          <form method="POST" action="/cart/{{$product->id}}">
+            @csrf
+            <button type="submit" class="btn btn-primary buy me-2">Add To Cart</button>
+          </form>
+          <form method="POST" action="/wishlist/{{$product->id}}">
+            @csrf
+            <button type="submit" class="btn btn-primary buy ms-2">Add To Wishlist</button>
+          </form>
         </div>
     </div>
     <div class="container mt-5">
