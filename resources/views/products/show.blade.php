@@ -54,8 +54,10 @@
             @csrf
             <button type="submit" class="btn btn-primary buy me-2">Add To Cart</button>
           </form>
-            
-            <button class="btn btn-primary buy ms-2">Add To Wishlist</button>
+          <form method="POST" action="/wishlist/{{$product->id}}">
+            @csrf
+            <button type="submit" class="btn btn-primary buy ms-2">Add To Wishlist</button>
+          </form>
         </div>
     </div>
     <div class="container mt-5">

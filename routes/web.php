@@ -51,11 +51,12 @@ Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('
 
 //! Wishlist
 Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');
-Route::post('/wishlist/{product}', [WishlistController::class, 'add'])->middleware('auth');
-Route::delete('/wishlist/{product}', [WishlistController::class, 'delete'])->middleware('auth');
+Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth');
 
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
+
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
