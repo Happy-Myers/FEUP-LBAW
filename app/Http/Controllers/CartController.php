@@ -6,70 +6,27 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Product;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-
 class CartController extends Controller {
-    /*
-     private function getCartInfo($productId = null){
-          $entry = User::select('id')
-              ->where('user_id', '=', Auth::id())
-              ->first();
-      
-          $cart = Cart::where('user_id', '=', $entry->id)
-              ->where('isactive', '=', true)
-              ->first();
-      
-          $cartEntries = Cart::where('cart_id', '=', $cart->id);
-      
-          if($productId) {
-              $cartEntries->where('product_id', '=', $productId);
-          }
-      
-          return $cartEntries->get();
-          
-      }
-      */
-     public function index(){
-          /*
-          $user = User::find(Auth::id());
-          $products = $this->getCartInfo();
-          $cart = array();
-          $total = 0;
+  public function index(){
 
-          foreach($products as $product){
-            $product = Product::find($product->_product_id);
-            array_push( $cart, [ 'product' => $product, 'quantity' => $product->quantity ]);
-            $total += $product->price * $product->quantity;
-          }
-      
-          return view('users.cart', [
-            'user' => $user,
-            'cart' => $cart,
-            'total' => $total,
-          ]);
-          */
-          $user = User::find(14);
-          return view('users.cart', [
-               'user' => 14,
-               'cart' =>  $user->cart()->get(),
-               'total' => 500,
-             ]);
-     }
-     
-     public function add(){
+    $user = User::find(auth()->id());
+    $carts = $user->cart;
+    $total = 0;
+    foreach($carts as $cart){
+      $total += $cart->pivot->quantity * $cart->price;
+    }
 
-     }
-
-     public function delete(){
-
-     }
-
-     public function increment(){
-
-     }
-
-     public function decremet(){
-
-     }
+    return view('users.cart', [
+      'carts' => $carts,
+      'total' => $total
+    ]);
+  }
+  
+  public function create(){
+  
+  }
+  
+  public function destroy(){
+  
+  }
 }

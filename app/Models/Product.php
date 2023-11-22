@@ -25,8 +25,8 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function cart(): BelongsToMany{
-        return $this->belongsToMany(User::class, 'cart', 'product_id', 'user_id')->using(Cart::class)->withPivot('quantity');
+    public function carts(): BelongsToMany{
+        return $this->belongsToMany(User::class, 'cart')->using(Cart::class)->withPivot('quantity');
     }
     
     public function wishlist(): BelongsToMany{

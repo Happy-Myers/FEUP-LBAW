@@ -16,8 +16,8 @@
                  </thead>
                  <tbody>
                      <!-- foreach de produtos aqui -->
-                     @foreach ($cart as $product)
-                        @include('components.cartproduct', ['product' => $product])
+                     @foreach ($carts as $cart)
+                        <x-cart-product :cart="$cart"/>
                      @endforeach
                  </tbody>
              </table>

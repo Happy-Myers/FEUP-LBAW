@@ -41,13 +41,11 @@ Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 
 // Cart
-Route::get('/cart', [CartController::class, 'index']);
-Route::post('/cart', [CartController::class, 'add']);
-Route::delete('/cart', [CartController::class, 'delete']);
-Route::post('/cart/edit', [CartController::class, 'increment']);
-Route::post('/cart/edit', [CartController::class, 'decrement']);
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
+Route::post('/cart', [CartController::class, 'create'])->middleware('auth');
+Route::delete('/cart/{id}', [CartController::class, 'destroy'])->middleware('auth');
 
 //! Wishlist
-Route::get('/wishlist', [WishlistController::class, 'index']);
-Route::post('/wishlist/edit', [WishlistController::class, 'add']);
-Route::delete('/wishlist/edit', [WishlistController::class, 'delete']);
+Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');;
+Route::post('/wishlist/edit', [WishlistController::class, 'add'])->middleware('auth');;
+Route::delete('/wishlist/edit', [WishlistController::class, 'delete'])->middleware('auth');;
