@@ -31,11 +31,12 @@
                </div>
            
                <div class="d-flex justify-content-center align-items-center">
-                   <form>
-                       <div class="button1">
-                           <a href="#">Checkout</a>
-                       </div>
-                   </form>
+                    <form method="POST" action="/checkout">
+                        @csrf
+                        <button class="button1" type="submit">
+                            Checkout
+                        </button>
+                    </form>
            
                    <form class="m-2" method="POST" action="/cart"> 
                         @csrf

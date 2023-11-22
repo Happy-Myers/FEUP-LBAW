@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
 
 /*
@@ -42,7 +43,7 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 
 // Cart
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
-Route::post('/cart/{product}', [CartController::class, 'create'])->middleware('auth');
+Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth');
 Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
 Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
 
@@ -52,4 +53,4 @@ Route::post('/wishlist/{product}', [WishlistController::class, 'add'])->middlewa
 Route::delete('/wishlist/{product}', [WishlistController::class, 'delete'])->middleware('auth');
 
 // Purchase
-Route::post('/checkout', [PurchaseController::class, 'create'])->middleware('auth');
+Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');

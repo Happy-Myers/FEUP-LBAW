@@ -33,8 +33,8 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'wishlist');
     }
 
-    public function product_purchase(): BelongsToMany{
-        return $this->belongsToMany(Purchase::class, 'product_purchase', 'product_id', 'purchase_id')->using(ProductPurchase::class)->withPivot('quantity');
+    public function purchases(): BelongsToMany{
+        return $this->belongsToMany(Purchase::class)->using(ProductPurchase::class)->withPivot('quantity');
     }
 
     public function scopeFilter($query, array $filters){

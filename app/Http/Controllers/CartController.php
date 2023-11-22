@@ -18,7 +18,7 @@ class CartController extends Controller {
     ]);
   }
   
-  public function create(Product $product){
+  public function store(Product $product){
     $user = auth()->user();
     $cart = $user->cart()->where('product_id', $product->id)->get();
 
