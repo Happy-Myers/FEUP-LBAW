@@ -40,13 +40,25 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                     <form class="d-flex mx-auto">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @auth
+                        <li>
+                          <a class="nav-link" href="/wishlist">
+                            <i class="fa-solid fa-heart"></i>
+                            Wishlist
+                        </a>                          
+                        </li>
+                        <li>
+                          <a class="nav-link" href="/cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            Cart
+                          </a>                          
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/profile">
+                            <a class="nav-link" href="/users/{{auth()->id()}}">
                                 <i class="fa-solid fa-user"></i>
                                 Profile
                             </a>
@@ -81,8 +93,8 @@
         <main>
                {{$slot}}
         </main>
-        <footer class="text-center text-lg-start text-white mt-auto" style="background-color: #1c2331">
-          <section class="d-flex justify-content-between p-4" style="background-color: #6351ce">
+        <footer class="text-center text-lg-start text-white mt-auto" style="background-color: #1b2838">
+          <section class="d-flex justify-content-between p-4" style="background-color: #01497C">
             <div class="me-5">
               <span>Get connected with us on social networks:</span>
             </div>
@@ -111,53 +123,28 @@
             <div class="container text-center text-md-start mt-5">
               <div class="row mt-3">
                 <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                  <h6 class="text-uppercase fw-bold">Company name</h6>
-                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                  <h6 class="text-uppercase fw-bold">GameSpace</h6>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #1b2838; height: 2px"/>
                   <p>
-                    Here you can use rows and columns to organize your footer
-                    content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit.
-                  </p>
+                    Copyright © 2023 GameSpace. All rights reserved.
+                  </p>  
                 </div>
-                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                  <h6 class="text-uppercase fw-bold">Products</h6>
-                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
-                  <p>
-                    <a href="#!" class="text-white">MDBootstrap</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-white">MDWordPress</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-white">BrandFlow</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-white">Bootstrap Angular</a>
-                  </p>
-                </div>
+
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                   <h6 class="text-uppercase fw-bold">Useful links</h6>
-                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #1b2838; height: 2px"/>
                   <p>
-                    <a href="#!" class="text-white">Your Account</a>
+                    <a href="#!" class="text-white">Your Account</a> <!-- mudar link -->
                   </p>
                   <p>
-                    <a href="#!" class="text-white">Become an Affiliate</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-white">Shipping Rates</a>
-                  </p>
-                  <p>
-                    <a href="#!" class="text-white">Help</a>
+                    <a href="#!" class="text-white">FAQ</a> <!-- mudar link -->
                   </p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                   <h6 class="text-uppercase fw-bold">Contact</h6>
-                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #7c4dff; height: 2px"/>
-                  <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                  <p><i class="fas fa-envelope mr-3"></i> info@example.com</p>
-                  <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                  <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+                  <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #1b2838; height: 2px"/>
+                  <p><i class="fas fa-home mr-3"></i> Rua Dr. Roberto Frias, 4200-465 PORTO</p>
+                  <p><i class="fas fa-envelope mr-3"></i> gamespace@email.com</p>
                 </div>
               </div>
             </div>

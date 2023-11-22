@@ -13,6 +13,8 @@ class Purchase extends Model
     
     public $timestamps = false;
 
+    protected $fillable = ['user_id', 'total', 'address_id'];
+
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
     }
@@ -21,7 +23,7 @@ class Purchase extends Model
         return $this->belongsTo(Address::class);
     }
 
-    public function product_purchase(): BelongsToMany{
-        return $this->belongsToMany(Product::class, 'product_purchase', 'purchase_id', 'product_id')->using(ProductPurchase::class)->withPivot('quantity');
+    public function products(): BelongsToMany{
+        return $this->belongsToMany(Product::class)->using(ProductPurchase::class)->withPivot('quantity');
     }
 }

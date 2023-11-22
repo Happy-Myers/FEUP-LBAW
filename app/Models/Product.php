@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,8 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Product extends Model
 {
     use HasFactory;
-
-    public $timestamps = false;
 
     protected $fillable = ['name', 'stock', 'price', 'score', 'description', 'hardware', 'publication_date'];
 
@@ -28,15 +25,35 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
-    public function cart(): BelongsToMany{
-        return $this->belongsToMany(User::class, 'cart', 'product_id', 'user_id')->using(Cart::class)->withPivot('quantity');
+    public function carts(): BelongsToMany{
+        return $this->belongsToMany(User::class, 'cart')->using(Cart::class)->withPivot('quantity');
     }
     
     public function wishlist(): BelongsToMany{
         return $this->belongsToMany(User::class, 'wishlist');
     }
 
-    public function product_purchase(): BelongsToMany{
-        return $this->belongsToMany(Purchase::class, 'product_purchase', 'product_id', 'purchase_id')->using(ProductPurchase::class)->withPivot('quantity');
+    public function purchases(): BelongsToMany{
+        return $this->belongsToMany(Purchase::class)->using(ProductPurchase::class)->withPivot('quantity');
+    }
+
+    public function scopeFilter($query, array $filters){
+        if($filters['category'] ?? false){
+            $query->whereHas('categories', function($query){
+                $query->where('name', 'ilike', '%' . request('category') . '%');
+            });
+        }
+
+        if($filters['search'] ?? false){
+            $query->where(function ($query) {
+                $query->where('name', 'ilike', '%' . request('search') . '%')
+                    ->orWhere('description', 'ilike', '%' . request('search') . '%')
+                    ->orWhereHas('platform', function($query){
+                        $query->where('name','ilike', '%' .request('search') . '%');})
+                    ->orWhereHas('categories', function($query){
+                        $query->where('name','ilike', '%' .request('search') . '%');
+                    });
+            });
+        }
     }
 }

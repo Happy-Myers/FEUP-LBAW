@@ -64,8 +64,11 @@ class UserController extends Controller
 
         return redirect('/');
     }
-
-    public function home(){
-        return view('users.home');
+    
+    public function show(User $user)
+    {
+        return view('users.show', [
+            'user'=>$user
+        ]);
     }
 }

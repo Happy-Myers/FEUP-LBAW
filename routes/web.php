@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +32,37 @@ use App\Http\Controllers\ProfileController;
 
 // Login
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-Route::post('/logout', [UserController::class, 'logout']);
+Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
 //Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
+// Products
+Route::get('/', [ProductController::class, 'index']);
+Route::get('/products/{product}', [ProductController::class, 'show']);
 
-Route::controller(ProfileController::class)->group(function () {
-    Route::get('/users/{id}', 'show');
-});
+// Cart
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
+Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth');
+Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
+Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
+Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth');
+
+//! Wishlist
+Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');
+Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth');
+
+// Purchase
+Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
+
+Route::get('/users/{user}', [UserController::class, 'show']);
+Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');
+Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth');
+Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth');
+
+//Reviews
+Route::post('/reviews', [ReviewController::class, 'store']);
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');

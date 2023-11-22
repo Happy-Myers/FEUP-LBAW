@@ -12,7 +12,7 @@ class Address extends Model
     use HasFactory;
     public $timestamps = false;
 
-    protected $fillable = ['street', 'city', 'postal_code'];
+    protected $fillable = ['label', 'street', 'city', 'postal_code', 'user_id'];
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
@@ -21,4 +21,6 @@ class Address extends Model
     public function purchases(): HasMany{
         return $this->hasMany(Purchase::class);
     }
+ 
+    
 }

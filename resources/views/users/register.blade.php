@@ -3,7 +3,7 @@
       <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-fluid" style="max-height: 300px;">
   </div>
   <div class="container mb-4">
-      <form method = "POST" action = "/users" class="col-md-4 mx-auto">
+      <form method = "POST" action = "/users" class="col-md-4 mx-auto" id="auth">
           @csrf
           <div class="mb-3">
             <label for="name" class="form-label text-white">Name</label>
@@ -41,7 +41,7 @@
             @enderror
           </div>
           <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary">Register</button>
               <a class="button button-outline mt-2 mx-auto" href="/login">Already have an account?</a>
           </div>
       </form>
