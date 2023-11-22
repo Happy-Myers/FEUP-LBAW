@@ -13,7 +13,7 @@
                          <img src="{{ asset($product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                     </a>
 
-                    <div class="d-flex justify-content-center align-items-center mt-3">
+                    <div class="d-flex justify-content-center align-items-center mt-3 text-white">
                          <h4 class="price">{{ $product->price }}€</h4>
                     </div>
                     <div class="text-center mt-2">
