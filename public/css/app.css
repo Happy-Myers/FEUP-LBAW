@@ -43,6 +43,7 @@ body {
 .highlights {
   margin-top: 1em;
   margin-left: 1em;
+  color: white;
 }
 
 @media (max-width: 576px) {
@@ -202,6 +203,7 @@ main form {
 
 .button1 {
   padding: 0.5em;
+  color: var(--blue);
   background-color: var(--grey-blue);
   border: 0.1em solid var(--blue);
   border-radius: 0.2em;
@@ -228,11 +230,14 @@ form {
 .checkout {
   padding: 2em 1em;
   background-color: var(--black);
+  width: 25em;
+  height: 12em;
+  border: 0.1em solid var(--grey-blue);
 }
 
 
 table, th, td {
-  border: 0.1em solid var(--blue);
+  border: 0.1em solid var(--grey-blue);
 }
 
 th, td {
@@ -247,11 +252,34 @@ th, td {
 .table thead th {
   background-color: var(--black);
   color: var(--blue);
+  border: 0.1em solid var(--grey-blue);
 }
 
 .table tbody td {
   background-color: var(--black);
   color: var(--blue);
-  border: 0.1em solid var(--blue);
+  border: 0.1em solid var(--grey-blue);
+}
+
+
+.quantity-input {
+  width: 3em;
+  padding: 0.3em;
+  text-align: center;
+  border: 0.05em solid var(--blue);
+  border-radius: 5px;
+  background-color: var(--black);
+  color: var(--blue);
+}
+
+
+.quantity-input:focus,
+.quantity-input:hover {
+  border-color: var(--blue);
+  box-shadow: 0 0 5px var(--blue);
+}
+
+.price {
+  color: white;
 }
 

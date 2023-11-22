@@ -4,7 +4,7 @@
      <div class="card m-1 h-100 product-card">
           <div class="card-body d-flex flex-column justify-content-center">
                <h5 class="card-title">
-                    <a href="{{ url('products/'.$product->id) }}" class="text-decoration-none text-dark">
+                    <a href="{{ url('products/'.$product->id) }}" class="text-decoration-none text-white">
                     {{ $product->name }}
                     </a>
                </h5>

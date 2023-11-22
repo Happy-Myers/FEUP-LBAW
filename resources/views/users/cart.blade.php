@@ -22,7 +22,7 @@
                  </tbody>
              </table>
  
-             <div class="checkout w-25 ms-5">
+             <div class="checkout ms-5">
                <div class="card-body d-flex justify-content-between">
                    <div class="d-flex flex-row">
                        <h5 class="card-title m-3 text-white">Total:</h5>

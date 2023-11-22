@@ -19,7 +19,7 @@
      </td>
 
      <td class="cart-entry">
-          <input type="number" value="{{$cart->pivot->quantity}}" class="quantity-input" data-product-id="{{$cart->id}}"/>
+          <input type="number" value="{{$cart->pivot->quantity}}" class="quantity-input" data-product-id="{{$cart->id}}" min="1"/>
      </td>
    
      <td class="cart-entry">
