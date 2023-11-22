@@ -23,18 +23,18 @@
                                 <p class="mb-0" style="font-weight: bold;">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
                                 <div class="d-inline-block mr-2">
-                                    <a href="#" class="btn btn-info">
+                                    <a href="edit" class="btn btn-info">
                                         <div class="d-flex align-items-center">
                                             Edit Profile
                                         </div>
                                     </a>
                                 </div>
                                 <div class="d-inline-block">
-                                    <a href="#" class="btn btn-danger">
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                                         <div class="d-flex align-items-center">
                                             Delete Account
                                         </div>
-                                    </a>
+                                    </button>
                                 </div>
                            </div>
                         </div>
@@ -86,6 +86,27 @@
                         </form>
                     </div>                            
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Account Modal -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your account? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Delete Account</button>
+                    </form>
                 </div>
             </div>
         </div>

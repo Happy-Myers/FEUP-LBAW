@@ -91,6 +91,7 @@ class UserController extends Controller
 
         auth()->user()->update($formFields);
 
-        return back();
+        return redirect("users/" . auth()->id());
+
     }
 }
