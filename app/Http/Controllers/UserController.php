@@ -52,7 +52,7 @@ class UserController extends Controller
         $formFields = request()->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9'],
+            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9', Rule::unique('users', 'phone_number')],
             'password' => ['required', 'confirmed', 'min:6']
         ]);
 
@@ -70,5 +70,27 @@ class UserController extends Controller
         return view('users.show', [
             'user'=>$user
         ]);
+    }
+
+    public function edit(){
+        return view('users.edit',[
+            'user' => auth()->user()
+        ]);
+    }
+
+    public function update(){
+        $formFields = request()->validate([
+            'name' => ['required', 'min:3'],
+            'email' => ['required', 'email'],
+            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9']
+        ]);
+
+        if(request()->hasFile('image')){
+            $formFields['image'] = request()->file('image')->store('users', 'public');
+        }
+
+        auth()->user()->update($formFields);
+
+        return back();
     }
 }

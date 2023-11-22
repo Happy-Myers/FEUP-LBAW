@@ -9,7 +9,7 @@
 
 <div class="card-body">
     <div class="d-flex align-items-center">
-        <img src="{{ asset('/images/users/no-image.png') }}" alt="Reviewer" class="img-fluid rounded-circle" style="width: 50px;">
+        <img src="{{asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png')}}" alt="Reviewer" class="img-fluid rounded-circle" style="width: 50px;">
         <div class="ms-3">
             <h4 class="text-white align-middle mb-0">{{$user->name}}</h4>
         </div>

@@ -50,7 +50,7 @@ Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware
 Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
 Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth');
 
-//! Wishlist
+// Wishlist
 Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');
 Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth');
 Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth');
@@ -58,7 +58,13 @@ Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->mi
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
 
+//User
+Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
+Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
 Route::get('/users/{user}', [UserController::class, 'show']);
+
+
+//Address
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');
 Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth');
 
