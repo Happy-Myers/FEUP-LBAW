@@ -46,7 +46,7 @@
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @auth
                         <li class="nav-item">
-                            <a class="nav-link" href="/profile">
+                            <a class="nav-link" href="/users/{{auth()->id()}}">
                                 <i class="fa-solid fa-user"></i>
                                 Profile
                             </a>

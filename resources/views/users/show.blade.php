@@ -54,12 +54,18 @@
                             <div class="address-box">
                                 <h5>{{ $address->label }}</h5>
                                 <p>{{ $address->street }} {{ $address->city }} {{ $address->postal_code }}</p>
-                                <form method="post" action="/addresses/{{$address->id}}"> 
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-secondary btn-sm"> Save </button>
-                                </form> 
-                            
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
+                                <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+                                    <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
+                                        @csrf
+                                        @method('PUT')
+                                        <input class="form-control me-2" type="text" name="label" placeholder="Label">
+                                        <input class="form-control me-2" type="text" name="street" placeholder="Address">
+                                        <input class="form-control me-2" type="text" name="city" placeholder="City">
+                                        <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code">
+                                        <button class="btn btn-outline-success" type="submit">Save</button>
+                                    </form>
+                                </div>                            
                                 <form method="post" action="/addresses/{{ $address->id }}"> 
                                     @csrf
                                     @method('DELETE')
