@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Purchase extends Model
 {
     use HasFactory;
-    
-    public $timestamps = false;
 
     protected $fillable = ['user_id', 'total', 'address_id'];
 

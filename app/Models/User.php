@@ -16,9 +16,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, CanResetPassword;
 
-    // Don't add create and update timestamps in database.
-    public $timestamps  = false;
-
     /**
      * The attributes that are mass assignable.
      *

@@ -11,8 +11,6 @@ class Review extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
-
     protected $fillable = ['score', 'comment', 'user_id', 'product_id', 'date'];
 
     public function user(): BelongsTo{

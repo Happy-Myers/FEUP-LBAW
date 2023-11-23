@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('score');
             $table->dateTime('date')->default(now());
             $table->longText('comment')->nullable();
+            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
