@@ -795,7 +795,7 @@ For the vertical prototype we decided to implement all of the user stories that 
 | US45 | Check purchase history | High | As a Buyer, I want to be able to view my purchase history, so that I can check my past purchases. |
 | US46 | Delete a game review | High | As a Buyer, I want to be able to  delete a previous review I wrote about a game, so that other users can't read it. |
 
-<figcaption align= "center">Table: vertical prototype implemented user stories </figcaption>
+<figcaption>Table: vertical prototype implemented user stories </figcaption>
 
 #### 1.2. Implemented Web Resources
 
@@ -816,7 +816,7 @@ For the vertical prototype we decided to implement all of the user stories that 
 | R111: Update Address In Profile| PUT /addresses/{address}       |
 | R112: Remove Address In Profile| DELETE /addresses/{address}    |
 
-<figcaption align= "center">Table: authentication and profile's implementation </figcaption>
+<figcaption>Table: authentication and profile's implementation </figcaption>
 
 #### M02: Products
 
@@ -828,7 +828,7 @@ For the vertical prototype we decided to implement all of the user stories that 
 | R204: Filter By Category | GET /?category={category} |
 
 
-<figcaption align= "center">Table: products' implementation </figcaption>
+<figcaption>Table: products' implementation </figcaption>
 
 #### M03: Reviews and Wishlist
 
@@ -840,7 +840,7 @@ For the vertical prototype we decided to implement all of the user stories that 
 | R304: Add Product to Wishlist | POST /wishlist/{product} |
 | R305: Remove Product from Wishlist | DELETE /wishlist/{product} |
 
-<figcaption align= "center">Table: game reviews and wishlist's implementation </figcaption>
+<figcaption>Table: game reviews and wishlist's implementation </figcaption>
 
 #### M04: Cart
 
@@ -853,7 +853,7 @@ For the vertical prototype we decided to implement all of the user stories that 
 | R405: Update Cart | PATCH /cart/{product} |
 | R406: Checkout Items in Cart | POST /checkout |
 
-<figcaption align= "center">Table: cart's implementation </figcaption>
+<figcaption>Table: cart's implementation </figcaption>
 
 
 ### 2. Prototype
@@ -872,7 +872,7 @@ The code is available at https://git.fe.up.pt/lbaw/lbaw2324/lbaw23154
 
 ## GROUP23154, 23/11/2023
 
-* Group member 1 João Brandão Alves, up202108670@fe.up.pt (Editor)
-* Group member 2 Eduardo Machado Teixeira de Sousa, up202103342@fe.up.pt 
+* Group member 1 João Brandão Alves, up202108670@fe.up.pt 
+* Group member 2 Eduardo Machado Teixeira de Sousa, up202103342@fe.up.pt (Editor)
 * Group member 3 Gonçalo Carvalho Marques, up202006874@fe.up.pt
 * Group member 4 Carlos Daniel Santos Reis, up201805156@fc.up.pt 
