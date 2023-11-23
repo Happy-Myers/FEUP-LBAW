@@ -158,29 +158,7 @@ paths:
                   description: "Failed registration. Redirect to sign-up form."
                   value: "/signup"
 
-  /api/{username}/purchasehistory:
-    post:
-      operationId: R106
-      summary: 'R106: Purchase History Page'
-      description: "Returns user's purchase history. Access: OWN"
-      tags:
-        - 'M01: Authentication and Individual Profile'
-      parameters:
-        - in: path
-          name: page
-          schema:
-            type: string
-          description: 'Specifies the number of the page for the query'
-          required: true
-      responses:
-        '200':
-          description: 'Success'
-        '400':
-          description: 'Bad Request'
-        '403':
-          description: 'Forbidden access'
-
-  /{username}:
+  /users/{user_id}:
     get:
       operationId: R107
       summary: 'R107: User Profile'
@@ -189,10 +167,10 @@ paths:
         - 'M01: Authentication and Individual Profile'
       parameters:
         - in: path
-          name: username
+          name: user_id
           schema:
-            type: string
-          description: 'Specifies the member username'
+            type: int
+          description: 'Specifies the member user ID'
           required: true
       responses:
         '200':
@@ -200,20 +178,13 @@ paths:
         '404':
           description: 'User not found.'
 
-  /{username}/edit:
+  /users/edit:
     get:
       operationId: R108
       summary: 'R108: Edit Profile Form'
       description: 'Page that allows a user to update his information. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
-      parameters:
-        - in: path
-          name: username
-          schema:
-            type: string
-          description: 'Specifies the member username'
-          required: true
       responses:
         '200':
           description: 'Ok.'
@@ -221,22 +192,13 @@ paths:
           description: 'Bad Request'
         '403':
           description: 'Forbidden access'
-        '404':
-          description: 'User not found.'
 
-    patch:
+    put:
       operationId: R109
       summary: 'R109: Edit Profile Action'
       description: 'Allows a user to edit his information. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
-      parameters:
-        - in: path
-          name: username
-          schema:
-            type: string
-          description: 'Specifies the member username'
-          required: true
       requestBody:
         required: true
         content:
@@ -246,11 +208,14 @@ paths:
               properties:
                 name:
                   type: string
-                bio:
+                email:
+                  type: string
+                phone_number:
                   type: string
               required:
                 - name
-                - bio
+                - email
+                - phone_number
       responses:
         '302':
           description: 'Redirect member after editing profile.'
@@ -261,16 +226,14 @@ paths:
               examples:
                 302Success:
                   description: 'Member information edited successfully. Redirects member to their profile page.'
-                  value: '/user/{username}'
+                  value: '/users/{user_id}'
                 302Failure:
                   description: 'Member information editing failed. Stay in edit page.'
-                  value: '/user/{username}/edit'
+                  value: '/users/edit'
         '400':
           description: 'Bad Request'
         '403':
           description: 'Forbidden access'
-        '404':
-          description: 'Member not found'
 
   /product/{id_product}:
     get:
