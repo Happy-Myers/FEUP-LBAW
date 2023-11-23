@@ -577,7 +577,7 @@ paths:
       responses:
         '200':
           description: "Ok."
-  
+
     delete:
       operationId: R404
       summary: 'R404: Clear Cart'
@@ -597,11 +597,9 @@ paths:
       responses:
         '200':
           description: "Ok."
-        '400':
-          description: "Error. Bad Request"
-        '404':
-          description: "Error. Not Found"
-  
+        '403':
+          description: "Error. Forbidden"
+
   /cart/{product}:
     post:
       operationId: R402
@@ -626,11 +624,11 @@ paths:
       responses:
         '200':
           description: 'Ok. Added product successfully'
-        '400':
-          description: 'Error. Bad Request'
+        '403':
+          description: 'Error. Forbidden'
         '404':
           description: 'Error. Not Found'
-  
+
     delete:
       operationId: R403
       summary: 'R403: Remove from Shopping Cart'
@@ -653,11 +651,11 @@ paths:
       responses:
         '200':
           description: 'Ok.'
-        '400':
-          description: 'Error. Bad Request'
+        '403':
+          description: 'Error. Forbidden'
         '404':
           description: 'Error. Not Found'
-  
+
     patch:
       operationId: R405
       summary: 'R405: Update Cart'
@@ -684,16 +682,16 @@ paths:
       responses:
         '200':
           description: "Ok. Cart updated successfully"
-        '400':
-          description: "Error. Bad Request"
+        '403':
+          description: "Error. Forbidden"
         '404':
           description: "Error. Not Found"
-  
+
   /checkout:
     post:
       operationId: R406
       summary: 'R406: Checkout Items in Cart'
-      description: 'Page to finish a purchase. Access: OWN'
+      description: 'Make a purchase, clearing the cart. Access: OWN'
       tags:
         - 'M04: Cart'
       requestBody:
@@ -732,5 +730,3 @@ paths:
               400type1:
                 description: "Failed checkout. Redirect to cart."
                 value: "/cart"
-      '404':
-        description: "Error. Not Found"
