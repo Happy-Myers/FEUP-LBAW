@@ -12,7 +12,7 @@ Project modules are identified and briefly described to organize how they are pr
 | **M03: Reviews and Wishlist** | Web resources associated with reviews and wishlist. Includes the following system features: view review, add reviews, edit reviews and delete reviews; add items to wish list and remove items from the wish list. |
 | **M04: Cart** | Web resources associated with the management of the cart. |
 | **M05: Static pages** | Static pages like: about us, main features and contacts. |
-| **MO06: Management Area** | Web resources associated with website management, specifically: view and edit purchases, view, edit, add and delete properties, view, edit, add and delete categories and view, add and delete faqs. |
+| **M06: Management Area** | Web resources associated with website management, specifically: view and edit purchases, view, edit, add and delete properties, view, edit, add and delete categories and view, add and delete faqs. |
 
 ### 2. Permissions
 
