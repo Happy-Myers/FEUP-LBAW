@@ -156,9 +156,9 @@ paths:
 
   /users/{user}:
     get:
-      operationId: R107
-      summary: 'R107: User Profile'
-      description: 'Page that shows user information. Access: OWN'
+      operationId: R106
+      summary: 'R106: User Profile'
+      description: 'Page that shows user information and purchase history. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
       parameters:
@@ -176,22 +176,20 @@ paths:
 
   /users/edit:
     get:
-      operationId: R108
-      summary: 'R108: Edit Profile Form'
+      operationId: R107
+      summary: 'R107: Edit Profile Form'
       description: 'Page that allows a user to update his information. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
       responses:
         '200':
           description: 'Ok.'
-        '400':
-          description: 'Bad Request'
         '403':
           description: 'Forbidden access'
 
     put:
-      operationId: R109
-      summary: 'R109: Edit Profile Action'
+      operationId: R108
+      summary: 'R108: Edit Profile Action'
       description: 'Allows a user to edit his information. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -229,8 +227,6 @@ paths:
                 302Failure:
                   description: 'Member information editing failed. Stay in edit page.'
                   value: '/users/edit'
-        '400':
-          description: 'Bad Request'
         '403':
           description: 'Forbidden access'
 
@@ -256,8 +252,8 @@ paths:
 
   /addresses:
     post:
-      operationId: R112
-      summary: 'R112: Add Address Action'
+      operationId: R110
+      summary: 'R110: Add Address Action'
       description: 'Processes the Add Address form submission. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -299,8 +295,8 @@ paths:
 
   /adresses/{address}:
     put:
-      operationId: R113
-      summary: 'R113: Edit Address Action'
+      operationId: R111
+      summary: 'R111: Edit Address Action'
       description: 'Allows a user to edit his address. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -344,8 +340,8 @@ paths:
           description: 'Forbidden access'
 
     delete:
-      operationId: R114
-      summary: 'R114: Delete Address Action'
+      operationId: R112
+      summary: 'R112: Delete Address Action'
       description: 'Delete an Address. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -573,27 +569,30 @@ paths:
       summary: 'R401: View Shopping Cart'
       description: 'Display the user`s cart. Access: OWN'
       tags:
-        - 'M04: Cart'
+       - 'M04: Cart'
+
       responses:
-        '200':
-          description: "Ok."
-  
+       '200':
+        description: "Ok."
+
     delete:
       operationId: R404
       summary: 'R404: Clear Cart'
       description: 'Delete the user`s cart. Access: OWN'
       tags:
         - 'M04: Cart'
+
       requestBody:
         required: true
         content:
           application/x-www-form-urlencoded:
             schema:
               properties:
-                user_id:
+                id_user:
                   type: integer
               required:
                 - user_id
+
       responses:
         '200':
           description: "Ok."
@@ -601,136 +600,138 @@ paths:
           description: "Error. Bad Request"
         '404':
           description: "Error. Not Found"
-  
-  /cart/{product}:
-    post:
-      operationId: R402
-      summary: 'R402: Add to Shopping Cart'
-      description: 'Add a product to the user`s cart. Access: OWN'
-      tags:
-        - 'M04: Cart'
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                product_id:
-                  type: integer
-              required:
-                - user_id
-                - product_id
-      responses:
-        '200':
-          description: 'Ok. Added product successfully'
-        '400':
-          description: 'Error. Bad Request'
-        '404':
-          description: 'Error. Not Found'
-  
-    delete:
-      operationId: R403
-      summary: 'R403: Remove from Shopping Cart'
-      description: 'Remove a product from the user`s cart. Access: OWN'
-      tags:
-        - 'M04: Cart'
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              properties:
-                product_id:
-                  type: integer
-                user_id:
-                  type: integer
-              required:
-                - product_id
-                - user_id
-      responses:
-        '200':
-          description: 'Ok.'
-        '400':
-          description: 'Error. Bad Request'
-        '404':
-          description: 'Error. Not Found'
-  
-    patch:
-      operationId: R405
-      summary: 'R405: Update Cart'
-      description: 'Update the amount of a product in user`s cart. Access: OWN'
-      tags:
-        - 'M04: Cart'
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                user_id:
-                  type: integer
-                product_id:
-                  type: integer
-                quantity:
-                  type: integer
-              required:
-                - user_id
-                - product_id
-                - quantity
-      responses:
-        '200':
-          description: "Ok. Cart updated successfully"
-        '400':
-          description: "Error. Bad Request"
-        '404':
-          description: "Error. Not Found"
-  
-  /checkout:
-    post:
-      operationId: R406
-      summary: 'R406: Checkout Items in Cart'
-      description: 'Page to finish a purchase. Access: OWN'
-      tags:
-        - 'M04: Cart'
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
+        
+/cart/{product}:
+  post:
+    operationId: R402
+    summary: 'R402: Add to Shopping Cart '
+    description: 'Add a product to the user`s cart. Access: OWN'
+    tags:
+      - 'M04: Cart'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
             properties:
               user_id:
                 type: integer
               product_id:
                 type: integer
-              total:
-                type: number
-              address_id:
+            required:
+              - user_id
+              - product_id
+    responses:
+      '200':
+        description: "Ok. Added product successfully"
+      '400':
+        description: "Error. Bad Request"
+      '404':
+        description: "Error. Not Found"
+
+  delete:
+    operationId: R403
+    summary: 'R403: Remove from Shopping Cart'
+    description: 'Remove a product from the user`s cart. Access: OWN'
+    tags:
+      - 'M04: Cart'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            properties:
+              product_id:
+                type: integer
+              user_id:  
+                type: integer
+            required:
+              - product_id
+              - user_id  
+    responses:
+      '200':
+        description: "Ok."
+      '400':
+        description: "Error. Bad Request"
+      '404':
+        description: "Error. Not Found"
+
+  patch:
+    operationId: R405
+    summary: 'R405: Update Cart'
+    description: 'Update the amount of a product in user`s cart. Access: OWN'
+    tags:
+      - 'M04: Cart'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              product_id:
                 type: integer
               quantity:
                 type: integer
             required:
               - user_id
               - product_id
-              - total
-              - address_id
               - quantity
     responses:
       '200':
-        description: "Ok. Checkout successful"
+        description: "Ok. Cart updated successfully"
       '400':
         description: "Error. Bad Request"
-        headers:
-          Location:
-            schema:
-              type: string
-            examples:
-              400type1:
-                description: "Failed checkout. Redirect to cart."
-                value: "/cart"
       '404':
         description: "Error. Not Found"
+
+  /checkout:
+    post:
+      operationId: R406
+      summary: 'R406: Checkout Items in Cart'
+      description: 'Page to finish a purchase. Access: OWN'
+      tags:
+       - 'M04: Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                product_id:
+                  type: integer
+                total:
+                  type: number
+                address_id:
+                  type: integer
+                quantity:
+                  type: integer
+              required:
+                - user_id
+                - product_id
+                - total
+                - address_id
+                - quantity
+
+      responses:
+        '200':
+          description: "Ok. Checkout successful"
+        '400':
+          description: "Error. Bad Request"
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                400type1:
+                  description: "Failed checkout. Redirect to cart."
+                  value: "/cart"
+        '404':
+          description: "Error. Not Found" 
