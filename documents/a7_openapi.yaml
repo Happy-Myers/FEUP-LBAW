@@ -447,6 +447,135 @@ paths:
         '404':
           description: 'Product not found'
 
+  ########## Reviews and Wishlist ##########
+
+  /reviews:
+    post:
+      operationId: R301
+      summary: 'R301: Review a game'
+      description: 'Adds a review to a game. Access: USR'
+      tags:
+        - 'M03: Reviews and Wishlist'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                score:
+                  type: integer
+                comment:
+                  type: string
+              required:
+                - product_id
+                - score
+                - comment
+      responses:
+        '200':
+          description: 'Ok.'
+        '403':
+          description: 'Forbidden access'
+
+  /reviews/{review}:
+    delete:
+      operationId: R302
+      summary: 'R302: Delete a game review'
+      description: "Deletes a specified review. Access: OWN"
+      tags:
+        - 'M03: Reviews and Wishlist'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                user_id:
+                  type: integer
+                review:
+                  type: integer
+              required:
+                - user_id
+                - review
+      responses:
+        '200':
+          description: 'Ok.'
+        '403':
+          description: 'Forbidden access'
+        '404':
+          description: 'Not Found'
+
+  /wishlist:
+    get:
+      operationId: R303
+      summary: 'R303: View Wishlist'
+      description: "Shows the user's wishlist. Access: OWN"
+      tags:
+        - 'M03: Reviews and Wishlist'
+      responses:
+        '200':
+          description: 'Ok.'
+        '403':
+          description: 'Forbidden access'
+
+  /wishlist/{product}:
+    post:
+      operationId: R304
+      summary: 'R304: Add Product to Wishlist'
+      description: 'Adds a product to the wishlist. Access: OWN'
+      tags:
+        - 'M03: Reviews and Wishlist'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                product_id:
+                  type: integer
+              required:
+                - user_id
+                - product_id
+      responses:
+        '200':
+          description: 'Ok.'
+        '403':
+          description: 'Forbidden access'
+        '404':
+          description: 'Not Found'
+
+    delete:
+      operationId: R305
+      summary: 'R305: Remove Product from Wishlist'
+      description: "Removes a specified product from the user's wishlist. Access: OWN"
+      tags:
+        - 'M03: Reviews and Wishlist'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                user_id:
+                  type: integer
+                product_id:
+                  type: integer
+              required:
+                - user_id
+                - product_id
+      responses:
+        '200':
+          description: 'Ok.'
+        '403':
+          description: 'Forbidden access'
+        '404':
+          description: 'Not Found'
+
   ########## CART ##########
   /cart:
     get:
