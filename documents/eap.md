@@ -135,8 +135,8 @@ For this prototype we focused our efforts in developing the main functionalities
 The prototype is available at http://lbaw23154.lbaw.fe.up.pt
 
 # Credentials (Verificar):
-- user: 
-- password:
+- user: test@test.com
+- password: password
 
 The code is available at https://git.fe.up.pt/lbaw/lbaw2324/lbaw23154
 
