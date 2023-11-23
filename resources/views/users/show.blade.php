@@ -28,18 +28,18 @@
                                 <p class="mb-4">{{ $user->email }}</p>
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
-                                        <a href="#" class="btn btn-info">
+                                        <a href="edit" class="btn btn-info">
                                             <div class="d-flex align-items-center">
                                                 Edit Profile
                                             </div>
                                         </a>
                                     </div>
                                     <div class="d-inline-block">
-                                        <a href="#" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
                                             <div class="d-flex align-items-center">
                                                 Delete Account
                                             </div>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                            </div>
