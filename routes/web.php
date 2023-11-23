@@ -62,6 +62,7 @@ Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
 Route::get('/users/{user}', [UserController::class, 'show']);
+Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 
 
 //Address

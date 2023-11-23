@@ -22,10 +22,12 @@
                             <div class="details2 col">
                                 <!-- User Details -->
                                 <h3 class="mb-2">{{ $user->name }}</h3>
-                                <p class="mb-0">Username:</p>
-                                <p class="mb-2">{{ $user->name }}</p>
+                                <p class="mb-0">Phone Number:</p>
+                                <p class="mb-2">{{ $user->phone_number }}</p>
                                 <p class="mb-0">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
+                                @auth
+                                @if(auth()->id() == $user->id)
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
@@ -42,12 +44,14 @@
                                         </button>
                                     </div>
                                 </div>
+                                @endif
+                                @endauth
                            </div>
                         </div>
                     </div>
-
                  </div>
-
+                @auth
+                @if(auth()->id() == $user->id)
                  <div class="card2 mt-3 mb-5" >
                     <div class="special">
                         Saved Addresses
@@ -93,6 +97,8 @@
                     </div>                            
 
                 </div>
+                @endif
+                @endauth
             </div>
         </div>
     </div>
@@ -109,8 +115,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <form method="post">
+                    <form method="post" action ="/users">
                         @csrf
+                        @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete Account</button>
                     </form>
                 </div>
@@ -118,6 +125,8 @@
         </div>
     </div>
 
+    @auth
+    @if(auth()->id() == $user->id)
     <div class="history">
         <h4 class="text-white">Your Shopping History</h4>
         <section class="d-flex justify-content-around">
@@ -164,5 +173,7 @@
             </table>
         </section>
     </div>
+    @endif
+    @endauth
 
 </x-layout>

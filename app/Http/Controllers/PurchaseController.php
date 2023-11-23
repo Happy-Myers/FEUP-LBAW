@@ -9,6 +9,10 @@ class PurchaseController extends Controller
     public function store(){
         $user = auth()->user();
 
+        if(!$user->addresses->first()){
+            return back()->with('message', 'You need to register an address to be able to checkout');
+        }
+
         $cart = $user->cart;
 
         $total = 0;
@@ -16,6 +20,7 @@ class PurchaseController extends Controller
         foreach($cart as $product){
             $total += $product->pivot->quantity * $product->price;
         }
+
         $fields = [
             'user_id' => $user->id,
             'total' => $total,

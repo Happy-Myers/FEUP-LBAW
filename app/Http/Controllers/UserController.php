@@ -94,6 +94,20 @@ class UserController extends Controller
         auth()->user()->update($formFields);
 
         return redirect("users/" . auth()->id());
+    }
 
+    public function destroy(){
+        $user = auth()->user();
+
+        $user->delete();
+
+        auth()->logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+
+        return redirect('/');
     }
 }
