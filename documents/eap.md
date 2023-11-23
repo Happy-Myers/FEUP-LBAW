@@ -84,11 +84,9 @@ For the vertical prototype we decided to implement all of the user stories that 
 | R107: Edit User profile page   | GET /users/edit                |
 | R108: Edit User profile action | PUT /users/edit                |
 | R109: Soft Delete Account	   | DELETE /users                  |
-| R110: Check Purchase Pistory   | GET /users/{user}              |
-| R111: View user home page	   | GET /home                      |
-| R112: Save Address In Profile  | POST /addresses                |
-| R113: Update Address In Profile| PUT /addresses/{address}       |
-| R114: Remove Address In Profile| DELETE /addresses/{address}    |
+| R110: Save Address In Profile  | POST /addresses                |
+| R111: Update Address In Profile| PUT /addresses/{address}       |
+| R112: Remove Address In Profile| DELETE /addresses/{address}    |
 
 <figcaption align= "center">Table: authentication and profile's implementation </figcaption>
 
