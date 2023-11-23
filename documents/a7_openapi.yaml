@@ -157,7 +157,7 @@ paths:
   /users/{user}:
     get:
       operationId: R106
-      summary: 'R106: User Profile'
+      summary: 'R106: View User Profile'
       description: 'Page that shows user information and purchase history. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -177,7 +177,7 @@ paths:
   /users/edit:
     get:
       operationId: R107
-      summary: 'R107: Edit Profile Form'
+      summary: 'R107: Edit User profile page'
       description: 'Page that allows a user to update his information. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -189,7 +189,7 @@ paths:
 
     put:
       operationId: R108
-      summary: 'R108: Edit Profile Action'
+      summary: 'R108: Edit User profile action'
       description: 'Allows a user to edit his information. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -233,7 +233,7 @@ paths:
   /users:
     delete:
       operationId: R109
-      summary: 'R109: Delete User Action'
+      summary: 'R109: Soft Delete Account'
       description: 'Delete a User. Access: OWN'
 
       tags:
@@ -253,7 +253,7 @@ paths:
   /addresses:
     post:
       operationId: R110
-      summary: 'R110: Add Address Action'
+      summary: 'R110: Save Address In Profile'
       description: 'Processes the Add Address form submission. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -296,7 +296,7 @@ paths:
   /adresses/{address}:
     put:
       operationId: R111
-      summary: 'R111: Edit Address Action'
+      summary: 'R111: Update Address In Profile'
       description: 'Allows a user to edit his address. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -341,7 +341,7 @@ paths:
 
     delete:
       operationId: R112
-      summary: 'R112: Delete Address Action'
+      summary: 'R112: Remove Address In Profile'
       description: 'Delete an Address. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -378,16 +378,27 @@ paths:
           "200":
             description: "Ok."
 
-  /product/{id_product}:
+  /:
     get:
       operationId: R201
-      summary: 'R201: Show procuct page'
-      description: "Show a page and it product. Access:PUB"
+      summary: 'R201: View All Products'
+      description: 'Home Page, displays product list. Access: PUB'
+      tags:
+        - 'M02: Products'
+      responses:
+        '200':
+          description: 'Ok.'
+
+  /products/{product}:
+    get:
+      operationId: R202
+      summary: 'R202: View Product'
+      description: "Shows the page of a product. Access: PUB"
       tags:
         - 'M02: Products'
       parameters:
         - in: path
-          name: id_product
+          name: product
           schema:
             type: integer
           required: true
@@ -395,172 +406,46 @@ paths:
       responses:
         '200':
           description: 'Ok.'
-        '400':
-          description: 'Bad Request'
         '404':
           description: 'Product not found'
 
-  /product/{id_product}/edit:
+  /?search={text}:
     get:
-      operationId: R202
-      summary: 'R202: Shows product edit page'
-      description: 'Allows the admin to edit a product page. Access: ADM'
+      operationId: R203
+      summary: 'R203: Search Products'
+      description: 'Shows the search results of the input string. Access: PUB'
       tags:
         - 'M02: Products'
       parameters:
         - in: path
-          name: id_product
+          name: text
           schema:
-            type: integer
-          description: 'Specifies the id of the product to be edited'
+            type: string
+          description: 'Specifies the input string to run the search on'
           required: true
       responses:
         '200':
           description: 'Ok.'
-        '400':
-          description: 'Bad Request'
-        '404':
-          description: 'Invalid product id'
 
-    patch:
-      operationId: R203
-      summary: 'R203: Edit a product'
-      description: 'Edits the content of a product. Access: ADM'
-      tags:
-        - 'M02: Products'
-      parameters:
-        - in: path
-          name: id_product
-          schema:
-            type: integer
-          description: 'Specifies the id of the product to be edited'
-          required: true
-      responses:
-        '302':
-          description: 'Redirect after updating the product content.'
-          headers:
-            Location:
-              schema:
-                type: string
-              examples:
-                302Success:
-                  description: 'Successful edition. Redirect to product page.'
-                  value: '/post/{id_product}'
-                302Error:
-                  description: 'Failed edition. Redirect to edit page.'
-                  value: '/post/{id_product}/edit'
-        '403':
-          description: 'Forbidden access'
-        '400':
-          description: 'Bad Request'
-
-  /product/create:
+  /?category={category}:
     get:
       operationId: R204
-      summary: 'R204: Shows page to create a product'
-      description: 'Allows admin to access page to create a product. Access: ADM'
+      summary: 'R204: Filter by Category'
+      description: 'Shows the products of a given category. Access: PUB'
       tags:
         - 'M02: Products'
+      parameters:
+        - in: path
+          name: category
+          schema:
+            type: string
+          description: 'Specifies the category of which products are shown'
+          required: true
       responses:
         '200':
           description: 'Ok.'
-        '400':
-          description: 'Bad Request.'
-
-    post:
-      operationId: R205
-      summary: 'R206: Adds a new product'
-      description: 'Allows admin to create a new product. Access: ADM'
-      tags:
-        - 'M02: Products'
-      responses:
-        '200':
-          description: 'Ok.'
-        '400':
-          description: 'Bad Request.'
-
-  /product/{id_product}/cart:
-    post:
-      operationId: R208
-      summary: 'R208: Add to Cart'
-      description: 'Add a product to the Cart. Access: USR'
-      tags:
-        - 'M02: products'
-
-      requestBody:
-       required: true
-       content:
-         application/x-www-form-urlencoded:
-           schema:
-             type: object
-             properties:
-               productId:
-                type: integer
-                required:
-                - productId
-
-      responses:
-        '302':
-         description: 'Redirect after processing product information'
-         headers:
-           Location:
-             schema:
-               type: string
-             examples:
-               302Success:
-                 description: 'Successfully added product to Cart. Redirect to products page.'
-                 value: '/product'
-               302Error:
-                 description: 'Failed to add product to Cart. Redirect to products page.'
-                 value: '/product'
-
-  /search:
-    get:
-      operationId: R206
-      summary: "R206: Search Page"
-      description: "Show Search Page. Access: PUB"
-      tags:
-        - "M02: Products"
-
-      parameters:
-        - in: query
-          name: query
-          description: "String used for full-text search"
-          schema:
-            type: string
-          required: true
-
-      responses:
-        '302':
-            description: 'Redirect after processing the information.'
-            headers:
-                Location:
-                  schema:
-                      type: string
-                  examples:
-                      302Success:
-                        description: 'Redirect to search questions.'
-                        value: '/search/products'
-
-  /search/products:
-    get:
-      operationId: R207
-      summary: "R207: Get products results"
-      description: "Returns search results. Access: PUB"
-      tags:
-        - "M02: Products"
-
-      parameters:
-        - in: query
-          name: query
-          description: "String used for full-text search"
-          schema:
-            type: string
-          required: true
-
-      responses:
-        "200":
-          description: "OK."
+        '404':
+          description: 'Product not found'
 
   ########## CART ##########
   /cart:
