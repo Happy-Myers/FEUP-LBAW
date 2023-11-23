@@ -297,6 +297,91 @@ paths:
                   description: "Failed to add address. Redirect to member profile page."
                   value: "/users/{user}"
 
+  /adresses/{address}:
+    put:
+      operationId: R112
+      summary: 'R112: Edit Address Action'
+      description: 'Allows a user to edit his address. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                street:
+                  type: string
+                city:
+                  type: string
+                postal_code:
+                  type: string
+              required:
+                - label
+                - street
+                - city
+                - postal_code
+      responses:
+        '302':
+          description: 'Redirect member after editing profile.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Member information edited successfully. Redirects member to their profile page.'
+                  value: '/users/{user}'
+                302Failure:
+                  description: 'Member information editing failed. Redirects member to their profile page.'
+                  value: '/users/{user}'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+
+    delete:
+      operationId: R112
+      summary: 'R112: Delete Address Action'
+      description: 'Delete an Address. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: string
+      responses:
+        '302':
+          description: 'Successful address deletion. Redirect to member profile page'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful address deletion. Redirect to member profile page'
+                  value: '/users/{user}'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+
+    /login:
+      get:
+        operationId: R101
+        summary: "R101: Login Form"
+        description: "Provide form for authentication. Access: PUB"
+        tags:
+          - "M01: Authentication and Individual Profile"
+        responses:
+          "200":
+            description: "Ok."
+
   /product/{id_product}:
     get:
       operationId: R201
