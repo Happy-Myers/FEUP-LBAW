@@ -33,6 +33,7 @@ paths:
         "200":
           description: "Ok."
 
+  /users/authenticate:
     post:
       operationId: R102
       summary: 'R102: Login Action'
@@ -66,7 +67,7 @@ paths:
               examples:
                 302Success:
                   description: "Successful login. Redirect to homepage."
-                  value: "/users/{id}"
+                  value: "/"
                 302Admin:
                   description: 'Successful authentication. Redirect to admin dashboard.'
                   value: '/dashboard'
@@ -91,7 +92,7 @@ paths:
               examples:
                 302Success:
                   description: 'Successful logout. Redirect to Homepage'
-                  value: '/homepage'
+                  value: '/'
 
   /register:
     get:
@@ -120,8 +121,6 @@ paths:
               properties:
                 name:
                   type: string
-                username:
-                  type: string
                 phone_number:
                   type: integer
                 email:
@@ -130,18 +129,15 @@ paths:
                 password:
                   type: string
                   format: password
-                credits:
-                  type: integer
-                admin:
-                  type: boolean
+                confirm_password:
+                  type: string
+                  format: password
               required:
                 - name
-                - username
                 - phone_number
                 - email
                 - password
-                - credits
-                - admin
+                - confirm_password
 
       responses:
         "302":
@@ -152,13 +148,13 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: "Successful registration. Redirect to user profile."
-                  value: "/users/{id}"
+                  description: "Successful registration. Redirect to home page."
+                  value: "/"
                 302Failure:
                   description: "Failed registration. Redirect to sign-up form."
-                  value: "/signup"
+                  value: "/register"
 
-  /users/{user_id}:
+  /users/{user}:
     get:
       operationId: R107
       summary: 'R107: User Profile'
@@ -167,7 +163,7 @@ paths:
         - 'M01: Authentication and Individual Profile'
       parameters:
         - in: path
-          name: user_id
+          name: user
           schema:
             type: int
           description: 'Specifies the member user ID'
@@ -212,10 +208,13 @@ paths:
                   type: string
                 phone_number:
                   type: string
+                image:
+                  type: file
               required:
                 - name
                 - email
                 - phone_number
+                - image
       responses:
         '302':
           description: 'Redirect member after editing profile.'
@@ -226,7 +225,7 @@ paths:
               examples:
                 302Success:
                   description: 'Member information edited successfully. Redirects member to their profile page.'
-                  value: '/users/{user_id}'
+                  value: '/users/{user}'
                 302Failure:
                   description: 'Member information editing failed. Stay in edit page.'
                   value: '/users/edit'
@@ -234,6 +233,134 @@ paths:
           description: 'Bad Request'
         '403':
           description: 'Forbidden access'
+
+  /users:
+    delete:
+      operationId: R109
+      summary: 'R109: Delete User Action'
+      description: 'Delete a User. Access: OWN'
+
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful user deletion. Redirect to Homepage'
+                  value: '/'
+
+  /addresses:
+    post:
+      operationId: R112
+      summary: 'R112: Add Address Action'
+      description: 'Processes the Add Address form submission. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                street:
+                  type: string
+                city:
+                  type: string
+                postal_code:
+                  type: string
+              required:
+                - label
+                - street
+                - city
+                - postal_code
+
+      responses:
+        "302":
+          description: "Redirect after processing the added address."
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: "Successfully added address. Redirect to member profile page."
+                  value: "/users/{user}"
+                302Failure:
+                  description: "Failed to add address. Redirect to member profile page."
+                  value: "/users/{user}"
+
+/adresses/{address}:
+    put:
+      operationId: R112
+      summary: 'R112: Edit Address Action'
+      description: 'Allows a user to edit his address. Access: OWN'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                street:
+                  type: string
+                city:
+                  type: string
+                postal_code:
+                  type: string
+              required:
+                - label
+                - street
+                - city
+                - postal_code
+      responses:
+        '302':
+          description: 'Redirect member after editing profile.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Member information edited successfully. Redirects member to their profile page.'
+                  value: '/users/{user}'
+                302Failure:
+                  description: 'Member information editing failed. Redirects member to their profile page.'
+                  value: '/users/{user}'
+        '400':
+          description: 'Bad Request'
+        '403':
+          description: 'Forbidden access'
+
+    delete:
+      operationId: R112
+      summary: 'R112: Delete Address Action'
+      description: 'Delete a Address. Access: OWN'
+
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful address deletion. Redirect to member profile page'
+                  value: '/users/{user}'
 
   /product/{id_product}:
     get:
