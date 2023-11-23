@@ -393,7 +393,7 @@ paths:
     get:
       operationId: R202
       summary: 'R202: View Product'
-      description: "Shows the page of a product. Access: PUB"
+      description: "Shows the page of a product and its reviews. Access: PUB"
       tags:
         - 'M02: Products'
       parameters:
