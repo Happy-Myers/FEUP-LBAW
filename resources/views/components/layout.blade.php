@@ -134,7 +134,7 @@
                   <h6 class="text-uppercase fw-bold">Useful links</h6>
                   <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #1b2838; height: 2px"/>
                   <p>
-                    <a href="#!" class="text-white">Your Account</a> <!-- mudar link -->
+                    <a href="{{auth()->user() ? '/users/' . auth()->id() : '/login'}}" class="text-white">Your Account</a> <!-- mudar link -->
                   </p>
                   <p>
                     <a href="#!" class="text-white">FAQ</a> <!-- mudar link -->
