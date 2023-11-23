@@ -39,7 +39,7 @@
                     <i class="fas fa-bars text-white"></i>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-                    <form class="d-flex mx-auto">
+                    <form class="d-flex mx-auto" action ="/" method="GET">
                         <input class="form-control me-2" type="text" name="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>

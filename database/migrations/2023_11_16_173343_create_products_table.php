@@ -18,7 +18,8 @@ return new class extends Migration
             $table->unsignedInteger('stock');
             $table->unsignedFloat('price')->index();
             $table->string('image')->nullable();
-            $table->unsignedFloat('score');
+            $table->string('image2')->nullable();
+            $table->unsignedFloat('score')->default(0);
             $table->longText('description')->nullable();
             $table->boolean('hardware');
             $table->date('publication_date')->default(now());
@@ -29,7 +30,7 @@ return new class extends Migration
             $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade');
         });
 
-        DB::statement('ALTER TABLE products ADD CONSTRAINT score_check CHECK(score > 0 AND score <=5)');
+        DB::statement('ALTER TABLE products ADD CONSTRAINT score_check CHECK(score >= 0 AND score <=5)');
         DB::statement('ALTER TABLE products ADD CONSTRAINT price_check CHECK(price > 0)');
         DB::statement('ALTER TABLE products ADD CONSTRAINT publication_date_check CHECK(publication_date <= now())');
     }

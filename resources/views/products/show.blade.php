@@ -13,10 +13,10 @@
             @endif
         </h1>        
         <div class="images">
-            <img src="{{ asset('images/godofwar.jpg') }}" class="img-fluid" alt="IMG1">
+            <img src="{{ asset('images/products/' . $product->image2) }}" class="img-fluid" alt="IMG1">
         </div>
         <div class="details text-white"> 
-            <img src="{{ asset('images/assassinscreed.jpg') }}" class="img-fluid" alt="IMG1">
+            <img src="{{ asset('images/products/' . $product->image) }}" class="img-fluid" alt="IMG1">
             <h3 class="mt-3 mb-2 me-3">Product Description</h3>
             <p class="card-text me-3">{{ $product->description }}</p>
 
