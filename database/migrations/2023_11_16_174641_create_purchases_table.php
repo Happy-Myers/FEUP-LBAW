@@ -20,7 +20,8 @@ return new class extends Migration
             $table->enum('delivery_progress', ['Processing', 'Shipped', 'Delivered'])->default('Processing');
             $table->unsignedBigInteger('address_id');
             $table->timestamps();
-
+            $table->softDeletes();
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
         });
