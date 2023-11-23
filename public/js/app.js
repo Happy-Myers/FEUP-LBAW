@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     quantityInputs.forEach(function(input) {
+        let originalQuantity = input.value;
+
         input.addEventListener('input', function() {
             let productId = input.getAttribute('data-product-id');
             let quantity = input.value;
@@ -41,14 +43,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 priceSpan.textContent = (quantity * data.price).toFixed(2) + '€';
 
+                originalQuantity = quantity;
+
                 updateTotalPrice();
             })
             .catch(function(error) {
                 console.error(error);
+
+                input.value = originalQuantity;
             });
         });
     });
 });
+
+//review stars
+
 document.addEventListener('DOMContentLoaded', function() {
   var stars = document.querySelectorAll('.star');
 
@@ -71,6 +80,8 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+
+//review character limit
 
 document.addEventListener('DOMContentLoaded', function() {
     var commentInput = document.getElementById('comment');
