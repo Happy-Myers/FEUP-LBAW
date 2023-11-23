@@ -19,7 +19,7 @@ tags:
   - name: 'M03: Reviews and Wishlist'
   - name: 'M04: Cart'
   - name: 'M05: Static Pages'
-  - name: 'MO06: Management Area'
+  - name: 'M06: Management Area'
 
 paths:
   /login:
@@ -419,32 +419,23 @@ paths:
         "200":
           description: "OK."
 
-  /cart/{id_user}:
-   get:
+  ########## CART ##########
+  /cart:
+    get:
       operationId: R401
-      summary: 'R401: Cart Form'
-      description: 'Display the Cart. Access: OWN'
-
+      summary: 'R401: View Shopping Cart'
+      description: 'Display the user`s cart. Access: OWN'
       tags:
        - 'M04: Cart'
 
-      parameters:
-       - in: path
-         name: id
-         schema:
-           type: integer
-         required: true
-
       responses:
        '200':
-         description: "Ok."
+        description: "Ok."
 
-  /cart/checkout:
-    post:
-      operationId: R402
-      summary: 'R402: Cart Checkout'
-      description: 'Checkout all products on Cart. Access: OWN'
-
+    delete:
+      operationId: R404
+      summary: 'R404: Clear Cart'
+      description: 'Delete the user`s cart. Access: OWN'
       tags:
         - 'M04: Cart'
 
@@ -453,23 +444,137 @@ paths:
         content:
           application/x-www-form-urlencoded:
             schema:
-              type: object
               properties:
                 id_user:
                   type: integer
-                id_product:
+              required:
+                - user_id
+
+      responses:
+        '200':
+          description: "Ok."
+        '400':
+          description: "Error. Bad Request"
+        '404':
+          description: "Error. Not Found"
+        
+/cart/{product}:
+  post:
+    operationId: R402
+    summary: 'R402: Add to Shopping Cart '
+    description: 'Add a product to the user`s cart. Access: OWN'
+    tags:
+      - 'M04: Cart'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              product_id:
+                type: integer
+            required:
+              - user_id
+              - product_id
+    responses:
+      '200':
+        description: "Ok. Added product successfully"
+      '400':
+        description: "Error. Bad Request"
+      '404':
+        description: "Error. Not Found"
+
+  delete:
+    operationId: R403
+    summary: 'R403: Remove from Shopping Cart'
+    description: 'Remove a product from the user`s cart. Access: OWN'
+    tags:
+      - 'M04: Cart'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            properties:
+              product_id:
+                type: integer
+              user_id:  
+                type: integer
+            required:
+              - product_id
+              - user_id  
+    responses:
+      '200':
+        description: "Ok."
+      '400':
+        description: "Error. Bad Request"
+      '404':
+        description: "Error. Not Found"
+
+  patch:
+    operationId: R405
+    summary: 'R405: Update Cart'
+    description: 'Update the amount of a product in user`s cart. Access: OWN'
+    tags:
+      - 'M04: Cart'
+    requestBody:
+      required: true
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            type: object
+            properties:
+              user_id:
+                type: integer
+              product_id:
+                type: integer
+              quantity:
+                type: integer
+            required:
+              - user_id
+              - product_id
+              - quantity
+    responses:
+      '200':
+        description: "Ok. Cart updated successfully"
+      '400':
+        description: "Error. Bad Request"
+      '404':
+        description: "Error. Not Found"
+
+  /checkout:
+    post:
+      operationId: R406
+      summary: 'R406: Checkout Items in Cart'
+      description: 'Page to finish a purchase. Access: OWN'
+      tags:
+       - 'M04: Cart'
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                product_id:
                   type: integer
                 total:
                   type: number
-                id_address:
+                address_id:
                   type: integer
                 quantity:
                   type: integer
               required:
-                - id_user
-                - id_product
+                - user_id
+                - product_id
                 - total
-                - id_address
+                - address_id
                 - quantity
 
       responses:
@@ -484,37 +589,6 @@ paths:
               examples:
                 400type1:
                   description: "Failed checkout. Redirect to cart."
-                  value: "/cart/{id_user}"
+                  value: "/cart"
         '404':
-          description: "Error. Not Found"
-
-  /cart/delete:
-    delete:
-      operationId: R403
-      summary: 'R403: Delete Cart Product'
-      description: 'Remove a product from the Cart. Access: OWN'
-
-      tags:
-        - 'M04: Cart'
-
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              properties:
-                id_user:
-                  type: integer
-                id_product:
-                  type: integer
-              required:
-                - id_user
-                - id_product
-
-      responses:
-        '200':
-          description: "Ok."
-        '400':
-          description: "Error. Bad Request"
-        '404':
-          description: "Error. Not Found"
+          description: "Error. Not Found" 
