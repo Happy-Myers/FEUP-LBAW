@@ -299,8 +299,8 @@ paths:
 
   /adresses/{address}:
     put:
-      operationId: R112
-      summary: 'R112: Edit Address Action'
+      operationId: R113
+      summary: 'R113: Edit Address Action'
       description: 'Allows a user to edit his address. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -344,8 +344,8 @@ paths:
           description: 'Forbidden access'
 
     delete:
-      operationId: R112
-      summary: 'R112: Delete Address Action'
+      operationId: R114
+      summary: 'R114: Delete Address Action'
       description: 'Delete an Address. Access: OWN'
       tags:
         - 'M01: Authentication and Individual Profile'
