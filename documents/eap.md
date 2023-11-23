@@ -110,7 +110,7 @@ For the vertical prototype we decided to implement all of the user stories that 
 | R302: Delete a game review | DELETE /reviews/{review} |
 | R303: View Wishlist | GET /wishlist |
 | R304: Add Product to Wishlist | POST /wishlist/{product} |
-| R305: Remove Product to Wishlist | DELETE /wishlist/{product} |
+| R305: Remove Product from Wishlist | DELETE /wishlist/{product} |
 
 <figcaption align= "center">Table: game reviews and wishlist's implementation </figcaption>
 
