@@ -862,7 +862,7 @@ For this prototype we focused our efforts in developing the main functionalities
 
 The prototype is available at http://lbaw23154.lbaw.fe.up.pt
 
-# Credentials (Verificar):
+# Credentials:
 - user: test@test.com
 - password: password
 
