@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
 
 <x-layout>
@@ -13,7 +17,7 @@
                         <div class="row">
                             <div class="profile-pic col">
                                 <!-- Profile Picture -->
-                                <img src="{{ asset('path/to/profile-pic.jpg') }}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                <img src="{{ asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png') }}" alt="Profile Picture" class="img-fluid rounded-circle">
                             </div>
                             <div class="details2 col">
                                 <!-- User Details -->
@@ -92,4 +96,73 @@
             </div>
         </div>
     </div>
+    <!-- Delete Account Modal -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteAccountModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your account? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <form method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Delete Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="history">
+        <h4 class="text-white">Your Shopping History</h4>
+        <section class="d-flex justify-content-around">
+            <table class="table">
+                <thead>
+                   <tr class="text-center">
+                       <th scope="col">Product</th>
+                       <th scope="col">Date</th>
+                       <th scope="col">Status</th>
+                       <th scope="col">Amount</th>
+                       <th scope="col">Price</th>
+                   </tr>
+                </thead>
+                <tbody>
+                    @foreach($purchases as $purchase)
+                        @foreach($purchase->products as $product)
+                            @php
+                                $date = Carbon::parse($purchase->date)->format('d/m/Y');
+                            @endphp
+                            <tr>
+                                <td class="cart-entry">
+                                    <span class="aux">{{$product->name}}</span>
+                                </td>
+
+                                <td class="cart-entry">
+                                    <span class="aux">{{$date}}</span>
+                                </td>
+                                
+                                <td class="cart-entry">
+                                    <span class="aux">{{$purchase->delivery_progress}}</span>
+                                </td>
+
+                                <td class="cart-entry">
+                                    <span class="aux">{{$product->pivot->quantity}}</span>
+                                </td>
+                            
+                                <td class="cart-entry">
+                                    <span class="aux">{{$product->price * $product->pivot->quantity}}€</span>
+                                </td>
+                            </tr>					
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+        </section>
+    </div>
+
 </x-layout>
