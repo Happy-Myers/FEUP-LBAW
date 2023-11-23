@@ -51,7 +51,7 @@
                  <div class="card2 mt-3 mb-5" >
                     <div class="special">
                         Saved Addresses
-                        <button type="button" class="navbar-toggler btn btn-link btn-lg" data-bs-toggle="collapse" data-bs-target="#addAddress" aria-controls="addAddress" aria-expanded="false" aria-label="Toggle navigation"style="color: white;">
+                        <button type="button" class="navbar-toggler btn-lg" data-bs-toggle="collapse" data-bs-target="#addAddress" aria-controls="addAddress" aria-expanded="false" aria-label="Toggle navigation">
                             +
                         </button>
                     </div>
@@ -65,10 +65,10 @@
                                     <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
                                         @csrf
                                         @method('PUT')
-                                        <input class="form-control me-2" type="text" name="label" placeholder="Label">
-                                        <input class="form-control me-2" type="text" name="street" placeholder="Address">
-                                        <input class="form-control me-2" type="text" name="city" placeholder="City">
-                                        <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code">
+                                        <input class="form-control me-2" type="text" name="label" placeholder="Label" value="{{$address->label}}">
+                                        <input class="form-control me-2" type="text" name="street" placeholder="Address" value="{{$address->street}}">
+                                        <input class="form-control me-2" type="text" name="city" placeholder="City" value="{{$address->city}}">
+                                        <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
                                         <button class="btn btn-outline-success" type="submit">Save</button>
                                     </form>
                                 </div>                            
