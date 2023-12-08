@@ -81,4 +81,8 @@ class User extends Authenticatable
     public function notification(): HasMany{
         return $this->hasMany(Notification::class);
     }
+
+    public function hasRole($role): bool {
+        return $this->permission == $role;
+    }
 }
