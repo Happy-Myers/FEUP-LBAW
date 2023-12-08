@@ -61,7 +61,7 @@ Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth
 //User
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
-Route::get('/users/{user}', [UserController::class, 'show']);
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile');
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 
 
