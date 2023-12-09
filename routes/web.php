@@ -4,11 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,3 +74,6 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+
+//Admin
+Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
