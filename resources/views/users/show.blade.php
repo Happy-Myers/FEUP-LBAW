@@ -64,7 +64,7 @@
                             <div class="address-box">
                                 <h5>{{ $address->label }}</h5>
                                 <p>{{ $address->street }} {{ $address->city }} {{ $address->postal_code }}</p>
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress" aria-controls="editAddress" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
+                                <button class="btn btn-secondary btn-sm mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress" aria-controls="editAddress" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
                                 <div class="collapse navbar-collapse justify-content-between" id="editAddress">
                                     <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
                                         @csrf
