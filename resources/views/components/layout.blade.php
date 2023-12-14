@@ -137,7 +137,7 @@
                     <a href="{{auth()->user() ? '/users/' . auth()->id() : '/login'}}" class="text-white">Your Account</a> <!-- mudar link -->
                   </p>
                   <p>
-                    <a href="#!" class="text-white">FAQ</a> <!-- mudar link -->
+                    <a href="/faqs" class="text-white">FAQ</a>
                   </p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
