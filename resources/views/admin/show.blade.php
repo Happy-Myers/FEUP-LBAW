@@ -2,28 +2,22 @@
     <div class="container mt-4 text-white">
         <ul>
             <li>
-                <div>
-                    <h1>Total Products</h1>
-                    <p>{{$products}}</p>
-                </div>
+                    <a href ="admin/products" class ="btn">
+                            <h1>Total Products</h1>
+                            <p>{{$products}}</p>
+                    </a>
             </li>
             <li>
-                <div>
-                    <h1>Total Categories</h1>
-                    <p>{{$categories}}</p>
-                </div>
-            </li>
-            <li>
-                <div>
+                <a href="admin/orders" class="btn">
                     <h1>Total Orders</h1>
                     <p>{{$orders}}</p>
-                </div>
+                </a>
             </li>
             <li>
-                <div>
+                <a href="admin/users" class="btn">
                     <h1>Total Users</h1>
                     <p>{{$users}}</p>
-                </div>
+                </a>
             </li>
         </ul>
     </div>

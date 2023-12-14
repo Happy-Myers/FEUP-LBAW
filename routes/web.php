@@ -43,6 +43,14 @@ Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 // Products
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
+///// not implemented yet
+Route::get('/admin/products', [ProductController::class, 'manage'])->middleware('admin');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->middleware('admin');
+Route::get('/admin/products/{product}', [ProductController::class, 'edit'])->middleware('admin');
+Route::put('products/{product}', [ProductController::class, 'update'])->middleware('admin');
+Route::get('/admin/products/new', [ProductController::class, 'create'])->middleware('admin');
+Route::post('/products', [ProductController::class, 'store'])->middleware('admin');
+//
 
 // Cart
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
@@ -58,13 +66,20 @@ Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->mi
 
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
+//// not implemented yet
+Route::get('/admin/purchases', [PurchaseController::class, 'index'])->middleware('admin');
+Route::patch('/admin/purchases/{purchase}', [PurchaseController::class, 'update'])->middleware('admin');
+//
 
 //User
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile');
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
-
+//not implemented yet
+Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
+Route::put('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
+//
 
 //Address
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');
@@ -73,7 +88,7 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
-Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth', 'admin');
 
 //Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');

@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Purchase;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
