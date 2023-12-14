@@ -77,4 +77,4 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middle
 
 // Faq & About
 Route::get('/faqs', [FaqController::class, 'index']);
-Route::get('/about', [FaqController::class, 'show']);
+Route::get('/about', function () { return view('users.about'); });

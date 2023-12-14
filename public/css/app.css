@@ -485,3 +485,34 @@ th, td {
 .accordion-icon::before {
   content: '';
 }
+
+.about {
+  max-width: 60em;
+  width: 100%;
+  background-color: var(--black);
+  margin: 0 auto;
+  color: white;
+  padding: 2em;
+}
+
+.abouttittles {
+  color: white;
+  margin-bottom: 0.5em;
+}
+
+section {
+  margin-bottom: 1.5em;
+}
+
+#aboutus {
+  color: white;
+  text-align: center;
+}
+
+.separators {
+  max-width: 60em;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}

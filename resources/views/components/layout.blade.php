@@ -134,10 +134,13 @@
                   <h6 class="text-uppercase fw-bold">Useful links</h6>
                   <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #1b2838; height: 2px"/>
                   <p>
-                    <a href="{{auth()->user() ? '/users/' . auth()->id() : '/login'}}" class="text-white">Your Account</a> <!-- mudar link -->
+                    <a href="{{auth()->user() ? '/users/' . auth()->id() : '/login'}}" class="text-white">Your Account</a>
                   </p>
                   <p>
                     <a href="/faqs" class="text-white">FAQ</a>
+                  </p>
+                  <p>
+                    <a href="/about" class="text-white">About Us</a>
                   </p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
