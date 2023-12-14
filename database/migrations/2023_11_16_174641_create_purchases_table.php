@@ -15,6 +15,8 @@ return new class extends Migration
         Schema::create('purchases', function(Blueprint $table){
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedInteger('quantity');
             $table->timestamp('date')->default(now());
             $table->unsignedFloat('total');
             $table->enum('delivery_progress', ['Processing', 'Shipped', 'Delivered'])->default('Processing');

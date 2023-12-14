@@ -15,22 +15,17 @@ class PurchaseController extends Controller
 
         $cart = $user->cart;
 
-        $total = 0;
-
         foreach($cart as $product){
-            $total += $product->pivot->quantity * $product->price;
-        }
+            $total = $product->pivot->quantity * $product->price;
+            $fields = [
+                'user_id' => $user->id,
+                'product_id' => $product->id,
+                'quantity' => $product->pivot->quantity,
+                'total' => $total,
+                'address_id' => $user->addresses->first()->id,
+            ];
 
-        $fields = [
-            'user_id' => $user->id,
-            'total' => $total,
-            'address_id' => $user->addresses->first()->id
-        ];
-
-        $purchase = Purchase::create($fields);
-
-        foreach($cart as $product){
-            $purchase->products()->attach($product->id, ['quantity' => $product->pivot->quantity]);
+            Purchase::create($fields);
         }
         
         $user->cart()->detach();

@@ -142,13 +142,12 @@
                 </thead>
                 <tbody>
                     @foreach($purchases as $purchase)
-                        @foreach($purchase->products as $product)
                             @php
                                 $date = Carbon::parse($purchase->date)->format('d/m/Y');
                             @endphp
                             <tr>
                                 <td class="cart-entry">
-                                    <span class="aux">{{$product->name}}</span>
+                                    <span class="aux">{{$purchase->product->name}}</span>
                                 </td>
 
                                 <td class="cart-entry">
@@ -160,14 +159,13 @@
                                 </td>
 
                                 <td class="cart-entry">
-                                    <span class="aux">{{$product->pivot->quantity}}</span>
+                                    <span class="aux">{{$purchase->quantity}}</span>
                                 </td>
                             
                                 <td class="cart-entry">
-                                    <span class="aux">{{$product->price * $product->pivot->quantity}}€</span>
+                                    <span class="aux">{{$purchase->total}}€</span>
                                 </td>
-                            </tr>					
-                        @endforeach
+                            </tr>	
                     @endforeach
                 </tbody>
             </table>

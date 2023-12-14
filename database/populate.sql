@@ -9,7 +9,6 @@ DELETE FROM review_vote;
 DELETE FROM cart;
 DELETE FROM wishlist;
 DELETE FROM purchases;
-DELETE FROM product_purchase;
 DELETE FROM faqs;
 
 INSERT INTO users (name, phone_number, email, password)
@@ -147,31 +146,18 @@ VALUES
   (1, 4),
   (4, 6);
 
-INSERT INTO purchases (user_id, total, delivery_progress, address_id)
+INSERT INTO purchases (user_id, product_id, quantity, total, delivery_progress, address_id)
 VALUES
-  (1, 79.98, 'Shipped', 1),
-  (4, 99.99, 'Delivered', 4),
-  (1, 129.98, 'Delivered', 1),
-  (2, 199.99, 'Processing', 2),
-  (5, 59.99, 'Shipped', 5),
-  (3, 199.98, 'Delivered', 3),
-  (4, 99.99, 'Shipped', 4),
-  (2, 49.99, 'Delivered', 2),
-  (1, 79.99, 'Delivered', 1),
-  (3, 29.99, 'Processing', 3);
-
-INSERT INTO product_purchase (purchase_id, product_id, quantity)
-VALUES
-  (1, 3, 1),
-  (2, 4, 2),
-  (3, 1, 2),
-  (4, 2, 1),
-  (5, 2, 3),
-  (6, 4, 2),
-  (7, 7, 1),
-  (8, 5, 2),
-  (9, 4, 3),
-  (10, 6, 2);
+  (1, 3, 1, 79.98, 'Shipped', 1),
+  (4, 4, 2, 99.99, 'Delivered', 4),
+  (1, 1, 2, 129.98, 'Delivered', 1),
+  (2, 2, 1, 199.99, 'Processing', 2),
+  (5, 2, 3, 59.99, 'Shipped', 5),
+  (3, 4, 2, 199.98, 'Delivered', 3),
+  (4, 7, 1, 99.99, 'Shipped', 4),
+  (2, 5, 2, 49.99, 'Delivered', 2),
+  (1, 4, 3, 79.99, 'Delivered', 1),
+  (3, 6, 2, 29.99, 'Processing', 3);
 
 
 INSERT INTO faqs (question, answer)

@@ -47,7 +47,7 @@ return new class extends Migration
         
         CREATE TRIGGER update_stock 
         AFTER INSERT 
-        ON product_purchase
+        ON purchases
         FOR EACH ROW
         EXECUTE PROCEDURE update_stock();
         
@@ -100,7 +100,7 @@ return new class extends Migration
         \$BODY$
         BEGIN
             DELETE FROM wishlist
-            WHERE user_id = (SELECT user_id FROM purchases WHERE id = NEW.purchase_id) AND product_id = NEW.product_id;
+            WHERE user_id = New.user_id;
             RETURN NEW;
         END;
         \$BODY$
@@ -108,7 +108,7 @@ return new class extends Migration
         
         CREATE TRIGGER clear_wishlist 
         AFTER INSERT 
-        ON product_purchase
+        ON purchases
         FOR EACH ROW
         EXECUTE PROCEDURE clear_wishlist();
         ");
@@ -121,10 +121,10 @@ return new class extends Migration
     {
         DB::unprepared('
         DROP TRIGGER IF EXISTS update_score ON reviews;
-        DROP TRIGGER IF EXISTS update_stock ON product_purchase;
+        DROP TRIGGER IF EXISTS update_stock ON purchases;
         DROP TRIGGER IF EXISTS check_valid_cart ON cart;
         DROP TRIGGER IF EXISTS clear_cart ON purchases;
-        DROP TRIGGER IF EXISTS clear_wishlist ON product_purchase;
+        DROP TRIGGER IF EXISTS clear_wishlist ON purchases;
 
         DROP FUNCTION IF EXISTS update_product_score();
         DROP FUNCTION IF EXISTS update_stock();
