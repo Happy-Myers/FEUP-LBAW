@@ -16,12 +16,14 @@
                     <div class="d-flex justify-content-center align-items-center mt-3 text-white">
                          <h4 class="price">{{ $product->price }}€</h4>
                     </div>
+                    @unless(auth()->check() && auth()->user()->hasRole('Admin'))
                     <div class="text-center mt-2">
                          <form method="POST" action="/cart/{{$product->id}}">
                               @csrf
                               <button type="submit" class="btn btn-primary buy">Add To Cart</button>                         
                          </form>
-                     </div>
+                    </div>
+                    @endunless
                </div>
           </div>
      </div>

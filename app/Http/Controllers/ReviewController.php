@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
-use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
@@ -30,8 +29,8 @@ class ReviewController extends Controller
     }
 
     public function destroy(Review $review){
-        if($review->user_id != auth()->id()){
-            abort(403, 'Unauthorized Action');
+        if($review->user_id != auth()->id() && !(auth()->check() && auth()->user()->hasRole('Admin'))){
+            return back()->with('message', 'You can only delete your own reviews');
         }
 
         $review->delete();

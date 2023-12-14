@@ -53,16 +53,16 @@ Route::post('/products', [ProductController::class, 'store'])->middleware('admin
 //
 
 // Cart
-Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
-Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth');
-Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
-Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
-Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth', 'admin.forbidden');
+Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth', 'admin.forbidden');
+Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth', 'admin.forbidden');
+Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth', 'admin.forbidden');
+Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth', 'admin.forbidden');
 
 // Wishlist
-Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');
-Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth');
-Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth');
+Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth', 'admin.forbidden');
+Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth', 'admin.forbidden');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth', 'admin.forbidden');
 
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
@@ -88,7 +88,7 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
-Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth', 'admin');
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
 
 //Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');

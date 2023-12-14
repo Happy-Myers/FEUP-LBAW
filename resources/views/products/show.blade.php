@@ -49,6 +49,7 @@
                 @endforeach
             </h6>
         </div>
+        @unless(auth()->check() && auth()->user()->hasRole('Admin'))
         <div class="d-flex justify-content-center align-items-center mt-3 buttons"> <!-- Falta adicionar função aos botões -->
           <form method="POST" action="/cart/{{$product->id}}">
             @csrf
@@ -59,10 +60,11 @@
             <button type="submit" class="btn btn-primary buy ms-2">Add To Wishlist</button>
           </form>
         </div>
+        @endunless
     </div>
     <div class="container mt-5">
       @auth
-        @unless ($hasCommented)
+        @unless ($hasCommented || (auth()->check() && auth()->user()->hasRole('Admin')))
           <x-review-form :product="$product->id"/>
         @endunless
       @endauth

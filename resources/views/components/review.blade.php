@@ -37,7 +37,7 @@
             </div>
         </div>
         @auth
-        @if(auth()->id() == $review->user->id)
+        @if(auth()->id() == $review->user->id || auth()->user()->hasRole('Admin'))
         <form method="POST" action="/reviews/{{$review->id}}" class="mb-3">
             @csrf
             @method('DELETE')
