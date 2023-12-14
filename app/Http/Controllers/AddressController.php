@@ -3,24 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class AddressController extends Controller
 {
 
     public function destroy(Address $address){
-        if($address->user_id != auth()->id()){
-            abort(403, 'Unauthorized Action');
+        try{
+            $this->authorize('delete', $address);
+        }catch(AuthorizationException $e){
+            return back()->with('message', 'You are not allowed to delete this');
         }
+        
 
         $address->delete();
         return back();
     }
     public function update(Address $address){
-        if($address->user_id != auth()->id()){
-            abort(403, 'Unauthorized Action');
+        try{
+            $this->authorize('update', $address);
+        } catch(AuthorizationException $e){
+            return back()->with('message', 'You are not allowed to update this');
         }
         
+
         $formFields = request()->validate([
             'label' => 'required',
             'street' => ['required', 'string', 'max:100'],

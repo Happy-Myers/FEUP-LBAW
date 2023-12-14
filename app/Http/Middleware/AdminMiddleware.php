@@ -17,6 +17,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/');      
+        return abort(404, 'Not Found');    
     }
 }

@@ -14,7 +14,7 @@ class AdminPage
     public function handle($request,Closure $next)
     {
         if($request->route('user')->hasRole('Admin')){
-            abort(404);
+            abort(404, 'Not Found');
         }
 
         return $next($request);

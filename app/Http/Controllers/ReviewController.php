@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Review;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class ReviewController extends Controller
 {
@@ -29,8 +30,10 @@ class ReviewController extends Controller
     }
 
     public function destroy(Review $review){
-        if($review->user_id != auth()->id() && !(auth()->check() && auth()->user()->hasRole('Admin'))){
-            return back()->with('message', 'You can only delete your own reviews');
+        try{
+            $this->authorize('delete', $review);
+        } catch(AuthorizationException $e){
+            return back()->with('message', 'You are not allowed to delete this');
         }
 
         $review->delete();
