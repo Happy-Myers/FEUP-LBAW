@@ -36,8 +36,7 @@
                 </span>
             </div>
         </div>
-        @auth
-        @if(auth()->id() == $review->user->id || auth()->user()->hasRole('Admin'))
+        @can('delete', $review)
         <form method="POST" action="/reviews/{{$review->id}}" class="mb-3">
             @csrf
             @method('DELETE')
@@ -45,8 +44,7 @@
                 <i class="fas fa-trash"></i>
             </button>
         </form>
-        @endif
-        @endauth
+        @endcan
     </div>
     <div class="mt-2">
         <p class="mb-0 text-white">

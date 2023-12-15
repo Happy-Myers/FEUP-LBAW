@@ -26,8 +26,7 @@
                                 <p class="mb-2">{{ $user->phone_number }}</p>
                                 <p class="mb-0">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
-                                @auth
-                                @if(auth()->id() == $user->id)
+                                @can('owner', $user)
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
@@ -44,14 +43,12 @@
                                         </button>
                                     </div>
                                 </div>
-                                @endif
-                                @endauth
+                                @endcan
                            </div>
                         </div>
                     </div>
                  </div>
-                @auth
-                @if(auth()->id() == $user->id)
+                @can('owner', $user)
                  <div class="card2 mt-3 mb-5" >
                     <div class="special">
                         Saved Addresses
@@ -97,8 +94,7 @@
                     </div>                            
 
                 </div>
-                @endif
-                @endauth
+                @endcan
             </div>
         </div>
     </div>
@@ -125,8 +121,7 @@
         </div>
     </div>
 
-    @auth
-    @if(auth()->id() == $user->id)
+    @can('owner', $user)
     <div class="history">
         <h4 class="text-white">Your Shopping History</h4>
         <section class="d-flex justify-content-around">
@@ -171,7 +166,6 @@
             </table>
         </section>
     </div>
-    @endif
-    @endauth
+    @endcan
 
 </x-layout>
