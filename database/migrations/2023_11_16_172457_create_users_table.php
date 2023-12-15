@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
             $table->string('password');
             $table->unsignedInteger('credits')->default(0);
             $table->enum('permission', ['User', 'Admin'])->default('User');

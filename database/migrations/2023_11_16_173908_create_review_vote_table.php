@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('review_vote', function (Blueprint $table){
             $table->boolean('vote');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('review_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('review_id')->references('id')->on('reviews')->onDelete('cascade');
 
             $table->primary(['user_id', 'review_id']);
