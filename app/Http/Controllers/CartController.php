@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Validation\ValidationException;
 
 class CartController extends Controller {
   public function index(){
@@ -43,15 +44,22 @@ class CartController extends Controller {
   }
 
   public function update(Product $product){
+    try{
+    $quantity = request()->validate([
+      'quantity' => ['required', 'numeric', 'min:1']
+    ]);
     $user = auth()->user();
 
     $cart = $user->cart()->where('product_id', $product->id)->first();
     if($cart){
-      $cart->pivot->update(['quantity' => request()->input('quantity')]);
+      $cart->pivot->update($quantity);
 
       return response()->json(['message' => 'Quantity updated successfully', 'price' => $product->price], 200);
     }
 
     return response()->json(['message' => 'Cart item not found'], 404);
+    } catch(ValidationException $e){
+      return response()->json(['errors' => $e->errors()], 422);
+    }
   }
 }
