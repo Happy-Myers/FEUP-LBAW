@@ -45,7 +45,7 @@
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @auth
-                          @if(auth()->user()->hasRole('Admin'))
+                          @can('isAdmin', App\Models\User::class)
                             <li>
                               <a class="nav-link" href="/admin">
                                 <i class="fa-solid fa-cog"></i> 
@@ -71,7 +71,7 @@
                                     Profile
                                 </a>
                             </li>
-                        @endif
+                        @endcan
                           <li class="nav-item">
                               <form method="POST" action="/logout">
                                   @csrf

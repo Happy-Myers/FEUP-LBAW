@@ -142,7 +142,7 @@
                             @endphp
                             <tr>
                                 <td class="cart-entry">
-                                    <span class="aux">{{$purchase->product->name}}</span>
+                                    <span class="aux">{{$purchase->product != NULL ? $purchase->product->name : "Deleted Product"}}</span>
                                 </td>
 
                                 <td class="cart-entry">
