@@ -62,14 +62,7 @@
                                 <h5>{{ $address->label }}</h5>
                                 <p>{{ $address->street }} {{ $address->city }} {{ $address->postal_code }}</p>
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress" aria-controls="editAddress" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
-                                <div class="collapse navbar-collapse justify-content-between" id="editAddress">
-                                    <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
-                                        @csrf
-                                        @method('PUT')
-                                        <input class="form-control me-2" type="text" name="label" placeholder="Label" value="{{$address->label}}">
-                                        <input class="form-control me-2" type="text" name="street" placeholder="Address" value="{{$address->street}}">
-                                        <input class="form-control me-2" type="text" name="city" placeholder="City" value="{{$address->city}}">
-                                        <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
+                                <div class="collapse    <div class="container mt-4">orm-control me-2" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
                                         <button class="btn btn-outline-success" type="submit">Save</button>
                                     </form>
                                 </div>                            

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->unsignedInteger('credits')->default(0);
             $table->enum('permission', ['User', 'Admin'])->default('User');
+            $table->boolean('banned')->default(false);
         });
     }
 

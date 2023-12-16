@@ -110,4 +110,15 @@ class UserController extends Controller
 
         return redirect('/');
     }
+
+    public function index(){
+        $users = User::where('banned', false)->where('permission', 'User')->orderBy('name')->paginate(8);
+
+        $banned = User::where('banned', true)->orderBy('name')->paginate(8);
+
+        return view('users.index', [
+            'users' => $users,
+            'banned' => $banned
+        ]);
+    }
 }

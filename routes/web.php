@@ -78,7 +78,7 @@ Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 //not implemented yet
 Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
-Route::put('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
+Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
 //
 
 //Address
