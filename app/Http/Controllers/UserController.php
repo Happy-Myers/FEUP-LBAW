@@ -114,7 +114,6 @@ class UserController extends Controller
 
     public function index(){
         $users = User::where('banned', false)->where('permission', 'User')->filter(request(['searchActive']))->orderBy('name')->paginate(8);
-
         $banned = User::where('banned', true)->filter(request(['searchBanned']))->orderBy('name')->paginate(8);
 
         return view('users.index', [

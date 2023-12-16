@@ -5,6 +5,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
 
 <x-layout>
+    @unless($user->banned)
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-8 mx-auto">
@@ -160,5 +161,23 @@
         </section>
     </div>
     @endcan
+    @else
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card2">
+                    <h2 class="card-header">
+                        Profile
+                    </h2>
 
+                    <div class="card-body">
+                        <div class="row">
+                            <h1>This user has been banned</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>            
+    @endunless
 </x-layout>

@@ -92,7 +92,7 @@ class User extends Authenticatable
             $query->where('name', 'ilike', '%' . request('searchActive') . '%');
         }
         else if($filters['searchBanned'] ?? false){
-            $query->where('name', 'ilike', '%' . request('searchBanned' . '%'));
+            $query->where('name', 'ilike', '%' . request('searchBanned') . '%');
         }
     }
 }
