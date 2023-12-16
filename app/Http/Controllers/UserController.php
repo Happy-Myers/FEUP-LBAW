@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class UserController extends Controller
 {
@@ -112,13 +113,25 @@ class UserController extends Controller
     }
 
     public function index(){
-        $users = User::where('banned', false)->where('permission', 'User')->orderBy('name')->paginate(8);
+        $users = User::where('banned', false)->where('permission', 'User')->filter(request(['searchActive']))->orderBy('name')->paginate(8);
 
-        $banned = User::where('banned', true)->orderBy('name')->paginate(8);
+        $banned = User::where('banned', true)->filter(request(['searchBanned']))->orderBy('name')->paginate(8);
 
         return view('users.index', [
             'users' => $users,
             'banned' => $banned
         ]);
+    }
+
+    public function toggle_ban(User $user){
+        try{
+            $this->authorize('isAdmin', User::class);
+        } catch(AuthorizationException $e){
+            return back()->with('message', 'You are not allowed to ban/unban users');
+        }
+        $change['banned'] = !$user->banned;
+        $user->update($change);
+        
+        return back()->with('message', 'User successfully banned/unbanned');
     }
 }

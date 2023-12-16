@@ -27,7 +27,8 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
-        'image'
+        'image',
+        'banned'
     ];
 
     /**
@@ -84,5 +85,14 @@ class User extends Authenticatable
 
     public function hasRole($role): bool {
         return $this->permission == $role;
+    }
+
+    public function scopeFilter($query, array $filters){
+        if($filters['searchActive'] ?? false){
+            $query->where('name', 'ilike', '%' . request('searchActive') . '%');
+        }
+        else if($filters['searchBanned'] ?? false){
+            $query->where('name', 'ilike', '%' . request('searchBanned' . '%'));
+        }
     }
 }

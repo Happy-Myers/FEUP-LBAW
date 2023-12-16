@@ -6,9 +6,9 @@
             <h2>Active Users</h2>
             
             {{-- Search Bar for Active Users --}}
-            <form method="get" action="admin/users">
+            <form method="get" action="/admin/users">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search Active Users" name="search" value="{{ request('search') }}">
+                    <input type="text" class="form-control" placeholder="Search Active Users" name="searchActive" value="{{ request('search') }}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">Search</button>
                     </div>
@@ -25,9 +25,9 @@
                 <tbody>
                     @foreach ($users as $user)
                         <tr>
-                            <td><a href="users/{{$user->id}}">{{ $user->name }}</a></td>
+                            <td><a href="/users/{{$user->id}}">{{ $user->name }}</a></td>
                             <td>
-                                <form method="post" action="users/{{$user->id}}">
+                                <form method="post" action="/users/{{$user->id}}">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="btn btn-danger">Ban</button>
@@ -44,9 +44,9 @@
             <h2>Banned Users</h2>
 
             {{-- Search Bar for Banned Users --}}
-            <form method="get" action="admin/users">
+            <form method="get" action="/admin/users">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search Banned Users" name="search" value="{{ request('search') }}">
+                    <input type="text" class="form-control" placeholder="Search Banned Users" name="searchBanned" value="{{ request('search') }}">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="submit">Search</button>
                     </div>
@@ -63,9 +63,9 @@
                 <tbody>
                     @foreach ($banned as $user)
                         <tr>
-                            <td><a href="users/{{$user->id}}">{{ $user->name }}</a></td>
+                            <td><a href="/users/{{$user->id}}">{{ $user->name }}</a></td>
                             <td>
-                                <form method="post" action="users/{{$user->id}}">
+                                <form method="post" action="/users/{{$user->id}}">
                                     @csrf
                                     @method('PATCH')
                                     <button type="submit" class="btn btn-success">Unban</button>
