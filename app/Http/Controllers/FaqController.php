@@ -13,8 +13,4 @@ class FaqController extends Controller
                'faqs' => $faqs
           ]);
      }
-
-     public function show() {
-
-     }
 }

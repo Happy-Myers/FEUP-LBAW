@@ -37,7 +37,7 @@
                <p><strong>Community Engagement:</strong> We believe in fostering a vibrant gaming community. Follow us on social media for updates, discussions, and exciting gaming events!</p>
           </section>
      </div>
-    <img src="images/about/snorlax.jpg" alt="pic" class="separators">
+     <img src="images/about/snorlax.jpg" alt="pic" class="separators">
      <div class="about">
           <h1 class="abouttittles">What Sets Us Apart</h1>
           <p><strong>Wide Selection:</strong> Discover the latest and greatest video game releases as well as timeless classics. Our catalog is regularly updated to ensure you find exactly what you're looking for.</p>
