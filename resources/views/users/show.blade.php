@@ -27,7 +27,7 @@
                         <div class="row">
                             <div class="profile-pic col">
                                 <!-- Profile Picture -->
-                                <img src="{{ asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png') }}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                <img src="{{ asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png') }}" alt="Profile Picture" class="img-fluid rounded" style="max-width: 20em; max-height: 20em; width: auto; height: auto;">
                             </div>
                             <div class="details2 col">
                                 <!-- User Details -->
@@ -73,30 +73,40 @@
                         </button>
                     </div>
                     @foreach($user->addresses as $address)
-                        <div class="card-body">
-                            <div class="address-box">
-                                <h5>{{ $address->label }}</h5>
-                                <p>{{ $address->street }} {{ $address->city }} {{ $address->postal_code }}</p>
-                                <button class="btn btn-secondary btn-sm mb-1" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress" aria-controls="editAddress" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
-                                <div class="collapse navbar-collapse justify-content-between" id="editAddress">
-                                    <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
-                                        @csrf
-                                        @method('PUT')
-                                        <input class="form-control me-2" type="text" name="label" placeholder="Label" value="{{$address->label}}">
-                                        <input class="form-control me-2" type="text" name="street" placeholder="Address" value="{{$address->street}}">
-                                        <input class="form-control me-2" type="text" name="city" placeholder="City" value="{{$address->city}}">
-                                        <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
-                                        <button class="btn btn-outline-success" type="submit">Save</button>
-                                    </form>
-                                </div>                            
-                                <form method="post" action="/addresses/{{ $address->id }}"> 
+                    <div class="card-body">
+                        <div class="address-box">
+                            <h5>{{ $address->label }}</h5>
+                            <p>{{ $address->street }}, {{ $address->city }}, {{ $address->postal_code }}</p>
+                
+                            <!-- Edit and Remove Buttons -->
+                            <div class="d-flex mb-2">
+                                <!-- Edit Button -->
+                                <button class="btn btn-secondary btn-sm mb-1 me-1" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress{{$address->id}}" aria-controls="editAddress{{$address->id}}" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
+                
+                                <!-- Remove Button -->
+                                <form method="post" action="/addresses/{{ $address->id }}" class="mb-1">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-secondary btn-sm"> Remove </button>
-                                </form> 
+                                </form>
+                            </div>
+                
+                            <!-- Edit Address Form (Collapsed by Default) -->
+                            <div class="collapse" id="editAddress{{$address->id}}">
+                                <form class="d-flex flex-row" method="post" action="/addresses/{{$address->id}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input class="form-control me-2 mb-1" type="text" name="label" placeholder="Label" value="{{$address->label}}">
+                                    <input class="form-control me-2 mb-1" type="text" name="street" placeholder="Address" value="{{$address->street}}">
+                                    <input class="form-control me-2 mb-1" type="text" name="city" placeholder="City" value="{{$address->city}}">
+                                    <input class="form-control me-2 mb-1" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
+                                    <button class="btn btn-outline-success" type="submit">Save</button>
+                                </form>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
+                
                     <div class="collapse navbar-collapse justify-content-between" id="addAddress">
                         <form class="d-flex mx-auto" method="post" action="/addresses">
                             @csrf
