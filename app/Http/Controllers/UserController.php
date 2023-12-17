@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Events\UserBanned;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class UserController extends Controller
@@ -21,6 +23,12 @@ class UserController extends Controller
         $rememberMe = request()->has('remember');
 
         if(auth()->attempt($formFields, $rememberMe)){
+            $user = auth()->user();
+
+            if($user->banned){
+                auth()->logout();
+                throw ValidationException::withMessages(['email' => 'Your account has been banned']);
+            }
 
             request()->session()->regenerate();
 
@@ -128,8 +136,7 @@ class UserController extends Controller
         } catch(AuthorizationException $e){
             return back()->with('message', 'You are not allowed to ban/unban users');
         }
-        $change['banned'] = !$user->banned;
-        $user->update($change);
+        $user->update(['banned' => !$user->banned]);
         
         return back()->with('message', 'User successfully banned/unbanned');
     }
