@@ -395,9 +395,6 @@ th, td {
   margin: 0 2em;
 }
 
-
-
-
 .aux {
   color: white;
   display: flex;
@@ -558,6 +555,48 @@ hr {
   color: transparent;
 }
 
+#profile_review {
+  color: white;
+  background-color: var(--black);
+  padding: 1.5em;
+  max-width: 53.5em;
+  width: 100%;
+  margin: 0.5em auto;
+  border: 0.1em solid var(--grey-blue);
+  overflow: hidden;
+}
 
+.star-icon {
+  color: gold;
+}
 
+.reviews {
+  max-width: 53.5em;
+  width: 100%;
+  margin: auto;
+}
+
+.username {
+  font-size: 2em;
+  display: flex;
+  color: white;
+  justify-content: left;
+  margin: 0.5em 0 0 0.5em;
+}
+
+.card-title {
+  margin-bottom: 0.5em;
+}
+
+.date-span {
+  margin-right: 0.5em;
+}
+
+.info {
+  margin-bottom: 0;
+}
+
+.info p {
+  margin: 0;
+}
 

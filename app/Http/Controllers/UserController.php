@@ -67,10 +67,12 @@ class UserController extends Controller
     
     public function show(User $user) {
         $purchases = $user->purchases;
+        $reviews = $user->reviews;
 
         return view('users.show', [
             'user'=>$user,
-            'purchases'=>$purchases
+            'purchases'=>$purchases,
+            'reviews'=>$reviews
         ]);
     }
 

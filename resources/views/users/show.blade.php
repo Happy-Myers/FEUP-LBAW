@@ -1,5 +1,15 @@
 @php
     use Carbon\Carbon;
+
+    function displayStars($score) {
+        $fullStars = floor($score);
+        $halfStar = ceil($score - $fullStars);
+        $emptyStars = 5 - $fullStars - $halfStar;
+
+        for ($i = 0; $i < $fullStars; $i++) { echo '<i class="fas fa-star star-icon"></i>'; }
+        if ($halfStar) { echo '<i class="fas fa-star-half-alt star-icon"></i>'; }
+        for ($i = 0; $i < $emptyStars; $i++) { echo '<i class="far fa-star star-icon"></i>'; }
+    }
 @endphp
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -22,12 +32,15 @@
                             <div class="details2 col">
                                 <!-- User Details -->
                                 <h3 class="mb-2">{{ $user->name }}</h3>
+                                @if(auth()->id() != $user->id)
+                                <p class="mb-0">Client status: {{ $user->permission }}</p>
+                                @endif
+                                @auth
+                                @if(auth()->id() == $user->id)
                                 <p class="mb-0">Phone Number:</p>
                                 <p class="mb-2">{{ $user->phone_number }}</p>
                                 <p class="mb-0">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
-                                @auth
-                                @if(auth()->id() == $user->id)
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
@@ -176,4 +189,30 @@
     @endif
     @endauth
 
+    <div class=reviews>
+        <div class="username">
+            {{$user->name}}'s reviews
+        </div>
+        @foreach($user->reviews as $review)
+            <div id="profile_review">
+                <h5 class="card-title">{{ $review->product->name }}</h5>                              
+                <section class="info">
+                <p>    
+                    Date: 
+                    <span class="date-span">{{ \Carbon\Carbon::parse($review->date)->format('d/m/Y') }}</span>
+                    Score:
+                    <span class="stars">
+                        @php displayStars($review->score) @endphp
+                    </span>
+                </p>
+                <p>
+                    @if (!empty($review->comment))
+                        Comment: {{ $review->comment }}
+                    @endif
+                </p>    
+                </section>
+            </div>
+        @endforeach
+    </div>
+    
 </x-layout>

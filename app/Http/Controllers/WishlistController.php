@@ -22,7 +22,7 @@ class WishlistController extends Controller {
             return back()->with('message', 'Product is already in wishlist.');
         }
 
-        return back();
+        return back()->with('message','Product added to wishlist.');
     }
 
     public function destroy(Product $product){  
