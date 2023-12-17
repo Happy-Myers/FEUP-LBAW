@@ -44,7 +44,7 @@ class UserController extends Controller
 
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('message', 'You have been logged out.');
     }
 
     public function forgot_password(){
@@ -109,7 +109,7 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Registration successful! Welcome.');
     }
     
     public function show(User $user) {
@@ -131,7 +131,8 @@ class UserController extends Controller
         $formFields = request()->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email'],
-            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9']
+            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg']
         ]);
 
         if(request()->hasFile('image')){
@@ -140,7 +141,7 @@ class UserController extends Controller
 
         auth()->user()->update($formFields);
 
-        return redirect("users/" . auth()->id());
+        return redirect("users/" . auth()->id())->with('message', 'Profile updated!');
     }
 
     public function destroy(){
@@ -155,6 +156,6 @@ class UserController extends Controller
         request()->session()->regenerateToken();
 
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Your account has been deleted!');
     }
 }

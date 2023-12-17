@@ -49,7 +49,7 @@
                 @endforeach
             </h6>
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-3 buttons"> <!-- Falta adicionar função aos botões -->
+        <div class="d-flex justify-content-center align-items-center mt-3 buttons">
           <form method="POST" action="/cart/{{$product->id}}">
             @csrf
             <button type="submit" class="btn btn-primary buy me-2">Add To Cart</button>
@@ -60,20 +60,20 @@
           </form>
         </div>
     </div>
-    <div class="container mt-5">
+    <div>
       @auth
         @unless ($hasCommented)
           <x-review-form :product="$product->id"/>
         @endunless
       @endauth
       @unless(count($reviews) == 0)
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card bg-dark text-white border border-white ms-5 me-5 mt-4 mb-4">
+        <div>
+          <div>
+            <div>
         @foreach ($reviews as $review)
                 <x-review :review="$review"/> 
                 @if(!$loop->last) 
-                  <hr />
+                  <hr/>
                 @endif
         @endforeach
             </div>

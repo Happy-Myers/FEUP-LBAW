@@ -9,6 +9,8 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\FaqController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -78,3 +80,7 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+
+// Faq & About
+Route::get('/faqs', [FaqController::class, 'index']);
+Route::get('/about', function () { return view('users.about'); });

@@ -100,3 +100,34 @@ document.addEventListener('DOMContentLoaded', function() {
         charCount.textContent = remaining;
     });
 });
+
+function addToCart() {
+    const form = document.querySelector('.add-to-cart-form');
+    submitForm(form);
+}
+
+function addToWishlist() {
+    const form = document.querySelector('.add-to-wishlist-form');
+    submitForm(form);
+}
+
+function submitForm(form) {
+    fetch(form.action, {
+        method: form.method,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-TOKEN': form.querySelector('input[name="_token"]').value,
+        },
+        body: new URLSearchParams(new FormData(form)).toString(),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Handle success, e.g., show a success message
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+        // Handle error, e.g., show an error message
+    });
+}

@@ -7,7 +7,7 @@
 <x-layout>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-8 mx-auto">
+            <div>
                 <div class="card2">
                     <h2 class="card-header">
                         Profile
@@ -127,8 +127,8 @@
 
     @auth
     @if(auth()->id() == $user->id)
-    <div class="history">
-        <h4 class="text-white">Your Shopping History</h4>
+    <div class="col-md-8 mx-auto history">
+        <h4 class="text-white ms-2">Your Shopping History</h4>
         <section class="d-flex justify-content-around">
             <table class="table">
                 <thead>
