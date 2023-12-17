@@ -7,10 +7,12 @@ use App\Models\User;
 use App\Models\Review;
 use App\Models\Address;
 use App\Models\Product;
+use App\Models\Purchase;
 use App\Policies\UserPolicy;
 use App\Policies\ReviewPolicy;
 use App\Policies\AddressPolicy;
 use App\Policies\ProductPolicy;
+use App\Policies\PurchasePolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +27,7 @@ class AuthServiceProvider extends ServiceProvider
         Review::class => ReviewPolicy::class,
         Product::class => ProductPolicy::class,
         User::class => UserPolicy::class,
+        Purchase::class => PurchasePolicy::class,
     ];
 
     /**

@@ -66,10 +66,8 @@ Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->mi
 
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
-//// not implemented yet
 Route::get('/admin/orders', [PurchaseController::class, 'index'])->middleware('admin');
 Route::patch('/admin/orders/{purchase}', [PurchaseController::class, 'update'])->middleware('admin');
-//
 
 //User
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
