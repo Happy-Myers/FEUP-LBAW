@@ -40,6 +40,12 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
+//Reset Password
+Route::get('/forgot-password', [UserController::class, 'forgot_password'])->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [UserController::class, 'send_recovery_email'])->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', [UserController::class, 'reset_password'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [UserController::class, 'change_password'])->middleware('guest');
+
 // Products
 Route::get('/', [ProductController::class, 'index']);
 Route::get('/products/{product}', [ProductController::class, 'show']);
