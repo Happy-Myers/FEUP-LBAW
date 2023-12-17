@@ -15,8 +15,12 @@ class AddressController extends Controller
             return back()->with('message', 'You are not allowed to delete this');
         }
         
-
-        $address->delete();
+        if($address->purchases()->exists()){
+            $address->delete();   
+        }
+        else{
+            $address->forceDelete();
+        }
         return back();
     }
     public function update(Address $address){
