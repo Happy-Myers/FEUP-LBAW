@@ -7,8 +7,15 @@ use App\Models\Category;
 class ProductController extends Controller {
 
     public function index(){
+        $search = request()->input('search');
+        if(empty($search)){
+            $otherProducts = Product::latest()->filter(request(['category']))->paginate(8);
+        }
+        else{
+           $otherProducts = Product::search(request(['search']))->paginate(8); 
+        }
         $topProducts = Product::orderBy('score', 'desc')->take(4)->get();
-        $otherProducts = Product::latest()->filter(request(['category', 'search']))->paginate(8);
+        
         $categories = Category::all();
     
         return view('products.index', [

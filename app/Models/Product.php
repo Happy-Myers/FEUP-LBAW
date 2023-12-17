@@ -13,6 +13,8 @@ class Product extends Model
 
     protected $fillable = ['name', 'stock', 'price', 'score', 'description', 'hardware', 'publication_date'];
 
+    protected $searchable = ['name', 'description'];
+
     public function platform(): BelongsTo{
         return $this->belongsTo(Platform::class);
     }
@@ -37,22 +39,14 @@ class Product extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function scopeFilter($query, array $filters){
+    public function scopeSearch($query, $terms){
+        return $query->whereRaw("tsvectors @@ plainto_tsquery('english', ?)", [$terms]);
+    }
+
+    public function scopeFilter($query, $filters){
         if($filters['category'] ?? false){
             $query->whereHas('categories', function($query){
                 $query->where('name', 'ilike', '%' . request('category') . '%');
-            });
-        }
-
-        if($filters['search'] ?? false){
-            $query->where(function ($query) {
-                $query->where('name', 'ilike', '%' . request('search') . '%')
-                    ->orWhere('description', 'ilike', '%' . request('search') . '%')
-                    ->orWhereHas('platform', function($query){
-                        $query->where('name','ilike', '%' .request('search') . '%');})
-                    ->orWhereHas('categories', function($query){
-                        $query->where('name','ilike', '%' .request('search') . '%');
-                    });
             });
         }
     }
