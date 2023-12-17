@@ -46,9 +46,9 @@ Route::get('/products/{product}', [ProductController::class, 'show']);
 ///// not implemented yet
 Route::get('/admin/products', [ProductController::class, 'manage'])->middleware('admin');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->middleware('admin');
-Route::get('/admin/products/{product}', [ProductController::class, 'edit'])->middleware('admin');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware('admin');
 Route::put('products/{product}', [ProductController::class, 'update'])->middleware('admin');
-Route::get('/admin/products/new', [ProductController::class, 'create'])->middleware('admin');
+Route::get('/products/new', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/products', [ProductController::class, 'store'])->middleware('admin');
 //
 
@@ -75,7 +75,7 @@ Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth')
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile');
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
-Route::put('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
+Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
 
 
 //Address
