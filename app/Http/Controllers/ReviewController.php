@@ -26,7 +26,7 @@ class ReviewController extends Controller
         else
             $review->update($formFields);
 
-        return back();
+        return back()->with('message', 'Review has been saved!');
     }
 
     public function destroy(Review $review){
@@ -35,6 +35,6 @@ class ReviewController extends Controller
         }
 
         $review->delete();
-        return back();
+        return back()->with('message', 'Review has been deleted!');
     }
 }

@@ -10,7 +10,7 @@ class PurchaseController extends Controller
         $user = auth()->user();
 
         if(!$user->addresses->first()){
-            return back()->with('message', 'You need to register an address to be able to checkout');
+            return back()->with('message', 'You need to add an address to checkout!');
         }
 
         $cart = $user->cart;
@@ -35,6 +35,6 @@ class PurchaseController extends Controller
         
         $user->cart()->detach();
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Purchase has been completed!');
     }
 }

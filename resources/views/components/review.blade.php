@@ -6,8 +6,7 @@
     $user = $review->user;
 @endphp
 
-
-<div class="card-body">
+<div class="review">
     <div class="d-flex align-items-center">
         <img src="{{asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png')}}" alt="Reviewer" class="img-fluid rounded-circle" style="width: 50px;">
         <div class="ms-3">
@@ -54,4 +53,3 @@
         </p>
     </div>
 </div>
-        

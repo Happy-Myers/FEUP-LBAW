@@ -1,9 +1,9 @@
 @props(['product'])
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card bg-dark text-white border border-white ms-5 me-5 mt-1 mb-2">
-            <div class="card-body">
+<div>
+    <div>
+        <div>
+            <div class="review">
                 <form method="POST" action="/reviews" id="reviewForm">
                     @csrf
                     <input type="hidden" name="product_id" value="{{$product}}"/>

@@ -14,7 +14,7 @@ class AddressController extends Controller
         }
 
         $address->delete();
-        return back();
+        return back()->with('message', 'Address has been deleted!');
     }
     public function update(Address $address){
         if($address->user_id != auth()->id()){
@@ -30,7 +30,7 @@ class AddressController extends Controller
 
         $address->update($formFields);
 
-        return back();
+        return back()->with('message', 'Address has been updated!');
     }
     public function store(){
         $formFields = request()->validate([
@@ -43,7 +43,7 @@ class AddressController extends Controller
 
         Address::create($formFields);
 
-        return back();
+        return back()->with('message', 'Address has been added!');
     }
 }
 

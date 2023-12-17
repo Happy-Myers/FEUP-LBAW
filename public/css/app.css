@@ -528,3 +528,36 @@ section {
   margin: 0 auto;
   padding: 0 0.5em;
 }
+
+.message {
+  position: fixed; 
+  bottom: 2em; 
+  right: 2em; 
+  background-color: var(--dark-blue); 
+  color: #fff; 
+  padding: 1em 1.5em;
+  border-radius: 0.5em; 
+  z-index: 999;
+  font-size: 1.2em;
+  border: 0.1em solid var(--grey-blue);
+  padding-bottom: 0.5em;
+}
+
+.review {
+  color: white;
+  background-color: var(--black);
+  padding: 1em;
+  max-width: 75em;
+  width: 100%;
+  margin: auto;
+  border: 0.05em solid var(--grey-blue);
+  overflow: hidden;
+}
+
+hr {
+  color: transparent;
+}
+
+
+
+
