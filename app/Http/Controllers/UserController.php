@@ -44,6 +44,34 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    public function forgot_password(){
+        return view('users.forgot_password');
+    }
+
+    public function send_recovery_email(){
+        $formFields = request()->validate([
+            'email' => ['required', 'email', 'exists:users,email'],
+        ]);
+        return redirect('/users/reset-password')->with('status', 'Recovery email sent successfully');
+    }
+
+    public function reset_password(){
+        return view('users.reset_password');
+    }
+
+    public function change_password(){
+        $formFields = request()->validate([
+            'password' => ['required', 'confirmed', 'min:6']
+        ]);
+    
+        $user = Auth::user();
+        $user->update([
+            'password' => bcrypt($formFields['password']),
+        ]);
+
+        return redirect('/login');
+    }
+
     public function create(){
         return view('users.register');
     }
