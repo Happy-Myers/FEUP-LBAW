@@ -3,8 +3,10 @@
         <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-fluid" style="max-height: 300px;">
     </div>
     <div class="container mb-4">
-        <form method = "POST" action = "/users/reset-password" class="col-md-4 mx-auto" id="auth">
+        <form method = "POST" action = "/reset-password" class="col-md-4 mx-auto" id="auth">
             @csrf
+            <input type="hidden" name="email" value="{{request('email')}}"/>
+            <input type="hidden" name="token" value="{{$token}}"/>
             <div class="mb-3">
               <label for="password" class="form-label text-white">Password</label>
               <input type="password" name="password" class="form-control">

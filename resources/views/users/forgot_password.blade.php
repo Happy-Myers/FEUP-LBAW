@@ -3,7 +3,7 @@
         <img src="{{asset('images/logo.png')}}" alt="Logo" class="img-fluid" style="max-height: 300px;">
     </div>
     <div class="container mb-4">
-        <form method = "POST" action = "/users/send-recovery-email" class="col-md-4 mx-auto">
+        <form method = "POST" action = "/forgot-password" class="col-md-4 mx-auto">
             @csrf
             <div class="mb-3">
               <label for="email" class="form-label text-white">Email</label>
