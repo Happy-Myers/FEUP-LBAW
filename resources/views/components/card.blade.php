@@ -10,7 +10,7 @@
                </h5>
                <div class="product-info mt-2">
                     <a href="{{ url('products/'.$product->id) }}">
-                         <img src="{{ asset('images/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                         <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                     </a>
 
                     <div class="d-flex justify-content-center align-items-center mt-3 text-white">

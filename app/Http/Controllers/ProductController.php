@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class ProductController extends Controller {
@@ -100,12 +102,16 @@ class ProductController extends Controller {
         $product->categories()->sync($newCategoryIds);
     
         if (request()->hasFile('image')) {
+            if(Str::contains($product->image, 'products/'))
+                Storage::disk('public')->delete($product->image);
             $formFields['image'] = request()->file('image')->store('products', 'public');
             $product->image = $formFields['image'];
             $product->save();
         }
     
         if (request()->hasFile('image2')) {
+            if(Str::contains($product->image2, 'products/'))
+                Storage::disk('public')->delete($product->image2);
             $formFields['image2'] = request()->file('image2')->store('products', 'public');
             $product->image2 = $formFields['image2'];
             $product->save();

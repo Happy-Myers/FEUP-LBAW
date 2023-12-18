@@ -11,7 +11,7 @@
           </form>
      </td>
      <td class="cart-entry">
-          <img src="{{asset('images/products/' . $wishlist->image)}}" alt="{{$wishlist->name}}" style="width:150px"/>
+          <img src="{{asset('storage/' . $wishlist->image)}}" alt="{{$wishlist->name}}" style="width:150px"/>
      </td>
      
      <td class="cart-entry">
