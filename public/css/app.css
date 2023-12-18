@@ -405,3 +405,105 @@ th, td {
   align-items: center;
   justify-content: center;
 }
+
+#main-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 5em;
+  margin-bottom: 2em;
+  color: white;
+}
+
+#main-block p a {
+  background-color: var(--black);
+  border: 0.1em solid var(--grey);
+  border-radius: 1.2em;
+  padding: 0.5em 1.5em;
+  color: var(--grey);
+}
+
+#main-block p a:hover {
+  background-color: var(--grey-blue);
+  border: 0.1em solid var(--blue);
+  border-radius: 1.2em;
+  padding: 0.5em 1.5em;
+  color: var(--blue);
+  transition: 0.3s;
+}
+
+#main-block p {
+  margin-bottom: 2em;
+}
+
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.dashboard-list {
+  list-style: none;
+  display: flex;
+}
+
+.dashboard-list li {
+  margin: 0 0.5em;
+}
+
+.admin-btn {
+  text-decoration: none;
+  color: white;
+  background-color: var(--grey-blue);
+  padding: 1.5em;
+  border-radius: 1em;
+  border: 0.1em solid var(--dark-blue);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s, color 0.3s, border 1s;
+  width: 100%;
+}
+
+.admin-btn:hover {
+  background-color: var(--dark-blue);
+  color: var(--blue);
+  border: 0.1em solid var(--black);
+}
+
+.text-container {
+  flex-grow: 1;
+}
+
+.admin-btn img {
+  height: 6em;
+  width: 6em;
+  margin-left: 1em;
+}
+
+.admin-btn h2, .admin-btn h5 {
+  margin: 0;
+}
+
+.admin-title {
+  margin-top: 1em;
+  text-align: center;
+  color: white;
+}
+
+#product-a {
+  text-align: center;
+}
+
+#product-a a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+
+
+
+
