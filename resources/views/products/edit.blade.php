@@ -11,7 +11,7 @@
               @enderror
             </div>
             <div class="mb-3">
-              <label for="price" class="form-label text-white">price</label>
+              <label for="price" class="form-label text-white">Price</label>
               <input type="text" name="price" class="form-control" value="{{$product->price}}" min="1">
               @error('price')
               <p class = "text-danger">{{$message}}</p>

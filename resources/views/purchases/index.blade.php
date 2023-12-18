@@ -1,38 +1,38 @@
 <x-layout>
     <div class="container text-white">
-        <h1>Order Management</h1>
+        <h1 class="mt-2">Order Management</h1>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Username</th>
-                    <th>Address</th>
-                    <th>Product Name</th>
-                    <th>Amount Bought</th>
-                    <th>Total Price</th>
-                    <th>Delivery Progress</th>
+                    <th class="center-text">Username</th>
+                    <th class="center-text">Address</th>
+                    <th class="center-text">Product Name</th>
+                    <th class="center-text">Amount Bought</th>
+                    <th class="center-text">Total Price</th>
+                    <th class="center-select">Delivery Progress</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($purchases as $purchase)
                     <tr>
-                        <td>
+                        <td class="center-text">
                             @if($purchase->user!= NULL)
                                 <a href="/users/{{$purchase->user->id}}">{{$purchase->user->name}}</a>
                             @else
                                 Deleted User
                             @endif
                         </td>
-                        <td>{{ $purchase->address->street }} {{ $purchase->address->city }} {{ $purchase->address->postal_code }} </td>
-                        <td>
+                        <td class="center-text">{{ $purchase->address->street }}, {{ $purchase->address->city }}, {{ $purchase->address->postal_code }} </td>
+                        <td class="center-text">
                             @if($purchase->product != NULL)
                                 <a href="/products/{{$purchase->product->id}}">{{$purchase->product->name}}</a>
                             @else
                                 Deleted Product
                             @endif
                         </td>
-                        <td>{{ $purchase->quantity }}</td>
-                        <td>{{ $purchase->total }}</td>
-                        <td>
+                        <td class="center-text">{{ $purchase->quantity }}</td>
+                        <td class="center-text">{{ $purchase->total }}</td>
+                        <td class="center-select">
                             <form method="post" action="/admin/orders/{{$purchase->id}}">
                                 @csrf
                                 @method('patch')
