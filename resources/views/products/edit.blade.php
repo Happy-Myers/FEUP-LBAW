@@ -12,7 +12,7 @@
             </div>
             <div class="mb-3">
               <label for="price" class="form-label text-white">price</label>
-              <input type="number" name="price" class="form-control" value="{{$product->price}}" min="1">
+              <input type="text" name="price" class="form-control" value="{{$product->price}}" min="1">
               @error('price')
               <p class = "text-danger">{{$message}}</p>
               @enderror
@@ -35,13 +35,15 @@
                 <p class = "text-danger">{{$message}}</p>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="categories" class="form-label text-white">Categories</label>
-                <select name="categories[]" class="form-control" multiple>
-                    @foreach(App\Models\Category::all() as $category)
-                        <option value="{{$category->id}}"{{in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'selected' : ''}}>{{$category->name}}</option>
-                    @endforeach
-                </select>
+            <div class="mb-3 text-white">
+                <label>Categories</label>
+                <div>
+                    @foreach (App\Models\Category::all() as $category)
+                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}" {{in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'checked' : ''}}/>
+                        <label class="form-check-label">{{$category->name}}</label>
+                    @endforeach                    
+                </div>
+
                 @error('categories')
                 <p class = "text-danger">{{$message}}</p>
                 @enderror

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class ProductController extends Controller {
@@ -68,7 +69,51 @@ class ProductController extends Controller {
         ]);
     }
 
-    public function update(Product $product){}
+    public function update(Product $product)
+    {
+        try {
+            $this->authorize('admin', Product::class);
+        } catch (AuthorizationException $e) {
+            return back()->with('message', 'You are not an admin');
+        }
+    
+        $formFields = request()->validate([
+            'name' => ['required', 'string', 'max:200'],
+            'price' => ['required', 'numeric', 'min:0.01'],
+            'description' => ['required', 'string', 'max:300'],
+            'platform' => ['required', 'exists:platforms,id'],
+            'categories' => ['required', 'array'],
+            'categories.*' => ['exists:categories,id'],
+            'image' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'image2' => ['image', 'mimes:jpeg,png,jpg', 'max:2048'],
+        ]);
+    
+        $formFields['price'] = round($formFields['price'], 2);
+    
+        $newPlatformId = $formFields['platform'];
+        $newCategoryIds = $formFields['categories'];
+    
+        $product->update(Arr::except($formFields, ['platform', 'categories']));
+
+        $product->platform()->associate($newPlatformId)->save();
+    
+        $product->categories()->sync($newCategoryIds);
+    
+        if (request()->hasFile('image')) {
+            $formFields['image'] = request()->file('image')->store('products', 'public');
+            $product->image = $formFields['image'];
+            $product->save();
+        }
+    
+        if (request()->hasFile('image2')) {
+            $formFields['image2'] = request()->file('image2')->store('products', 'public');
+            $product->image2 = $formFields['image2'];
+            $product->save();
+        }
+
+        return redirect('/admin/products')->with('message', 'Product updated successfully');
+    }
+    
 
     public function create(){
         try{
