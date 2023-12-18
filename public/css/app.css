@@ -231,41 +231,6 @@ body {
   cursor: not-allowed;
 }
 
-.button1 {
-  padding: 0.5em;
-  color: var(--blue);
-  background-color: var(--grey-blue);
-  border: 0.1em solid var(--blue);
-  border-radius: 0.2em;
-  text-decoration: none;
-}
-
-.button2 {
-  padding: 0.5em;
-  color: red;
-  background-color: #610000;
-  border: 0.1em solid red;
-  border-radius: 0.2em;
-}
-
-.button1 a {
-  text-decoration: none;
-  color: var(--blue);
-}
-
-form {
-  padding: 0 !important;
-}
-
-.checkout {
-  padding: 2em 1em;
-  background-color: var(--black);
-  width: 25em;
-  height: 12em;
-  border: 0.1em solid var(--grey-blue);
-}
-
-
 table, th, td {
   border: 0.1em solid var(--grey-blue);
 }
@@ -600,3 +565,60 @@ hr {
   margin: 0;
 }
 
+label {
+  margin-right: 0.5em;
+}
+
+input[type="radio"] {
+  background-color: #fff;
+  margin-left: 0.5em;
+  width: 1em;
+  height: 1em;
+  border: 0.1em solid var(--blue);
+  border-radius: 50%;
+}
+
+.button1, .button2 {
+  padding: 0.5em;
+  border-radius: 0.2em;
+  text-decoration: none;
+  width: 100%;
+  margin-top: 1em;
+}
+
+.button1 {
+  color: var(--blue);
+  background-color: var(--grey-blue);
+  border: 0.1em solid var(--blue);
+}
+
+.button2 {
+  color: red;
+  background-color: #610000;
+  border: 0.1em solid red;
+}
+
+.button1 a {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+form {
+  padding: 0 !important;
+}
+
+.checkout {
+  padding: 2em 1em;
+  background-color: var(--black);
+  width: 30em;
+  height: auto;
+  border: 0.1em solid var(--grey-blue);
+}
+
+.purchase-buttons {
+  color: white;
+}
+
+section.d-flex {
+  align-items: flex-start;
+}

@@ -131,3 +131,9 @@ function submitForm(form) {
         // Handle error, e.g., show an error message
     });
 }
+
+
+function updateCheckoutForm(radio) {
+    var selectedAddressId = radio.value;
+    document.getElementById('checkoutForm').elements['addressId'].value = selectedAddressId;
+}

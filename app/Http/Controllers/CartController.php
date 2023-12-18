@@ -6,6 +6,7 @@ use App\Models\Product;
 
 class CartController extends Controller {
   public function index(){
+    $addresses = auth()->user()->addresses;
     $carts = auth()->user()->cart;
     $total = 0;
     foreach($carts as $cart){
@@ -14,7 +15,8 @@ class CartController extends Controller {
 
     return view('users.cart', [
       'carts' => $carts,
-      'total' => $total
+      'total' => $total,
+      'addresses' => $addresses
     ]);
   }
   
