@@ -41,7 +41,7 @@ class ProductController extends Controller {
     }
 
     public function manage(){
-        $products = Product::orderBy('id', 'desc')->paginate(10);
+        $products = Product::orderBy('name', 'asc')->paginate(10);
 
         return view('products.manage', [
             'products' => $products,

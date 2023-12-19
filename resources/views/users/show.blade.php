@@ -146,7 +146,7 @@
 
     @can('ownerOrAdmin', $user)
     <div class="history">
-        <h4 class="text-white">Your Shopping History</h4>
+        <h4 class="text-white">{{$user->name}}'s History</h4>
         <section class="d-flex justify-content-around">
             <table class="table">
                 <thead>

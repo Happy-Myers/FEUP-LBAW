@@ -1,6 +1,6 @@
 <x-layout>
      <div class="faq-container">
-         <h1 id="tittle">Frequently Asked Questions</h1>
+         <h1 id="tittle" class="text-white">Frequently Asked Questions</h1>
          <ul class="faq-list">
              @foreach($faqs as $key => $faq)
                  <li class="faq-item">
