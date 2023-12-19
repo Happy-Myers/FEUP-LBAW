@@ -49,7 +49,7 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])->mid
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware('admin');
 Route::put('products/{product}', [ProductController::class, 'update'])->middleware('admin');
 Route::post('/products', [ProductController::class, 'store'])->middleware('admin');
-//
+Route::patch('/admin/products/{product}', [ProductController::class, 'updateStock'])->middleware('admin');
 
 // Cart
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth', 'admin.forbidden');

@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class ProductController extends Controller {
@@ -166,5 +167,28 @@ class ProductController extends Controller {
         
 
         return redirect('/admin/products')->with('message', 'Product created successfully');
+    }
+
+    public function updateStock(Product $product){
+        try{
+            $this->authorize('admin', Product::class);
+        } catch(AuthorizationException $e){
+            return response()->json(['errors' => $e->getMessage()], 403);
+        }
+
+        try{
+            $stock = request()->validate([
+                'stock' => ['required', 'numeric', 'min:0']
+            ]);
+
+            $product->update($stock);
+
+            return response()->json(['message' => 'Stock updated successfully'], 200);
+
+        } catch(ValidationException $e){
+            return response()->json(['errors' => $e->errors()], 422);
+        }
+
+
     }
 }

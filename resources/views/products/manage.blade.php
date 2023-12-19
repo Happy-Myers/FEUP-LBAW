@@ -26,7 +26,9 @@
                             {{$product->categories->pluck('name')->take(2)->implode(', ')}}
                         </td>
                         <td class="text-center">{{ $product->price }}</td>     
-                        <td class="text-center">{{ $product->stock }}</td>
+                        <td class="text-center">
+                            <input type="number" value="{{$product->stock}}" class="stock-input" data-product-id="{{$product->id}}" min="0"/>
+                        </td>
                         <td class="text-center">
                             <a href="/products/{{$product->id}}/edit" class="btn btn-warning">Edit</a>
                             <form action="/products/{{$product->id}}" method="POST" style="display: inline;">
