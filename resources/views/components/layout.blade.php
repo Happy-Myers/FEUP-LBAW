@@ -71,6 +71,25 @@
                                     Profile
                                 </a>
                             </li>
+                            <li class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bell"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                @foreach (auth()->user()->unreadNotifications as $notification)
+                                  <li class="p-2">
+                                    <a href="{{$notification->data['url']}}">{{$notification->data['message']}}</a>
+                                    <p>{{$notification->created_at->diffForHumans()}}</p>
+                                    @if($notification->unread())
+                                      <form method="POST" action="/notifications/{{$notification->id}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-link">Mark as Read</button>
+                                      </form>
+                                    @endif
+                                  </li>
+                                @endforeach                         
+                              </ul> 
+                            </li>
                         @endcan
                           <li class="nav-item">
                               <form method="POST" action="/logout">

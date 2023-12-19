@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
+use App\Notifications\CartNotification;
+use App\Notifications\WishlistNotification;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 
@@ -95,8 +98,15 @@ class ProductController extends Controller {
     
         $newPlatformId = $formFields['platform'];
         $newCategoryIds = $formFields['categories'];
+
+        $originalPrice = $product->price;
     
         $product->update(Arr::except($formFields, ['platform', 'categories']));
+
+        if($originalPrice != $product->price){
+            Notification::send($product->wishlist, new WishlistNotification($product->id));
+            Notification::send($product->carts, new CartNotification($product->id));
+        }
 
         $product->platform()->associate($newPlatformId)->save();
     

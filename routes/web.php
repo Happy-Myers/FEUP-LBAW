@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -10,7 +11,7 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\FaqController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,3 +103,6 @@ Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
 // Faq & About
 Route::get('/faqs', [FaqController::class, 'index']);
 Route::get('/about', function () { return view('users.about'); });
+
+//Notifications
+Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->middleware('auth', 'admin.forbidden');

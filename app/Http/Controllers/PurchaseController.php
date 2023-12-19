@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchase;
+use App\Notifications\OrderNotification;
 use Illuminate\Auth\Access\AuthorizationException;
 
 class PurchaseController extends Controller
@@ -76,6 +77,8 @@ class PurchaseController extends Controller
             'delivery_progress' => ['required', 'in:Processing,Shipped,Delivered'],
         ]);
         $purchase->update($formFields);
+
+        $purchase->user->notify(new OrderNotification());
 
         return back()->with('message', 'Order updated');
     }
