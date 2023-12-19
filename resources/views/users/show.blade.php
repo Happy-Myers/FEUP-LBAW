@@ -41,7 +41,7 @@
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center text-white">
                                                 Edit Profile
                                             </div>
                                         </a>
