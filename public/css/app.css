@@ -394,6 +394,7 @@ th, td {
   transition: 0.3s;
 }
 
+
 #main-block p {
   margin-bottom: 2em;
 }
@@ -799,4 +800,83 @@ section.d-flex {
 .form-label {
   font-size: 1.1em;
   font-weight: bolder;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+  list-style: none;
+  background-color: var(--dark-blue);
+  border: 0.05rem solid var(--black);
+  border-radius: 0.25rem;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.5;
+  color: var(--blue);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-toggle {
+  color: white;
+  background-color: var(--dark-blue);
+  border: 0.1rem solid var(--dark-blue);
+}
+
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+  color: #fff;
+  background-color: var(--blue);
+  border: 0.1rem solid var(--dark-blue);
+}
+
+#notification {
+  text-decoration: none;
+  color: var(--blue);
+}
+
+#notification:hover {
+  color: var(--grey);
+  transition: 0.3s;
+}
+
+.noti-readed {
+  font-size: 0.8em;
+  background-color: var(--black);
+  border: 0.1em solid var(--grey);
+  border-radius: 1.2em;
+  padding: 0.5em 1.5em;
+  color: var(--grey);
+}
+
+.noti-readed:hover {
+  background-color: var(--grey-blue);
+  border: 0.1em solid var(--blue);
+  border-radius: 1.2em;
+  padding: 0.5em 1.5em;
+  color: var(--blue);
+  transition: 0.3s;
 }

@@ -78,12 +78,12 @@
                               <ul class="dropdown-menu">
                                 @foreach (auth()->user()->unreadNotifications as $notification)
                                   <li class="p-2">
-                                    <a href="{{$notification->data['url']}}">{{$notification->data['message']}}</a>
+                                    <a id="notification" href="{{$notification->data['url']}}">{{$notification->data['message']}}</a>
                                     <p>{{$notification->created_at->diffForHumans()}}</p>
                                     @if($notification->unread())
                                       <form method="POST" action="/notifications/{{$notification->id}}">
                                         @csrf
-                                        <button type="submit" class="btn btn-link">Mark as Read</button>
+                                        <button type="submit" class="noti-readed">Mark as Read</button>
                                       </form>
                                     @endif
                                   </li>
