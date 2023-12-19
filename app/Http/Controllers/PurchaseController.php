@@ -23,27 +23,20 @@ class PurchaseController extends Controller
 
         $cart = $user->cart;
 
-        $total = 0;
-
         foreach ($cart as $product) {
-            $total += $product->pivot->quantity * $product->price;
-        }
-
-        $addressId = request()->input('addressId');
-        if (!$user->addresses->contains($addressId)) {
-            return back()->with('message', 'Invalid address selected.');
-        }
-
-        $fields = [
-            'user_id' => $user->id,
-            'total' => $total,
-            'address_id' => $addressId,
-        ];
-
-        $purchase = Purchase::create($fields);
-
-        foreach ($cart as $product) {
-            $purchase->products()->attach($product->id, ['quantity' => $product->pivot->quantity]);
+            $total = $product->pivot->quantity * $product->price;
+            $addressId = request()->input('addressId');
+            if (!$user->addresses->contains($addressId)) {
+                return back()->with('message', 'Invalid address selected.');
+            }
+            $fields = [
+                'user_id' => $user->id,
+                'product_id' => $product->id,
+                'quantity' => $product->pivot->quantity,
+                'total' => $total,
+                'address_id' => $addressId,
+            ];
+            Purchase::create($fields);
         }
 
         $user->cart()->detach();

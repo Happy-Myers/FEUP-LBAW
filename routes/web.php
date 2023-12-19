@@ -10,8 +10,6 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\AddressController;
 use App\Http\Controllers\FaqController;
 
 /*

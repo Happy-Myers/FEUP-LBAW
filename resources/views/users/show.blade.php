@@ -32,19 +32,12 @@
                             <div class="details2 col">
                                 <!-- User Details -->
                                 <h3 class="mb-2">{{ $user->name }}</h3>
-                                @if(auth()->id() != $user->id)
-                                <p class="mb-0">Client status: {{ $user->permission }}</p>
-                                @endif
-                                @auth
-                                @if(auth()->id() == $user->id)
+                                @can('owner', $user)
                                 <p class="mb-0">Phone Number:</p>
                                 <p class="mb-2">{{ $user->phone_number }}</p>
                                 <p class="mb-0">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
-<<<<<<< HEAD
-                                @can('owner', $user)
-=======
->>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
+                                
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
@@ -61,6 +54,8 @@
                                         </button>
                                     </div>
                                 </div>
+                                @else
+                                <p class="mb-0">Client status: {{ $user->permission }}</p>
                                 @endcan
                            </div>
                         </div>
@@ -149,16 +144,9 @@
         </div>
     </div>
 
-<<<<<<< HEAD
     @can('ownerOrAdmin', $user)
     <div class="history">
         <h4 class="text-white">Your Shopping History</h4>
-=======
-    @auth
-    @if(auth()->id() == $user->id)
-    <div class="col-md-8 mx-auto history">
-        <h4 class="text-white ms-2">Your Shopping History</h4>
->>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
         <section class="d-flex justify-content-around">
             <table class="table">
                 <thead>
