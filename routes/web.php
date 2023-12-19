@@ -42,13 +42,12 @@ Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
 // Products
 Route::get('/', [ProductController::class, 'index']);
+Route::get('/products/new', [ProductController::class, 'create'])->middleware('admin');
 Route::get('/products/{product}', [ProductController::class, 'show']);
-///// not implemented yet
 Route::get('/admin/products', [ProductController::class, 'manage'])->middleware('admin');
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->middleware('admin');
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware('admin');
 Route::put('products/{product}', [ProductController::class, 'update'])->middleware('admin');
-Route::get('/products/new', [ProductController::class, 'create'])->middleware('admin');
 Route::post('/products', [ProductController::class, 'store'])->middleware('admin');
 //
 

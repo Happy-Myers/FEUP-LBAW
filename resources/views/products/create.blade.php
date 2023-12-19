@@ -1,25 +1,24 @@
 <x-layout>
     <div class="container mb-4">
-        <form method = "POST" action = "/products/{{$product->id}}" class="col-md-4 mx-auto" id="auth" enctype="multipart/form-data">
+        <form method = "POST" action = "/products" class="col-md-4 mx-auto" id="auth" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="mb-3">
               <label for="name" class="form-label text-white">Name</label>
-              <input type="text" name="name" class="form-control" value="{{$product->name}}">
+              <input type="text" name="name" class="form-control">
               @error('name')
               <p class = "text-danger">{{$message}}</p>
               @enderror
             </div>
             <div class="mb-3">
               <label for="price" class="form-label text-white">Price</label>
-              <input type="text" name="price" class="form-control" value="{{$product->price}}">
+              <input type="text" name="price" class="form-control">
               @error('price')
               <p class = "text-danger">{{$message}}</p>
               @enderror
             </div>
             <div class="mb-3">
               <label for="description" class="form-label text-white">Description</label>
-              <textarea class="form-control" name="description" rows="4" maxlength="300">{{$product->description}}</textarea>
+              <textarea class="form-control" name="description" rows="4" maxlength="300"></textarea>
               @error('description')
               <p class = "text-danger">{{$message}}</p>
               @enderror
@@ -28,7 +27,7 @@
                 <label for="platform" class="form-label text-white">Platform</label>
                 <select name="platform" class="form-control">
                     @foreach(App\Models\Platform::all() as $platform)
-                        <option value="{{$platform->id}}" {{$product->platform == $platform ? 'selected' : ''}}>{{$platform->name}}</option>
+                        <option value="{{$platform->id}}">{{$platform->name}}</option>
                     @endforeach
                 </select>
                 @error('platform')
@@ -39,7 +38,7 @@
                 <label>Categories</label>
                 <div>
                     @foreach (App\Models\Category::all() as $category)
-                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}" {{in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'checked' : ''}}/>
+                        <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}"/>
                         <label class="form-check-label">{{$category->name}}</label>
                     @endforeach                    
                 </div>
@@ -63,7 +62,7 @@
                 @enderror
             </div>
             <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary">Create</button>
             </div>
         </form>
     </div>

@@ -131,5 +131,40 @@ class ProductController extends Controller {
         return view('products.create');
     }
 
-    public function store(){}
+    public function store(){
+        try {
+            $this->authorize('admin', Product::class);
+        } catch (AuthorizationException $e) {
+            return back()->with('message', 'You are not an admin');
+        }
+    
+        $formFields = request()->validate([
+            'name' => ['required', 'string', 'max:200'],
+            'price' => ['required', 'numeric', 'min:0.01'],
+            'description' => ['required', 'string', 'max:300'],
+            'platform' => ['required', 'exists:platforms,id'],
+            'categories' => ['required', 'array'],
+            'categories.*' => ['exists:categories,id'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'image2' => ['required','image', 'mimes:jpeg,png,jpg', 'max:2048'],
+        ]);
+    
+        $formFields['price'] = round($formFields['price'], 2);
+    
+        $product= Product::create(Arr::except($formFields, ['platform', 'categories']));
+
+        $product->platform()->associate($formFields['platform']);
+    
+        $product->categories()->sync($formFields['categories']);
+    
+        $formFields['image'] = request()->file('image')->store('products', 'public');
+        $product->image = $formFields['image'];
+        
+        $formFields['image2'] = request()->file('image2')->store('products', 'public');
+        $product->image2 = $formFields['image2'];
+        $product->save();
+        
+
+        return redirect('/admin/products')->with('message', 'Product created successfully');
+    }
 }
