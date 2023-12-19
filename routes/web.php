@@ -10,6 +10,9 @@ use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AddressController;
+use App\Http\Controllers\FaqController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,12 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 //Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store'])->middleware('guest');
+
+//Reset Password
+Route::get('/forgot-password', [UserController::class, 'forgot_password'])->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [UserController::class, 'send_recovery_email'])->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', [UserController::class, 'reset_password'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [UserController::class, 'change_password'])->middleware('guest');
 
 // Products
 Route::get('/', [ProductController::class, 'index']);
@@ -88,3 +97,7 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middle
 
 //Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
+
+// Faq & About
+Route::get('/faqs', [FaqController::class, 'index']);
+Route::get('/about', function () { return view('users.about'); });

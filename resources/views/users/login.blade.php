@@ -25,6 +25,7 @@
             </div>
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary">Login</button>
+                <a class="button button-outline mt-2 mx-auto" href="/forgot-password">Forgot password?</a>
                 <a class="button button-outline mt-2 mx-auto" href="/register">Don't have an account?</a>
             </div>
         </form>

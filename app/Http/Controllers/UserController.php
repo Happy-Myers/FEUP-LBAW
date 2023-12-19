@@ -7,6 +7,9 @@ use App\Events\UserBanned;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
+use Illuminate\Auth\Events\PasswordReset;
 
 class UserController extends Controller
 {
@@ -50,7 +53,51 @@ class UserController extends Controller
 
         request()->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/')->with('message', 'You have been logged out.');
+    }
+
+    public function forgot_password(){
+        return view('users.forgot_password');
+    }
+
+    public function send_recovery_email(){
+        $formFields = request()->validate([
+            'email' => ['required', 'email', 'exists:users,email'],
+        ]);
+        $status = Password::sendResetLink(
+            request()->only('email')
+        );
+     
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => ($status)])
+                    : back()->withErrors(['email' => ($status)]);
+    }
+
+    public function reset_password(string $token){
+        return view('users.reset_password', ['token'=>$token]);
+    }
+
+    public function change_password(){
+        request()->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => ['required', 'confirmed', 'min:6'],
+        ]);
+        $status = Password::reset(
+            request()->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password)
+                ])->setRememberToken(Str::random(60));
+     
+                $user->save();
+     
+                event(new PasswordReset($user));
+            }
+        );
+        return $status === Password::PASSWORD_RESET
+                    ? redirect('/login')->with('status', __($status))
+                    : back()->withErrors(['email' => [__($status)]]);
     }
 
     public function create(){
@@ -71,15 +118,17 @@ class UserController extends Controller
 
         auth()->login($user);
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Registration successful! Welcome.');
     }
     
     public function show(User $user) {
         $purchases = $user->purchases;
+        $reviews = $user->reviews;
 
         return view('users.show', [
             'user'=>$user,
-            'purchases'=>$purchases
+            'purchases'=>$purchases,
+            'reviews'=>$reviews
         ]);
     }
 
@@ -93,7 +142,8 @@ class UserController extends Controller
         $formFields = request()->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email'],
-            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9']
+            'phone_number' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:9'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg']
         ]);
 
         if(request()->hasFile('image')){
@@ -102,7 +152,7 @@ class UserController extends Controller
 
         auth()->user()->update($formFields);
 
-        return redirect("users/" . auth()->id());
+        return redirect("users/" . auth()->id())->with('message', 'Profile updated!');
     }
 
     public function destroy(){
@@ -117,7 +167,7 @@ class UserController extends Controller
         request()->session()->regenerateToken();
 
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Your account has been deleted!');
     }
 
     public function index(){

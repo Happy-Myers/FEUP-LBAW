@@ -25,8 +25,8 @@
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
         </script>
-        <script type="text/javascript" src={{ asset('js/app.js') }} defer>
-        </script>
+        <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
+        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-lg">
@@ -98,7 +98,8 @@
                     </ul>
                 </div>
             </div>
-        </nav>      
+        </nav>
+        <x-flash-message />      
         <main>
                {{$slot}}
         </main>
@@ -143,10 +144,13 @@
                   <h6 class="text-uppercase fw-bold">Useful links</h6>
                   <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; background-color: #1b2838; height: 2px"/>
                   <p>
-                    <a href="{{auth()->user() ? '/users/' . auth()->id() : '/login'}}" class="text-white">Your Account</a> <!-- mudar link -->
+                    <a href="{{auth()->user() ? '/users/' . auth()->id() : '/login'}}" class="text-white">Your Account</a>
                   </p>
                   <p>
-                    <a href="#!" class="text-white">FAQ</a> <!-- mudar link -->
+                    <a href="/faqs" class="text-white">FAQ</a>
+                  </p>
+                  <p>
+                    <a href="/about" class="text-white">About Us</a>
                   </p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">

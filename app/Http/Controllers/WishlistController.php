@@ -19,14 +19,14 @@ class WishlistController extends Controller {
             $user->wishlist()->attach($product->id);
         }
         else{
-            return back()->with('message', 'product already in wishlist');
+            return back()->with('message', 'Product is already in wishlist.');
         }
 
-        return back();
+        return back()->with('message','Product added to wishlist.');
     }
 
     public function destroy(Product $product){  
         auth()->user()->wishlist()->detach($product->id);
-        return back();
+        return back()->with('message','Product removed from wishlist.');
     }
 }

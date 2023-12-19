@@ -7,31 +7,48 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 class PurchaseController extends Controller
 {
-    public function store(){
+    public function store()
+    {
         $user = auth()->user();
 
-        if(!$user->addresses->first()){
-            return back()->with('message', 'You need to register an address to be able to checkout');
+        $cart = $user->cart;
+
+        if ($cart->isEmpty()) {
+            return redirect('/cart')->with('message', 'Your cart is empty. Add products before checking out!');
+        }
+
+        if (!$user->addresses->first()) {
+            return back()->with('message', 'You need to add an address to checkout!');
         }
 
         $cart = $user->cart;
 
-        foreach($cart as $product){
-            $total = $product->pivot->quantity * $product->price;
-            $fields = [
-                'user_id' => $user->id,
-                'product_id' => $product->id,
-                'quantity' => $product->pivot->quantity,
-                'total' => $total,
-                'address_id' => $user->addresses->first()->id,
-            ];
+        $total = 0;
 
-            Purchase::create($fields);
+        foreach ($cart as $product) {
+            $total += $product->pivot->quantity * $product->price;
         }
-        
+
+        $addressId = request()->input('addressId');
+        if (!$user->addresses->contains($addressId)) {
+            return back()->with('message', 'Invalid address selected.');
+        }
+
+        $fields = [
+            'user_id' => $user->id,
+            'total' => $total,
+            'address_id' => $addressId,
+        ];
+
+        $purchase = Purchase::create($fields);
+
+        foreach ($cart as $product) {
+            $purchase->products()->attach($product->id, ['quantity' => $product->pivot->quantity]);
+        }
+
         $user->cart()->detach();
 
-        return redirect('/');
+        return redirect('/')->with('message', 'Purchase has been completed!');
     }
 
     public function index(){

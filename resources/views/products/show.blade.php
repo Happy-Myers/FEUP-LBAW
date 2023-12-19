@@ -62,20 +62,20 @@
         </div>
         @endcannot
     </div>
-    <div class="container mt-5">
+    <div>
       @auth
         @cannot('comment', [App\Models\Review::class, $hasCommented])
           <x-review-form :product="$product->id"/>
         @endcannot
       @endauth
       @unless(count($reviews) == 0)
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card bg-dark text-white border border-white ms-5 me-5 mt-4 mb-4">
+        <div>
+          <div>
+            <div>
         @foreach ($reviews as $review)
                 <x-review :review="$review"/> 
                 @if(!$loop->last) 
-                  <hr />
+                  <hr/>
                 @endif
         @endforeach
             </div>

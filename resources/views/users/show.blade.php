@@ -1,5 +1,15 @@
 @php
     use Carbon\Carbon;
+
+    function displayStars($score) {
+        $fullStars = floor($score);
+        $halfStar = ceil($score - $fullStars);
+        $emptyStars = 5 - $fullStars - $halfStar;
+
+        for ($i = 0; $i < $fullStars; $i++) { echo '<i class="fas fa-star star-icon"></i>'; }
+        if ($halfStar) { echo '<i class="fas fa-star-half-alt star-icon"></i>'; }
+        for ($i = 0; $i < $emptyStars; $i++) { echo '<i class="far fa-star star-icon"></i>'; }
+    }
 @endphp
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
@@ -7,7 +17,7 @@
 <x-layout>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-8 mx-auto">
+            <div>
                 <div class="card2">
                     <h2 class="card-header">
                         Profile
@@ -17,16 +27,24 @@
                         <div class="row">
                             <div class="profile-pic col">
                                 <!-- Profile Picture -->
-                                <img src="{{ asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png') }}" alt="Profile Picture" class="img-fluid rounded-circle">
+                                <img src="{{ asset($user->image ? 'storage/' . $user->image : 'images/users/no-image.png') }}" alt="Profile Picture" class="img-fluid rounded" style="max-width: 20em; max-height: 20em; width: auto; height: auto;">
                             </div>
                             <div class="details2 col">
                                 <!-- User Details -->
                                 <h3 class="mb-2">{{ $user->name }}</h3>
+                                @if(auth()->id() != $user->id)
+                                <p class="mb-0">Client status: {{ $user->permission }}</p>
+                                @endif
+                                @auth
+                                @if(auth()->id() == $user->id)
                                 <p class="mb-0">Phone Number:</p>
                                 <p class="mb-2">{{ $user->phone_number }}</p>
                                 <p class="mb-0">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
+<<<<<<< HEAD
                                 @can('owner', $user)
+=======
+>>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
@@ -57,30 +75,40 @@
                         </button>
                     </div>
                     @foreach($user->addresses as $address)
-                        <div class="card-body">
-                            <div class="address-box">
-                                <h5>{{ $address->label }}</h5>
-                                <p>{{ $address->street }} {{ $address->city }} {{ $address->postal_code }}</p>
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress" aria-controls="editAddress" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
-                                <div class="collapse navbar-collapse justify-content-between" id="editAddress">
-                                    <form class="d-flex mx-auto" method="post" action="/addresses/{{$address->id}}">
-                                        @csrf
-                                        @method('PUT')
-                                        <input class="form-control me-2" type="text" name="label" placeholder="Label" value="{{$address->label}}">
-                                        <input class="form-control me-2" type="text" name="street" placeholder="Address" value="{{$address->street}}">
-                                        <input class="form-control me-2" type="text" name="city" placeholder="City" value="{{$address->city}}">
-                                        <input class="form-control me-2" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
-                                        <button class="btn btn-outline-success" type="submit">Save</button>
-                                    </form>
-                                </div>                            
-                                <form method="post" action="/addresses/{{ $address->id }}"> 
+                    <div class="card-body">
+                        <div class="address-box">
+                            <h5>{{ $address->label }}</h5>
+                            <p>{{ $address->street }}, {{ $address->city }}, {{ $address->postal_code }}</p>
+                
+                            <!-- Edit and Remove Buttons -->
+                            <div class="d-flex mb-2">
+                                <!-- Edit Button -->
+                                <button class="btn btn-secondary btn-sm mb-1 me-1" type="button" data-bs-toggle="collapse" data-bs-target="#editAddress{{$address->id}}" aria-controls="editAddress{{$address->id}}" aria-expanded="false" aria-label="Toggle navigation"> Edit </button>
+                
+                                <!-- Remove Button -->
+                                <form method="post" action="/addresses/{{ $address->id }}" class="mb-1">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-secondary btn-sm"> Remove </button>
-                                </form> 
+                                </form>
+                            </div>
+                
+                            <!-- Edit Address Form (Collapsed by Default) -->
+                            <div class="collapse" id="editAddress{{$address->id}}">
+                                <form class="d-flex flex-row" method="post" action="/addresses/{{$address->id}}">
+                                    @csrf
+                                    @method('PUT')
+                                    <input class="form-control me-2 mb-1" type="text" name="label" placeholder="Label" value="{{$address->label}}">
+                                    <input class="form-control me-2 mb-1" type="text" name="street" placeholder="Address" value="{{$address->street}}">
+                                    <input class="form-control me-2 mb-1" type="text" name="city" placeholder="City" value="{{$address->city}}">
+                                    <input class="form-control me-2 mb-1" type="text" name="postal_code" placeholder="Postal Code" value="{{$address->postal_code}}">
+                                    <button class="btn btn-outline-success" type="submit">Save</button>
+                                </form>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+                @endforeach
+                
                     <div class="collapse navbar-collapse justify-content-between" id="addAddress">
                         <form class="d-flex mx-auto" method="post" action="/addresses">
                             @csrf
@@ -121,9 +149,16 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     @can('ownerOrAdmin', $user)
     <div class="history">
         <h4 class="text-white">Your Shopping History</h4>
+=======
+    @auth
+    @if(auth()->id() == $user->id)
+    <div class="col-md-8 mx-auto history">
+        <h4 class="text-white ms-2">Your Shopping History</h4>
+>>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
         <section class="d-flex justify-content-around">
             <table class="table">
                 <thead>
@@ -168,4 +203,30 @@
     </div>
     @endcan
 
+    <div class=reviews>
+        <div class="username">
+            {{$user->name}}'s reviews
+        </div>
+        @foreach($user->reviews as $review)
+            <div id="profile_review">
+                <h5 class="card-title">{{ $review->product->name }}</h5>                              
+                <section class="info">
+                <p>    
+                    Date: 
+                    <span class="date-span">{{ \Carbon\Carbon::parse($review->date)->format('d/m/Y') }}</span>
+                    Score:
+                    <span class="stars">
+                        @php displayStars($review->score) @endphp
+                    </span>
+                </p>
+                <p>
+                    @if (!empty($review->comment))
+                        Comment: {{ $review->comment }}
+                    @endif
+                </p>    
+                </section>
+            </div>
+        @endforeach
+    </div>
+    
 </x-layout>

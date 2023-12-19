@@ -7,6 +7,7 @@ use Illuminate\Validation\ValidationException;
 
 class CartController extends Controller {
   public function index(){
+    $addresses = auth()->user()->addresses;
     $carts = auth()->user()->cart;
     $total = 0;
     foreach($carts as $cart){
@@ -15,7 +16,8 @@ class CartController extends Controller {
 
     return view('users.cart', [
       'carts' => $carts,
-      'total' => $total
+      'total' => $total,
+      'addresses' => $addresses
     ]);
   }
   
@@ -30,17 +32,17 @@ class CartController extends Controller {
       $cart->pivot->update(['quantity' => $cart->pivot->quantity + 1]);
     }
 
-    return back();
+    return back()->with('message', 'Product added to cart!');
   }
   
   public function destroy(Product $product){
     auth()->user()->cart()->detach($product->id);
-    return back();
+    return back()->with('message', 'Product remove from cart!');
   }
 
   public function clear(){
     auth()->user()->cart()->detach();
-    return back();
+    return back()->with('message', 'Cart cleared successfully!');
   }
 
   public function update(Product $product){

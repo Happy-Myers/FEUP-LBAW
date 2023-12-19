@@ -21,7 +21,8 @@ class AddressController extends Controller
         else{
             $address->forceDelete();
         }
-        return back();
+
+        return back()->with('message', 'Address has been deleted!');
     }
     public function update(Address $address){
         try{
@@ -40,7 +41,7 @@ class AddressController extends Controller
 
         $address->update($formFields);
 
-        return back();
+        return back()->with('message', 'Address has been updated!');
     }
     public function store(){
         $formFields = request()->validate([
@@ -53,7 +54,7 @@ class AddressController extends Controller
 
         Address::create($formFields);
 
-        return back();
+        return back()->with('message', 'Address has been added!');
     }
 }
 
