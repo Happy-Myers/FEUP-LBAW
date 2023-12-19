@@ -37,4 +37,41 @@ class ReviewController extends Controller
         $review->delete();
         return back()->with('message', 'Review has been deleted!');
     }
+
+    public function vote_up(Review $review){
+            $user = auth()->user();
+            $vote = $user->review_vote()->where('review_id', $review->id)->first();
+
+            if(!$vote){
+                $user->review_vote()->attach($review->id, ['vote' => true]);
+              }
+              else {
+                if ($vote->pivot->vote==false) {
+                    $vote->pivot->update(['vote' => true]);
+                }
+                else {
+                    $user->review_vote()->detach($review->id);
+                }
+              }          
+
+            return response()->json(['message' => 'Voted successfully', 'votes' => $review->vote_difference], 200);
+    }
+    public function vote_down(Review $review){
+        $user = auth()->user();
+        $vote = $user->review_vote()->where('review_id', $review->id)->first();
+
+        if(!$vote){
+            $user->review_vote()->attach($review->id, ['vote' => false]);
+          }
+          else {
+            if ($vote->pivot->vote==true) {
+                $vote->pivot->update(['vote' => false]);
+            }
+            else {
+                $user->review_vote()->detach($review->id);
+            }
+          }          
+
+        return response()->json(['message' => 'Voted successfully', 'votes' => $review->vote_difference], 200);
+}
 }

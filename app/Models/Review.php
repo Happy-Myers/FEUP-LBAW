@@ -25,4 +25,12 @@ class Review extends Model
     public function review_vote(): BelongsToMany{
         return $this->belongsToMany(User::class, 'review_vote', 'review_id', 'user_id')->using(ReviewVote::class)->withPivot('vote');
     }
+
+    public function getVoteDifferenceAttribute(): int
+    {
+        $upvotes = $this->review_vote()->where('vote', true)->count();
+        $downvotes = $this->review_vote()->where('vote', false)->count();
+
+        return $upvotes - $downvotes;
+    }
 }

@@ -80,6 +80,9 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth');
+Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth');
+
 
 // Faq & About
 Route::get('/faqs', [FaqController::class, 'index']);
