@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Events\UserBanned;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
@@ -23,10 +26,16 @@ class UserController extends Controller
         $rememberMe = request()->has('remember');
 
         if(auth()->attempt($formFields, $rememberMe)){
+            $user = auth()->user();
+
+            if($user->banned){
+                auth()->logout();
+                throw ValidationException::withMessages(['email' => 'Your account has been banned']);
+            }
 
             request()->session()->regenerate();
 
-            return redirect('/');
+            return redirect(auth()->user()->hasRole('Admin') ? '/admin' : '/');
         }
 
         return back()->withErrors(['email' => 'Invalid Credentials'])->withInput(['email', 'remember']);
@@ -159,5 +168,26 @@ class UserController extends Controller
 
 
         return redirect('/')->with('message', 'Your account has been deleted!');
+    }
+
+    public function index(){
+        $users = User::where('banned', false)->where('permission', 'User')->filter(request(['searchActive']))->orderBy('name')->paginate(8);
+        $banned = User::where('banned', true)->filter(request(['searchBanned']))->orderBy('name')->paginate(8);
+
+        return view('users.index', [
+            'users' => $users,
+            'banned' => $banned
+        ]);
+    }
+
+    public function toggle_ban(User $user){
+        try{
+            $this->authorize('isAdmin', User::class);
+        } catch(AuthorizationException $e){
+            return back()->with('message', 'You are not allowed to ban/unban users');
+        }
+        $user->update(['banned' => !$user->banned]);
+        
+        return back()->with('message', 'User successfully banned/unbanned');
     }
 }

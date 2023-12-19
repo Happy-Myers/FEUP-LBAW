@@ -41,6 +41,10 @@
                                 <p class="mb-2">{{ $user->phone_number }}</p>
                                 <p class="mb-0">E-mail:</p>
                                 <p class="mb-4">{{ $user->email }}</p>
+<<<<<<< HEAD
+                                @can('owner', $user)
+=======
+>>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
                                 <div class="buttons">
                                     <div class="d-inline-block mr-2">
                                         <a href="edit" class="btn btn-info">
@@ -57,14 +61,12 @@
                                         </button>
                                     </div>
                                 </div>
-                                @endif
-                                @endauth
+                                @endcan
                            </div>
                         </div>
                     </div>
                  </div>
-                @auth
-                @if(auth()->id() == $user->id)
+                @can('owner', $user)
                  <div class="card2 mt-3 mb-5" >
                     <div class="special">
                         Saved Addresses
@@ -120,8 +122,7 @@
                     </div>                            
 
                 </div>
-                @endif
-                @endauth
+                @endcan
             </div>
         </div>
     </div>
@@ -148,10 +149,16 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+    @can('ownerOrAdmin', $user)
+    <div class="history">
+        <h4 class="text-white">Your Shopping History</h4>
+=======
     @auth
     @if(auth()->id() == $user->id)
     <div class="col-md-8 mx-auto history">
         <h4 class="text-white ms-2">Your Shopping History</h4>
+>>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
         <section class="d-flex justify-content-around">
             <table class="table">
                 <thead>
@@ -165,13 +172,12 @@
                 </thead>
                 <tbody>
                     @foreach($purchases as $purchase)
-                        @foreach($purchase->products as $product)
                             @php
                                 $date = Carbon::parse($purchase->date)->format('d/m/Y');
                             @endphp
                             <tr>
                                 <td class="cart-entry">
-                                    <span class="aux">{{$product->name}}</span>
+                                    <span class="aux">{{$purchase->product != NULL ? $purchase->product->name : "Deleted Product"}}</span>
                                 </td>
 
                                 <td class="cart-entry">
@@ -183,21 +189,19 @@
                                 </td>
 
                                 <td class="cart-entry">
-                                    <span class="aux">{{$product->pivot->quantity}}</span>
+                                    <span class="aux">{{$purchase->quantity}}</span>
                                 </td>
                             
                                 <td class="cart-entry">
-                                    <span class="aux">{{$product->price * $product->pivot->quantity}}€</span>
+                                    <span class="aux">{{$purchase->total}}€</span>
                                 </td>
-                            </tr>					
-                        @endforeach
+                            </tr>	
                     @endforeach
                 </tbody>
             </table>
         </section>
     </div>
-    @endif
-    @endauth
+    @endcan
 
     <div class=reviews>
         <div class="username">

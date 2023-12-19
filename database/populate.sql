@@ -9,7 +9,6 @@ DELETE FROM review_vote;
 DELETE FROM cart;
 DELETE FROM wishlist;
 DELETE FROM purchases;
-DELETE FROM product_purchase;
 DELETE FROM faqs;
 
 INSERT INTO users (name, phone_number, email, password)
@@ -19,6 +18,10 @@ VALUES
   ('James Sunderland', '945567283', 'test2@test.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
   ('Ada Wong', '925638056', 'test3@test.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'),
   ('John Smith', '964923458', 'test4@test.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi');
+
+INSERT INTO users (name, phone_number, email, password, permission)
+VALUES
+  ('Admin', '999999999', 'admin@test.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Admin');
 
 INSERT INTO addresses (label, street, city, postal_code, user_id)
 VALUES
@@ -52,21 +55,21 @@ VALUES
 
 INSERT INTO products (name, stock, price, image, image2, description, hardware, platform_id)
 VALUES
-('Stray', 30, 27.99, 'stray.png', 'stray2.jpg', 'Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home.', false, 1),
-('Elden Ring', 40, 59.99, 'elden_ring.jpg', 'elden_ring2.jpg', 'THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between. ', false, 2),
-('Baldur’s Gate 3', 30, 59.99, 'baldurs.jpg', 'baldurs2.jpg', 'Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power.', false, 1),
-('Goat Simulator', 50, 9.75, 'goat.jpg', 'goat2.jpg', 'Goat Simulator is the latest in high-tech Goat Simulation technology.', false, 1),
-('Sid Meier’s Civilization VI', 40, 59.99, 'civ.jpg', 'civ2.jpg', 'Civilization VI is the newest installment in the award winning Civilization Franchise. Expand your empire, advance your culture and go head-to-head against history’s greatest leaders. Will your civilization stand the test of time?', false, 1),
-('Nintendo Switch Sports', 25, 39.99, 'switch_sports.jpg', 'switch_sports2.jpg', 'Swing, kick, spike, and bowl your way to victory in a sports collection that will get the whole family moving.', false, 4),
-('Forza Horizon 5', 15, 69.99, 'forza.jpg', 'forza2.jpg', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars. Conquer the rugged Sierra Nueva in the ultimate Horizon Rally experience. Requires Forza Horizon 5 game, expansion sold separately.', false, 2),
-('Forza Horizon 5', 35, 69.99, 'forza.jpg', 'forza2.jpg', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars. Conquer the rugged Sierra Nueva in the ultimate Horizon Rally experience. Requires Forza Horizon 5 game, expansion sold separately.', false, 5),
-('The Witness', 30, 36.99, 'witness.jpg', 'witness2.jpg', 'You wake up, alone, on a strange island full of puzzles that will challenge and surprise you.', false, 1),
-('Silent Hill 2', 5, 59.99, 'silent.jpg', 'silent2.jpg', '"My name...is Maria," the woman smiles. Her face, her voice... She’s just like her.', false, 1),
-('Silent Hill 2', 20, 69.99, 'silent.jpg', 'silent2.jpg', '"My name...is Maria," the woman smiles. Her face, her voice... She’s just like her.', false, 2),
-('Tekken 8', 40, 69.99, 'tekken.jpg', 'tekken2.jpg', 'Get ready for the next chapter in the legendary fighting game franchise, TEKKEN 8.', false, 1),
-('Tekken 8', 40, 69.99, 'tekken.jpg', 'tekken2.jpg', 'Get ready for the next chapter in the legendary fighting game franchise, TEKKEN 8.', false, 2),
-('Tekken 8', 40, 69.99, 'tekken.jpg', 'tekken2.jpg', 'Get ready for the next chapter in the legendary fighting game franchise, TEKKEN 8.', false, 3),
-('Yakuza: Like a Dragon', 20, 40.99, 'yakuza.jpg', 'yakuza2.jpg', 'Become Ichiban Kasuga, a low-ranking yakuza grunt left on the brink of death by the man he trusted most. Take up your legendary bat and get ready to crack some underworld skulls in dynamic RPG combat set against the backdrop of modern-day Japan.', false, 2);
+('Stray', 30, 27.99, 'baseProducts/stray.png', 'baseProducts/stray2.jpg', 'Lost, alone and separated from family, a stray cat must untangle an ancient mystery to escape a long-forgotten cybercity and find their way home.', false, 1),
+('Elden Ring', 40, 59.99, 'baseProducts/elden_ring.jpg', 'baseProducts/elden_ring2.jpg', 'THE NEW FANTASY ACTION RPG. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between. ', false, 2),
+('Baldur’s Gate 3', 30, 59.99, 'baseProducts/baldurs.jpg', 'baseProducts/baldurs2.jpg', 'Baldur’s Gate 3 is a story-rich, party-based RPG set in the universe of Dungeons & Dragons, where your choices shape a tale of fellowship and betrayal, survival and sacrifice, and the lure of absolute power.', false, 1),
+('Goat Simulator', 50, 9.75, 'baseProducts/goat.jpg', 'baseProducts/goat2.jpg', 'Goat Simulator is the latest in high-tech Goat Simulation technology.', false, 1),
+('Sid Meier’s Civilization VI', 40, 59.99, 'baseProducts/civ.jpg', 'baseProducts/civ2.jpg', 'Civilization VI is the newest installment in the award winning Civilization Franchise. Expand your empire, advance your culture and go head-to-head against history’s greatest leaders. Will your civilization stand the test of time?', false, 1),
+('Nintendo Switch Sports', 25, 39.99, 'baseProducts/switch_sports.jpg', 'baseProducts/switch_sports2.jpg', 'Swing, kick, spike, and bowl your way to victory in a sports collection that will get the whole family moving.', false, 4),
+('Forza Horizon 5', 15, 69.99, 'baseProducts/forza.jpg', 'baseProducts/forza2.jpg', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars. Conquer the rugged Sierra Nueva in the ultimate Horizon Rally experience. Requires Forza Horizon 5 game, expansion sold separately.', false, 2),
+('Forza Horizon 5', 35, 69.99, 'baseProducts/forza.jpg', 'baseProducts/forza2.jpg', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars. Conquer the rugged Sierra Nueva in the ultimate Horizon Rally experience. Requires Forza Horizon 5 game, expansion sold separately.', false, 5),
+('The Witness', 30, 36.99, 'baseProducts/witness.jpg', 'baseProducts/witness2.jpg', 'You wake up, alone, on a strange island full of puzzles that will challenge and surprise you.', false, 1),
+('Silent Hill 2', 5, 59.99, 'baseProducts/silent.jpg', 'baseProducts/silent2.jpg', '"My name...is Maria," the woman smiles. Her face, her voice... She’s just like her.', false, 1),
+('Silent Hill 2', 20, 69.99, 'baseProducts/silent.jpg', 'baseProducts/silent2.jpg', '"My name...is Maria," the woman smiles. Her face, her voice... She’s just like her.', false, 2),
+('Tekken 8', 40, 69.99, 'baseProducts/tekken.jpg', 'baseProducts/tekken2.jpg', 'Get ready for the next chapter in the legendary fighting game franchise, TEKKEN 8.', false, 1),
+('Tekken 8', 40, 69.99, 'baseProducts/tekken.jpg', 'baseProducts/tekken2.jpg', 'Get ready for the next chapter in the legendary fighting game franchise, TEKKEN 8.', false, 2),
+('Tekken 8', 40, 69.99, 'baseProducts/tekken.jpg', 'baseProducts/tekken2.jpg', 'Get ready for the next chapter in the legendary fighting game franchise, TEKKEN 8.', false, 3),
+('Yakuza: Like a Dragon', 20, 40.99, 'baseProducts/yakuza.jpg', 'baseProducts/yakuza2.jpg', 'Become Ichiban Kasuga, a low-ranking yakuza grunt left on the brink of death by the man he trusted most. Take up your legendary bat and get ready to crack some underworld skulls in dynamic RPG combat set against the backdrop of modern-day Japan.', false, 2);
 
 INSERT INTO category_product (category_id, product_id)
 VALUES
@@ -143,31 +146,18 @@ VALUES
   (1, 4),
   (4, 6);
 
-INSERT INTO purchases (user_id, total, delivery_progress, address_id)
+INSERT INTO purchases (user_id, product_id, quantity, total, delivery_progress, address_id)
 VALUES
-  (1, 79.98, 'Shipped', 1),
-  (4, 99.99, 'Delivered', 4),
-  (1, 129.98, 'Delivered', 1),
-  (2, 199.99, 'Processing', 2),
-  (5, 59.99, 'Shipped', 5),
-  (3, 199.98, 'Delivered', 3),
-  (4, 99.99, 'Shipped', 4),
-  (2, 49.99, 'Delivered', 2),
-  (1, 79.99, 'Delivered', 1),
-  (3, 29.99, 'Processing', 3);
-
-INSERT INTO product_purchase (purchase_id, product_id, quantity)
-VALUES
-  (1, 3, 1),
-  (2, 4, 2),
-  (3, 1, 2),
-  (4, 2, 1),
-  (5, 2, 3),
-  (6, 4, 2),
-  (7, 7, 1),
-  (8, 5, 2),
-  (9, 4, 3),
-  (10, 6, 2);
+  (1, 3, 1, 79.98, 'Shipped', 1),
+  (4, 4, 2, 99.99, 'Delivered', 4),
+  (1, 1, 2, 129.98, 'Delivered', 1),
+  (2, 2, 1, 199.99, 'Processing', 2),
+  (5, 2, 3, 59.99, 'Shipped', 5),
+  (3, 4, 2, 199.98, 'Delivered', 3),
+  (4, 7, 1, 99.99, 'Shipped', 4),
+  (2, 5, 2, 49.99, 'Delivered', 2),
+  (1, 4, 3, 79.99, 'Delivered', 1),
+  (3, 6, 2, 29.99, 'Processing', 3);
 
 
 INSERT INTO faqs (question, answer)

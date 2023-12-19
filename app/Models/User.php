@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, CanResetPassword, SoftDeletes;
+    use HasFactory, Notifiable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +27,8 @@ class User extends Authenticatable
         'phone_number',
         'email',
         'password',
-        'image'
+        'image',
+        'banned'
     ];
 
     /**
@@ -37,7 +38,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        //'remember_token',
+        'remember_token',
     ];
 
     /**
@@ -80,5 +81,18 @@ class User extends Authenticatable
 
     public function notification(): HasMany{
         return $this->hasMany(Notification::class);
+    }
+
+    public function hasRole($role): bool {
+        return $this->permission == $role;
+    }
+
+    public function scopeFilter($query, array $filters){
+        if($filters['searchActive'] ?? false){
+            $query->where('name', 'ilike', '%' . request('searchActive') . '%');
+        }
+        else if($filters['searchBanned'] ?? false){
+            $query->where('name', 'ilike', '%' . request('searchBanned') . '%');
+        }
     }
 }

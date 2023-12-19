@@ -13,10 +13,10 @@
             @endif
         </h1>        
         <div class="images">
-            <img src="{{ asset('images/products/' . $product->image2) }}" class="img-fluid" alt="IMG1">
+            <img src="{{ asset('storage/' . $product->image2) }}" class="img-fluid" alt="IMG1">
         </div>
         <div class="details text-white"> 
-            <img src="{{ asset('images/products/' . $product->image) }}" class="img-fluid" alt="IMG1">
+            <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid" alt="IMG1">
             <h3 class="mt-3 mb-2 me-3">Product Description</h3>
             <p class="card-text me-3">{{ $product->description }}</p>
 
@@ -49,7 +49,8 @@
                 @endforeach
             </h6>
         </div>
-        <div class="d-flex justify-content-center align-items-center mt-3 buttons">
+        @cannot('admin', App\Models\Product::class)
+        <div class="d-flex justify-content-center align-items-center mt-3 buttons"> <!-- Falta adicionar função aos botões -->
           <form method="POST" action="/cart/{{$product->id}}">
             @csrf
             <button type="submit" class="btn btn-primary buy me-2">Add To Cart</button>
@@ -59,12 +60,13 @@
             <button type="submit" class="btn btn-primary buy ms-2">Add To Wishlist</button>
           </form>
         </div>
+        @endcannot
     </div>
     <div>
       @auth
-        @unless ($hasCommented)
+        @cannot('comment', [App\Models\Review::class, $hasCommented])
           <x-review-form :product="$product->id"/>
-        @endunless
+        @endcannot
       @endauth
       @unless(count($reviews) == 0)
         <div>

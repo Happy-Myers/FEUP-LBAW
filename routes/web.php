@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\WishlistController;
@@ -48,28 +51,39 @@ Route::post('/reset-password', [UserController::class, 'change_password'])->midd
 
 // Products
 Route::get('/', [ProductController::class, 'index']);
+Route::get('/products/new', [ProductController::class, 'create'])->middleware('admin');
 Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::get('/admin/products', [ProductController::class, 'manage'])->middleware('admin');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->middleware('admin');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->middleware('admin');
+Route::put('products/{product}', [ProductController::class, 'update'])->middleware('admin');
+Route::post('/products', [ProductController::class, 'store'])->middleware('admin');
+Route::patch('/admin/products/{product}', [ProductController::class, 'updateStock'])->middleware('admin');
 
 // Cart
-Route::get('/cart', [CartController::class, 'index'])->middleware('auth');
-Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth');
-Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth');
-Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth');
-Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth');
+Route::get('/cart', [CartController::class, 'index'])->middleware('auth', 'admin.forbidden');
+Route::post('/cart/{product}', [CartController::class, 'store'])->middleware('auth', 'admin.forbidden');
+Route::delete('/cart/{product}', [CartController::class, 'destroy'])->middleware('auth', 'admin.forbidden');
+Route::delete('/cart', [CartController::class, 'clear'])->middleware('auth', 'admin.forbidden');
+Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('auth', 'admin.forbidden');
 
 // Wishlist
-Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth');
-Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth');
-Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth');
+Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth', 'admin.forbidden');
+Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth', 'admin.forbidden');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth', 'admin.forbidden');
 
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
+Route::get('/admin/orders', [PurchaseController::class, 'index'])->middleware('admin');
+Route::patch('/admin/orders/{purchase}', [PurchaseController::class, 'update'])->middleware('admin');
 
 //User
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
-Route::get('/users/{user}', [UserController::class, 'show']);
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile');
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
+Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
+Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
 
 
 //Address
@@ -80,6 +94,9 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+
+//Admin
+Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
 
 // Faq & About
 Route::get('/faqs', [FaqController::class, 'index']);

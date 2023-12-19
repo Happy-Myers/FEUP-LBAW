@@ -101,6 +101,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// stock AJAX
+
+document.addEventListener('DOMContentLoaded', function() {
+    let stockInputs = document.querySelectorAll('.stock-input');
+    let csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+    stockInputs.forEach(function(input) {
+        let originalStock = input.value;
+
+        input.addEventListener('input', function() {
+            let productId = input.getAttribute('data-product-id');
+            let stock = input.value;
+
+            fetch('/admin/products/' + productId, {
+                method: 'PATCH', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+                body: JSON.stringify({ stock: stock })
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                originalStock = stock;
+
+                return response.json();
+            })
+            .catch(function(error) {
+                console.error(error);
+
+                input.value = originalStock;
+            });
+        });
+    });
+});
 function addToCart() {
     const form = document.querySelector('.add-to-cart-form');
     submitForm(form);

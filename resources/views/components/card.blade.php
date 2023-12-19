@@ -10,18 +10,20 @@
                </h5>
                <div class="product-info mt-2">
                     <a href="{{ url('products/'.$product->id) }}">
-                         <img src="{{ asset('images/products/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                         <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
                     </a>
 
                     <div class="d-flex justify-content-center align-items-center mt-3 text-white">
                          <h4 class="price">{{ $product->price }}€</h4>
                     </div>
+                    @cannot('admin', App\Models\Product::class)
                     <div class="text-center mt-2">
                          <form method="POST" action="/cart/{{$product->id}}">
                               @csrf
                               <button type="submit" class="btn btn-primary buy">Add To Cart</button>                         
                          </form>
-                     </div>
+                    </div>
+                    @endcannot
                </div>
           </div>
      </div>

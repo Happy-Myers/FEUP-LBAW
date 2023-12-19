@@ -45,46 +45,55 @@
                     </form>
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         @auth
-                        <li>
-                          <a class="nav-link" href="/wishlist">
-                            <i class="fa-solid fa-heart"></i>
-                            Wishlist
-                        </a>                          
-                        </li>
-                        <li>
-                          <a class="nav-link" href="/cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            Cart
-                          </a>                          
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/users/{{auth()->id()}}">
-                                <i class="fa-solid fa-user"></i>
-                                Profile
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <form method="POST" action="/logout">
-                                @csrf
-                                <button type="submit" class="btn btn-link nav-link">
-                                    <i class="fa-solid fa-door-closed"></i>
-                                    Logout
-                                </button>
-                            </form>
-                        </li>                        
+                          @can('isAdmin', App\Models\User::class)
+                            <li>
+                              <a class="nav-link" href="/admin">
+                                <i class="fa-solid fa-cog"></i> 
+                                Management Area
+                              </a>
+                            </li>
+                          @else
+                            <li>
+                              <a class="nav-link" href="/wishlist">
+                                <i class="fa-solid fa-heart"></i>
+                                Wishlist
+                            </a>                          
+                            </li>
+                            <li>
+                              <a class="nav-link" href="/cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Cart
+                              </a>                          
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users/{{auth()->id()}}">
+                                    <i class="fa-solid fa-user"></i>
+                                    Profile
+                                </a>
+                            </li>
+                        @endcan
+                          <li class="nav-item">
+                              <form method="POST" action="/logout">
+                                  @csrf
+                                  <button type="submit" class="btn btn-link nav-link">
+                                      <i class="fa-solid fa-door-closed"></i>
+                                      Logout
+                                  </button>
+                              </form>
+                          </li>                        
                         @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">
-                                <i class="fa-solid fa-user-plus"></i>
-                                Register
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">
-                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                                Login
-                            </a>
-                        </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/register">
+                                  <i class="fa-solid fa-user-plus"></i>
+                                  Register
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/login">
+                                  <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                                  Login
+                              </a>
+                          </li>
                         @endauth
                     </ul>
                 </div>

@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('street');
             $table->string('city');
             $table->string('postal_code');
-            $table->unsignedBigInteger('user_id');
+            $table->softDeletes();
+            $table->unsignedBigInteger('user_id')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
         });
     }
 

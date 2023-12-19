@@ -15,19 +15,18 @@ return new class extends Migration
         Schema::create('products', function(Blueprint $table){
             $table->id();
             $table->string('name');
-            $table->unsignedInteger('stock');
-            $table->unsignedFloat('price')->index();
+            $table->unsignedInteger('stock')->default(30);
+            $table->unsignedFloat('price');
             $table->string('image')->nullable();
             $table->string('image2')->nullable();
             $table->unsignedFloat('score')->default(0);
             $table->longText('description')->nullable();
-            $table->boolean('hardware');
+            $table->boolean('hardware')->default(false);
             $table->date('publication_date')->default(now());
-            $table->unsignedBigInteger('platform_id');
+            $table->unsignedBigInteger('platform_id')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
-            $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('cascade');
+            $table->foreign('platform_id')->references('id')->on('platforms')->onDelete('set null');
         });
 
         DB::statement('ALTER TABLE products ADD CONSTRAINT score_check CHECK(score >= 0 AND score <=5)');
