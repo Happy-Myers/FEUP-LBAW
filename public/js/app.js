@@ -56,6 +56,96 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+//review votes
+
+document.addEventListener('DOMContentLoaded', function() {
+    let upvote = document.querySelectorAll('.upvote');
+    let csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+    upvote.forEach(function(input) {
+        input.addEventListener('click', function() {
+            let reviewId = input.getAttribute('data-review-id');
+
+            fetch('/reviews/' + reviewId + '/up', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                let vote_span = input.nextElementSibling.children[0];
+                let current_votes = vote_span.innerText;
+                vote_span.innerText = data.votes;
+                let down_arrow = input.nextElementSibling.nextElementSibling;
+                if (current_votes < data.votes) {
+                    input.classList.remove('text-white');
+                    input.classList.add('text-success');
+                }
+                else {
+                    input.classList.remove('text-success');
+                    input.classList.add('text-white');
+                }
+                down_arrow.classList.remove('text-danger');
+                down_arrow.classList.add('text-white');
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    let downvote = document.querySelectorAll('.downvote');
+    let csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+
+    downvote.forEach(function(input) {
+        input.addEventListener('click', function() {
+            let reviewId = input.getAttribute('data-review-id');
+
+            fetch('/reviews/' + reviewId + '/down', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken
+                },
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function(data) {
+                console.log(data);
+                let vote_span = input.previousElementSibling.children[0];
+                let current_votes = vote_span.innerText;
+                vote_span.innerText = data.votes;
+                let up_arrow = input.previousElementSibling.previousElementSibling;
+                if (current_votes > data.votes) {
+                    input.classList.remove('text-white');
+                    input.classList.add('text-danger');
+                }
+                else {
+                    input.classList.remove('text-danger');
+                    input.classList.add('text-white');
+                }
+                up_arrow.classList.remove('text-success');
+                up_arrow.classList.add('text-white');
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+        });
+    });
+});
 //review stars
 
 document.addEventListener('DOMContentLoaded', function() {

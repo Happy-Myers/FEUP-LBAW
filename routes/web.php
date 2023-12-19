@@ -92,6 +92,9 @@ Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth');
+Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth');
+
 
 //Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
