@@ -1,6 +1,7 @@
 <x-layout>
-    <div class="container mb-4">
-        <form method = "POST" action = "/products/{{$product->id}}" class="col-md-4 mx-auto" id="auth" enctype="multipart/form-data">
+    <div class="mb-4">
+        <h1 style="text-align: center; color: white;">Edit Product</h1>
+        <form method = "POST" action = "/products/{{$product->id}}" class="form-container" id="auth" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -36,11 +37,12 @@
                 @enderror
             </div>
             <div class="mb-3 text-white">
-                <label>Categories</label>
+                <label class="form-label">Categories</label>
                 <div>
                     @foreach (App\Models\Category::all() as $category)
                         <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}" {{in_array($category->id, $product->categories->pluck('id')->toArray()) ? 'checked' : ''}}/>
-                        <label class="form-check-label">{{$category->name}}</label>
+                        <label class="form-check-label">{{$category->name}}</label> 
+                        <br>
                     @endforeach                    
                 </div>
 
@@ -62,8 +64,8 @@
                 <p class="text-danger">{{$message}}</p>
                 @enderror
             </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Update</button>
+            <div class="button-container d-flex justify-content-center">
+                <button type="submit" class="edit-create-button">Update</button>
             </div>
         </form>
     </div>

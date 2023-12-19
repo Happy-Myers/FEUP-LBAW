@@ -19,6 +19,7 @@
                 </div>
             @endforeach
         </div>
+        
         <h2 class="highlights text-white">More Products</h2>
         <div class="container-fluid mt-4" id="homeProductGrid">
             @foreach($otherProducts as $product2)

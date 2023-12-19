@@ -1,6 +1,7 @@
 <x-layout>
-    <div class="container mb-4">
-        <form method = "POST" action = "/products" class="col-md-4 mx-auto" id="auth" enctype="multipart/form-data">
+    <div class="edit-create-product mb-4">
+        <h1 style="text-align: center; color: white;">Create Product</h1>
+        <form method = "POST" action = "/products" class="form-container col-md-4" id="auth" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
               <label for="name" class="form-label text-white">Name</label>
@@ -35,11 +36,12 @@
                 @enderror
             </div>
             <div class="mb-3 text-white">
-                <label>Categories</label>
-                <div>
+                <label class="form-label">Categories</label>
+                <div class="category-checkboxes">
                     @foreach (App\Models\Category::all() as $category)
                         <input class="form-check-input" type="checkbox" name="categories[]" value="{{$category->id}}"/>
                         <label class="form-check-label">{{$category->name}}</label>
+                        <br>
                     @endforeach                    
                 </div>
 
@@ -61,8 +63,8 @@
                 <p class="text-danger">{{$message}}</p>
                 @enderror
             </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Create</button>
+            <div class="button-container d-flex justify-content-center">
+                <button type="submit" class="edit-create-button">Create</button>
             </div>
         </form>
     </div>

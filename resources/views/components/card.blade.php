@@ -10,9 +10,8 @@
                </h5>
                <div class="product-info mt-2">
                     <a href="{{ url('products/'.$product->id) }}">
-                         <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                         <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}" width="auto" height="125">
                     </a>
-
                     <div class="d-flex justify-content-center align-items-center mt-3 text-white">
                          <h4 class="price">{{ $product->price }}€</h4>
                     </div>

@@ -15,7 +15,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.18.0/font/bootstrap-icons.css" rel="stylesheet">
 
 <x-layout>
-    <div class="container mt-4">
+    <div class="profile-container mt-4">
         <div class="row">
             <div>
                 <div class="card2">

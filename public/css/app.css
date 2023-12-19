@@ -257,7 +257,7 @@ th, td {
 }
 
 
-.quantity-input {
+.quantity-input, .stock-input {
   width: 3em;
   padding: 0.3em;
   text-align: center;
@@ -367,7 +367,6 @@ th, td {
   justify-content: center;
 }
 
-<<<<<<< HEAD
 #main-block {
   display: flex;
   justify-content: center;
@@ -505,7 +504,7 @@ td a {
   margin-right: 0.5em;
   border: 0.1em solid var(--dark-blue);
 }
-=======
+
 .faq-container {
   max-width: 60em;
   margin: 0 auto;
@@ -617,7 +616,7 @@ section {
   align-items: center;
 }
 
-.container {
+.profile-container {
   max-width: 55em;
   width: 100%;
   margin: 0 auto;
@@ -761,4 +760,43 @@ form {
 section.d-flex {
   align-items: flex-start;
 }
->>>>>>> 2b3971299d0ef6bc2b52f9e5c34e54246c294321
+
+
+.form-container{
+  background-color: var(--black);
+  max-width: 35em;
+  width: 100%;
+  margin: auto;
+  border: 0.1em solid var(--grey-blue);
+  border-radius: 0.2em;
+  padding: 1.5em !important;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.edit-create-button {
+  padding: 0.5em;
+  border-radius: 0.2em;
+  text-decoration: none;
+  width: 50%;
+  background-color: var(--grey-blue);
+  border: 0.1em solid var(--blue);
+  border-radius: 0.8em;
+  color: var(--blue);
+}
+
+.edit-create-button:hover {
+  background-color: var(--dark-blue);
+  border: 0.1em solid var(--grey-blue);
+  border-radius: 0.8em;
+  color: white;
+  transition: 0.4s;
+} 
+
+.form-label {
+  font-size: 1.1em;
+  font-weight: bolder;
+}
