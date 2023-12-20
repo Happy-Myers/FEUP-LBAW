@@ -106,33 +106,47 @@ As the front-end input validation we used javascript. For example, when the quan
 
 #### 8.2 User Stories
 
+M01tication and profile
+M02 Products
+M3 Reviews and wishlist
+M4 cart
+M5 static pages
+m6 Management 
+
 | US Identifier | Name    | Module | Priority                       | Team Members               | State  |
 | ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
 | US01 | Product Details |   M02 | High | **João Alves**, Gonçalo Marques | 100%| 
 | US02 | Search products |   M02 | High | **Gonçalo Marques** | 100%| 
 | US03 | Browse Product Categories | M02 | Medium | **João Alves**| 100% |
+| US04 | Search Products | M02 | Medium | - | 0% |
 | US05 | View Reviews | M03 | Medium | **Gonçalo Marques**, João Alves | 100% |
 | US06 | Home Page | M05 | Medium | **João Alves** | 100% |
 | US07 | About Page | M05 | Medium | **João Alves**| 100% |
 | US08 | FAQ Page | M05 | Medium | **João Alves**| 100% |
 | US09 | Consult Contacts | M05 | Medium | **João Alves**| 100% |
 | US10 | See User Profile | M01 | Medium | **Eduardo Sousa**, João Alves | 100% |
+| US11 | Search User Profile | M01 | Medium | - | 0% |
+| US12 | Sorting Options | M02 | Low | - | 0% |
+| US13 | View Recommendations | M02 | Low | - | 0% |
 | US14 | Sign-in | M01 | High | **Gonçalo Marques** | 100% |
 | US15 | Sign-up | M01 | High | **Gonçalo Marques** | 100% |
 | US16 | Recover Password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
-| US19 | Add to Shopping Cart |  M04 | High | **Gonçalo Marques**, João Alves | 100%| 
-| US20 | Manage Shopping Cart | M04 | High  | **Gonçalo Marques**, João Alves| 100% | 
-| US21 | Log out |   M01 | High | **Gonçalo Marques** | 100% | 
-| US22 | View profile |  M01  | High | **Eduardo Sousa**, Gonçalo Marques, João Alves | 100% | 
+| US17 | External API Sign-in | M01 | Low | - | 0% |
+| US18 | External API Sign-up | M01 | Low | - | 0% |
+| US19 | Add to Shopping Cart |  M04 | High | **Gonçalo Marques**, João Alves | 100%
+| US20 | Manage Shopping Cart | M04 | High  | **Gonçalo Marques**, João Alves| 100% |
+| US21 | Log out |   M01 | High | **Gonçalo Marques** | 100% |
+| US22 | View profile |  M01  | High | **Eduardo Sousa**, Gonçalo Marques, João Alves | 100% |
 | US23 | Edit profile |  M01 | High | **Gonçalo Marques**, João Alves, Eduardo Sousa | 100% |
 | US24 | Delete account |  M01 | High | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US25 | Add to Wishlist | M03 | Medium |  **Gonçalo Marques**, João Alves | 100% |
 | US26 | View Wishlist | M03 | Medium |  **João Alves** | 100% |
 | US27 | Remove from  Wishlist | M03 | Medium | **João Alves** | 100% |
-| US28 | Update password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% | 
+| US28 | Update password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US29 | Review Voting | M03 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US30 | View Notifications | M01 | Medium | **Gonçalo Marques**, João Alves | 100% |
 | US31 | Product Price Change | M01 | Low | **Gonçalo Marques** | 100% |
+| US32 | Product Availability | M02 | Low | - | 0% |
 | US33 | Unban Account | M06 | Medium |  **Gonçalo Marques** | 100% |
 | US34 | Manage Catalog | M06 | Medium |  **Gonçalo Marques** | 100% |
 | US35 | Manage Item Category | M06 | Medium |  **Gonçalo Marques** | 100% |
@@ -147,7 +161,9 @@ As the front-end input validation we used javascript. For example, when the quan
 | US44 | Delete a game score |  M02  | High | **Gonçalo Marques** | 100% |
 | US45 | Check purchase history |  M01 | High | **João Alves** | 100% |
 | US46 | Delete a game review |  M02 | High | **Gonçalo Marques** | 100% |
+| US47 | Edit Game Review | M03 | Medium | - | 0% |
 | US48 | Payment approval | M04 | Low | **Gonçalo Marques**, João Alves | 100% |
+| US49 | Cancel Order | M01 | Low | - | 0% |
 | US50 | Change in Order Status | M01 | Low |  **Gonçalo Marques** | 100% |
 | US51 | Track Order | M01 | Low |  **Gonçalo Marques** | 100% |
 | US52 | Address Options | M01 | Low | **Eduardo Sousa**, Gonçalo Marques | 100% |
