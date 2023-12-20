@@ -63,7 +63,7 @@
                 ⬆
             </button>
             <span class="ms-2 text-white">
-                <strong class="lol">{{$review->vote_difference}}</strong>
+                <strong class="upvotes">{{$review->vote_difference}}</strong>
             </span>
             <button class="btn btn-lg {{ ($vote != NULL && $vote->pivot->vote==false) ? 'text-danger':'text-white' }} downvote" data-review-id={{$review->id}}>
                 ⬇

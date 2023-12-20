@@ -22,7 +22,7 @@
                                 Deleted User
                             @endif
                         </td>
-                        <td class="center-text">{{ $purchase->address->street }}, {{ $purchase->address->city }}, {{ $purchase->address->postal_code }} </td>
+                        <td class="center-text">{{ $purchase->address()->withTrashed()->first()->street }}, {{ $purchase->address()->withTrashed()->first()->city }}, {{ $purchase->address()->withTrashed()->first()->postal_code }} </td>
                         <td class="center-text">
                             @if($purchase->product != NULL)
                                 <a href="/products/{{$purchase->product->id}}">{{$purchase->product->name}}</a>

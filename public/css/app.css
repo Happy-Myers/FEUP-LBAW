@@ -45,6 +45,18 @@ body {
   #homeProductGrid {
       grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
+
+  .maingrid {
+      margin: 0 1em;
+  }
+
+  .genres {
+      justify-content: center;
+  }
+
+  .genre {
+      margin: 0.5em 0.1em;
+  }
 }
 
 .navbar {
@@ -203,6 +215,17 @@ body {
   margin: 0 0.1em;
 }
 
+@media (max-width: 576px) {
+  .genres {
+    justify-content: center;
+  }
+  
+  .genre {
+    margin: 0.5em 0.1em;
+  }
+}
+
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -280,11 +303,13 @@ th, td {
 
 
 .card {
-  background-color: var(--black); 
+  background-color: var(--black);
   border: 0.1em solid var(--grey-blue);
 }
 
-.card-header, .card-body, .card {
+.card-header,
+.card-body,
+.card {
   color: white;
   background-color: var(--black);
 }
@@ -299,6 +324,18 @@ th, td {
 .card-body {
   padding: 0em;
   margin: 0.5em
+}
+
+@media (max-width: 576px) {
+  .product-card {
+      margin: 0.5em;
+  }
+  .card-title {
+      font-size: 1.2em;
+  }
+  .price {
+      font-size: 1.2em;
+  }
 }
 
 .profile-pic img {
@@ -409,10 +446,13 @@ th, td {
 .dashboard-list {
   list-style: none;
   display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
 }
 
 .dashboard-list li {
-  margin: 0 0.5em;
+  margin: 0.5em;
+  flex: 1 1 calc(33.33% - 1em); /* Adjust width for three items in a row */
+  box-sizing: border-box;
 }
 
 .admin-btn, .cash-btn {
@@ -884,9 +924,7 @@ section.d-flex {
   display: flex;
   flex-direction: column; 
   align-items: center;
-  margin-top: 2em;
-  max-width: 50%;
-  width: 100%;
+  max-width: 40em;
   margin: auto;
   margin-top: 1.5em;
   padding: 2em 1em 0 1em;
@@ -897,7 +935,9 @@ section.d-flex {
 
 .cash-line {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1em;
+  justify-content: center;
 }
 
 .cash-list {
@@ -910,10 +950,11 @@ section.d-flex {
 
 .cash-btn {
   justify-content: center;
-  width: 15em;
+  width: 10em;
+  margin: 0.5em;
 }
 
-.lol {
+.upvotes {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
@@ -921,4 +962,31 @@ section.d-flex {
   padding-bottom: 100%;
   padding-right: 75%;
 }
+
+@media (max-width: 768px) {
+  .product {
+    grid-template-columns: 100%;
+    margin: 2em 1em;
+  }
+
+  .details {
+    grid-area: auto;
+  }
+}
+
+@media (max-width: 550px) {
+  .cash-list {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .cash-btn {
+      width: 100%;
+      margin: 0.5em 0;
+  }
+}
+
+
+
+
 

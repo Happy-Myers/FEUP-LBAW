@@ -50,7 +50,7 @@
             </h6>
         </div>
         @cannot('admin', App\Models\Product::class)
-        <div class="d-flex justify-content-center align-items-center mt-3 buttons"> <!-- Falta adicionar função aos botões -->
+        <div class="d-flex justify-content-center align-items-center mt-3 buttons">
           <form method="POST" action="/cart/{{$product->id}}">
             @csrf
             <button type="submit" class="btn btn-primary buy me-2">Add To Cart</button>
