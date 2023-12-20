@@ -92,6 +92,9 @@ COMPLETAR
 | US07 | About Page | M05 | Medium | **João Alves**| 100% |
 | US08 | FAQ Page | M05 | Medium | **João Alves**| 100% |
 | US09 | Consult Contacts | M05 | Medium | **João Alves**| 100% |
+| US10 | See User Profile | M01 | Medium | **Eduardo Sousa**, João Alves | 100% |
+| US14 | Sign-in | M01 | High | **Gonçalo Marques** | 100% |
+| US15 | Sign-up | M01 | High | **Gonçalo Marques** | 100% |
 | US16 | Recover Password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US19 | Add to Shopping Cart |  M04 | High | **Gonçalo Marques**, João Alves | 100%| 
 | US20 | Manage Shopping Cart | M04 | High  | **Gonçalo Marques**, João Alves| 100% | 
@@ -102,7 +105,7 @@ COMPLETAR
 | US25 | Add to Wishlist | M03 | Medium |  **Gonçalo Marques**, João Alves | 100% |
 | US26 | View Wishlist | M03 | Medium |  **João Alves** | 100% |
 | US27 | Remove from  Wishlist | M03 | Medium | **João Alves** | 100% |
-| US28 | Update password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 50% | 
+| US28 | Update password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% | 
 | US29 | Review Voting | M03 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US30 | View Notifications | M01 | Medium | **Gonçalo Marques**, João Alves | 100% |
 | US31 | Product Price Change | M01 | Low | **Gonçalo Marques** | 100% |
@@ -120,6 +123,7 @@ COMPLETAR
 | US44 | Delete a game score |  M02  | High | **Gonçalo Marques** | 100% |
 | US45 | Check purchase history |  M01 | High | **João Alves** | 100% |
 | US46 | Delete a game review |  M02 | High | **Gonçalo Marques** | 100% |
+| US48 | Payment approval | M04 | Low | **Gonçalo Marques**, João Alves | 100% |
 | US50 | Change in Order Status | M01 | Low |  **Gonçalo Marques** | 100% |
 | US51 | Track Order | M01 | Low |  **Gonçalo Marques** | 100% |
 | US52 | Address Options | M01 | Low | **Eduardo Sousa**, Gonçalo Marques | 100% |
