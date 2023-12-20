@@ -103,7 +103,7 @@ We used the following libraries in this project:
 | US06 | Home Page | M05 | Medium | | 100% |
 | US07 | About Page | M05 | Medium | | 100% |
 | US08 | FAQ Page | M05 | Medium | | 100% |
-| US09 | Consult Contacts | ? | Medium | | 100% |
+| US09 | Consult Contacts | M05 | Medium | | 100% |
 | US16 | Recover Password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US26 | View Wishlist | M03 | Medium |  | 100% |
 | US25 | Add to Wishlist | M03 | Medium |  | 100% |
