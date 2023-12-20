@@ -28,7 +28,7 @@
         <script type="text/javascript" src={{ asset('js/app.js') }} defer></script>
         <script src="//unpkg.com/alpinejs" defer></script>
     </head>
-    <body class="d-flex flex-column min-vh-100">
+    <body class="d-flex flex-column min-vh-100" style="background-color: #01497C;">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/">
