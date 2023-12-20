@@ -25,6 +25,12 @@ class PurchaseController extends Controller
         $cart = $user->cart;
 
         foreach ($cart as $product) {
+            if($product->pivot->quantity > $product->stock){
+                return back()->with('message', 'Quantity of item: ' . $product->name . 'over stock. Current stock: ' . $product->stock);
+            }
+        }
+
+        foreach ($cart as $product) {
             $total = $product->pivot->quantity * $product->price;
             $addressId = request()->input('addressId');
             if (!$user->addresses->contains($addressId)) {
