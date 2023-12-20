@@ -912,3 +912,13 @@ section.d-flex {
   justify-content: center;
   width: 15em;
 }
+
+.lol {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding-bottom: 100%;
+  padding-right: 75%;
+}
+

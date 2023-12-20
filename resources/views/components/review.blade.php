@@ -12,7 +12,7 @@
         <div class="ms-3">
             <h4 class="text-white align-middle mb-0">
                 @if($user != NULL)
-                    <a href="/users/{{$user->id}}">{{$user->name}}</a>
+                    <a href="/users/{{$user->id}}" style="text-decoration: none; color: white">{{$user->name}}</a>
                 @else
                     Deleted User
                 @endif
@@ -63,7 +63,7 @@
                 ⬆
             </button>
             <span class="ms-2 text-white">
-                <strong>{{$review->vote_difference}}</strong>
+                <strong class="lol">{{$review->vote_difference}}</strong>
             </span>
             <button class="btn btn-lg {{ ($vote != NULL && $vote->pivot->vote==false) ? 'text-danger':'text-white' }} downvote" data-review-id={{$review->id}}>
                 ⬇

@@ -44,9 +44,13 @@ class PayPalController extends Controller
     }
 
     public function success(){
+        if(request()->token == null){
+            abort('404', 'Not Found');
+        }
+
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
-        $paypalToken = $provider->getAccessToken();
+        $paypalToken = $provider->getAccessToken();   
         $response = $provider->capturePaymentOrder(request()->token);  
         
         if(isset($response['purchase_units'][0]['payments']['captures'][0]['amount']['value'])){

@@ -134,23 +134,17 @@
               <span>Get connected with us on social networks:</span>
             </div>
             <div>
-              <a href="" class="text-white me-4">
+              <a href="https://www.facebook.com/profile.php?id=61554987592833" class="text-white me-4">
                 <i class="fab fa-facebook-f"></i>
               </a>
-              <a href="" class="text-white me-4">
+              <a href="https://x.com/GoatGameSpace?t=qrZl6NZN8VpXHeSB-iZOgA&s=33" class="text-white me-4">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="" class="text-white me-4">
+              <a href="https://www.google.com/search?q=snorlax+crying&tbm=isch&ved=2ahUKEwiB16Dbgp-DAxUipycCHcSWCNkQ2-cCegQIABAA&oq=snorlax+crying&gs_lcp=CgNpbWcQAzIECCMQJzIHCAAQgAQQEzoFCAAQgAQ6CggAEIAEEIoFEEM6BAgAEB46CAgAEAgQHhATUIoFWMwUYPIVaANwAHgAgAFciAGMB5IBAjExmAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=92SDZcH_OKLOnsEPxK2iyA0&authuser=0&bih=747&biw=1536&hl=pt-PT#imgrc=-1Bd7hSza4HYjM" class="text-white me-4">
                 <i class="fab fa-google"></i>
               </a>
-              <a href="" class="text-white me-4">
+              <a href="https://www.instagram.com/gamespacegoat/" class="text-white me-4">
                 <i class="fab fa-instagram"></i>
-              </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-linkedin"></i>
-              </a>
-              <a href="" class="text-white me-4">
-                <i class="fab fa-github"></i>
               </a>
             </div>
           </section>
