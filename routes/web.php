@@ -6,6 +6,7 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ProductController;
@@ -83,7 +84,12 @@ Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
 Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin');
+Route::get('/credits', [UserController::class, 'credit_options'])->middleware('auth', 'admin.forbidden');
 
+//paypal
+Route::post('/payment', [PayPalController::class, 'payment'])->middleware('auth', 'admin.forbidden');
+Route::get('/payment/success', [PayPalController::class, 'success'])->middleware('auth', 'admin.forbidden');
+Route::get('/payment/cancel', [PayPalController::class, 'cancel'])->middleware('auth', 'admin.forbidden');
 
 //Address
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth');

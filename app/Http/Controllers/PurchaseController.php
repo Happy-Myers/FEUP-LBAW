@@ -21,6 +21,7 @@ class PurchaseController extends Controller
         if (!$user->addresses->first()) {
             return back()->with('message', 'You need to add an address to checkout!');
         }
+        $total = 0;
 
         $cart = $user->cart;
 
@@ -28,6 +29,11 @@ class PurchaseController extends Controller
             if($product->pivot->quantity > $product->stock){
                 return back()->with('message', 'Quantity of item: ' . $product->name . 'over stock. Current stock: ' . $product->stock);
             }
+            $total += $product->pivot->quantity * $product->price;
+        }
+
+        if($user->credits < $total){
+            return back()->with('message', 'You do not have enough credits to make this purchase.');
         }
 
         foreach ($cart as $product) {

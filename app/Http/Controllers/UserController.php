@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Events\UserBanned;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class UserController extends Controller
 {
@@ -171,6 +171,11 @@ class UserController extends Controller
     }
 
     public function index(){
+        try{
+            $this->authorize('isAdmin', User::class);
+        } catch(AuthorizationException $e){
+            return back()->with('message', 'You are not allowed to enter this page');
+        }
         $users = User::where('banned', false)->where('permission', 'User')->filter(request(['searchActive']))->orderBy('name')->paginate(8);
         $banned = User::where('banned', true)->filter(request(['searchBanned']))->orderBy('name')->paginate(8);
 
@@ -189,5 +194,9 @@ class UserController extends Controller
         $user->update(['banned' => !$user->banned]);
         
         return back()->with('message', 'User successfully banned/unbanned');
+    }
+
+    public function credit_options(){
+        return view('users.add_credit');
     }
 }
