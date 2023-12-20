@@ -1,34 +1,41 @@
 # PA: Product and Presentation
 
-> Project vision.
+GameSpace is your gateway to the world of gaming, offering a convenient way to explore and acquire a wide variety of games across genres and game consoles, all in one place. In an era where gamers want something centralized, user-friendly, and personalized gaming experiences, we are here to provide just that.
+Never miss out on the bestsellers and your most-wanted titles! Add games to your wish list for future reference, and when you're sure of your choice, simply add them to your cart. Our user-friendly cart ensures a hassle-free checkout process.
 
 ## A9: Product
 
-> Brief presentation of the product developed.  
+The GameSpace final product is the culmination of the comprehensive system designed in the preceding stages, utilizing HTML, CSS, and JavaScript for building interactive web pages and is built using Laravel Framework with PostgreSQL as a database, offering an all-in-one hub for gaming enthusiasts.
+
+GameSpace's primary goal is to provide a seamless journey for game discovery, exploration, and purchase across various genres and consoles. This platform, ideal for all gamers, allows users to maintain a wish list and features a user-friendly shopping cart for easy checkout. After registration and user profile verification, gamers can start their ultimate gaming experience with GameSpace.
 
 ### 1. Installation
 
-> Link to the release with the final version of the source code in the group's Git repository.  
-> Include the full Docker command to start the image available at the group's GitLab Container Registry using the production database.  
+The release with the final version of the source code in the group's Git repository is available [ADICIONAR O LINK](), in PA tag.
+
+Full Docker command to launch the image available in the group's GitLab Container Registry using the production database:
+
+```
+docker run -it -p 8000:80 --name=lbaw23154 -e DB_DATABASE="23154" -e DB_SCHEMA="lbaw23154" -e DB_USERNAME="lbaw23154" -e DB_PASSWORD="xdcPCrFY" git.fe.up.pt:5050/lbaw/lbaw23154/lbaw23154 
+
+```
 
 ### 2. Usage
 
-> URL to the product: http://lbawYYgg.lbaw.fe.up.pt  
+URL to the product: http://lbaw23154.lbaw.fe.up.pt  
 
 #### 2.1. Administration Credentials
 
-> Administration URL: URL  
-
-| Username | Password |
+| Email | Password |
 | -------- | -------- |
-| admin    | password |
+| admin@test.com    | password |
 
 #### 2.2. User Credentials
 
-| Type          | Username  | Password |
+| Type          | Email  | Password |
 | ------------- | --------- | -------- |
-| basic account | user 1    | password |
-| news editor   | user 1    | password |
+| User | test@test.com    | password |
+
 
 ### 3. Application Help
 
@@ -72,13 +79,31 @@
 > The owner of the user story should have the name in **bold**.
 > This table should be updated when a user story is completed and another one started. 
 
+
+M01: Authentication and Individual Profile
+M02: Products
+M03: Reviews and Wishlist
+M04: Cart
+M05: Static pages
+M06: Management Area
+
 | US Identifier | Name    | Module | Priority                       | Team Members               | State  |
 | ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
-|  US01          | US Name 1 | Module A | High | **John Silva**, Ana Alice   |  100%  |
-|  US02          | US Name 2 | Module A | Medium | **Ana Alice**, John Silva                 |   75%  | 
-|  US03          | US Name 3 | Module B | Low | **Francisco Alves**                 |   5%  | 
-|  US04          | US Name 4 | Module A | Low | -                 |   0%  | 
-
+| US01 | Product Details |   M02 | High | **João Alves**, Gonçalo Marques | 100%| 
+| US02 | Search products |   M02 | High | | 100%| 
+| US14 | Sign-in |  M01  | High | | 100%| 
+| US15 | Sign-up |   M01 | High | | 100%| 
+| US19 | Add to Shopping Cart |   M04 | High | | 100%| 
+| US20 | Manage Shopping Cart | M04 | High  | | 100%| 
+| US21 | Log out |   M01 | High | | 100%| 
+| US22 | View profile |  M01  | High | | 100%| 
+| US23 | Edit profile |  M01 | High | | 100% |
+| US24 | Delete account |  M01 | High | | 100% |
+| US42 | Review a game |  M03 | High | | 100% | 
+| US43 | Give games a score |   M02 | High | | 100% |
+| US44 | Delete a game score |  M02  | High | | 100% |
+| US45 | Check purchase history |  M01 | High | | 100% |
+| US46 | Delete a game review |  M02 | High | | 100% |
 
 ---
 
