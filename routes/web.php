@@ -39,11 +39,11 @@ Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');
 Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
-//Register
+// Register
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 Route::post('/users', [UserController::class, 'store'])->middleware('guest');
 
-//Reset Password
+// Reset Password
 Route::get('/forgot-password', [UserController::class, 'forgot_password'])->middleware('guest')->name('password.request');
 Route::post('/forgot-password', [UserController::class, 'send_recovery_email'])->middleware('guest')->name('password.email');
 Route::get('/reset-password/{token}', [UserController::class, 'reset_password'])->middleware('guest')->name('password.reset');
@@ -77,7 +77,7 @@ Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth
 Route::get('/admin/orders', [PurchaseController::class, 'index'])->middleware('admin');
 Route::patch('/admin/orders/{purchase}', [PurchaseController::class, 'update'])->middleware('admin')->where('purchase', '[0-9]+');;
 
-//User
+// User
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile')->where('user', '[0-9]+');;
@@ -86,28 +86,28 @@ Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin'
 Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin')->where('user', '[0-9]+');;
 Route::get('/credits', [UserController::class, 'credit_options'])->middleware('auth', 'admin.forbidden');
 
-//paypal
+// Paypal
 Route::post('/payment', [PayPalController::class, 'payment'])->middleware('auth', 'admin.forbidden');
 Route::get('/payment/success', [PayPalController::class, 'success'])->middleware('auth', 'admin.forbidden');
 Route::get('/payment/cancel', [PayPalController::class, 'cancel'])->middleware('auth', 'admin.forbidden');
 
-//Address
+// Address
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth')->where('address', '[0-9]+');;
 Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth')->where('address', '[0-9]+');;
 Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth');
 
-//Reviews
+// Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth')->where('review', '[0-9]+');;
 Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth')->where('review', '[0-9]+');;
 Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth')->where('review', '[0-9]+');;
 
-//Admin
+// Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
 
 // Faq & About
 Route::get('/faqs', [FaqController::class, 'index']);
 Route::get('/about', function () { return view('static.about'); });
 
-//Notifications
+// Notifications
 Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->middleware('auth', 'admin.forbidden')->where('notification', '[0-9]+');;

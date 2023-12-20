@@ -55,7 +55,8 @@
                           @else
                             <li>
                               <a class="nav-link" href="/credits">
-                                Credits: {{auth()->user()->credits}}
+                                <i class="fa fa-coins"></i>
+                                Credits: {{auth()->user()->credits}}€
                               </a>
                             </li>
                             <li>

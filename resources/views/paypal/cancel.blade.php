@@ -1,7 +1,8 @@
 <x-layout>
-    <div class="container m-4 text-white">
-        <h1>Your payment has been canceled</h1>
-        <a href="/credits">Please try again.</a>
-        <a href="/">Return to home page.</a>
+    <div id="main-block">
+        <h1 class="admin-title mb-4">Your payment has been canceled</h1>
+        <p><a href="/" class="text-decoration-none">Return to home page.</a></p>
+        <p><a href="/credits" class="text-decoration-none">Please try again.</a></p>  
+        <img src="{{ asset('storage/users/fail.gif') }}" alt="gif" width="auto" height="200">  
     </div>
 </x-layout>

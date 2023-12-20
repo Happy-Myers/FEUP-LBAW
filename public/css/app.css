@@ -415,7 +415,7 @@ th, td {
   margin: 0 0.5em;
 }
 
-.admin-btn {
+.admin-btn, .cash-btn {
   text-decoration: none;
   color: white;
   background-color: var(--grey-blue);
@@ -427,10 +427,9 @@ th, td {
   align-items: center;
   justify-content: space-between;
   transition: background-color 0.3s, color 0.3s, border 1s;
-  width: 100%;
 }
 
-.admin-btn:hover {
+.admin-btn:hover, .cash-btn:hover {
   background-color: var(--dark-blue);
   color: var(--blue);
   border: 0.1em solid var(--black);
@@ -879,4 +878,37 @@ section.d-flex {
   padding: 0.5em 1.5em;
   color: var(--blue);
   transition: 0.3s;
+}
+
+.cash-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  margin-top: 2em;
+  max-width: 50%;
+  width: 100%;
+  margin: auto;
+  margin-top: 1.5em;
+  padding: 2em 1em 0 1em;
+  background-color: var(--black);
+  border: 0.1em solid var(--grey-blue);
+  width: 100%;
+}
+
+.cash-line {
+  display: flex;
+  margin-bottom: 1em;
+}
+
+.cash-list {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 0 !important;
+}
+
+.cash-btn {
+  justify-content: center;
+  width: 15em;
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('password');
-            $table->unsignedInteger('credits')->default(0);
+            $table->unsignedFloat('credits')->default(0);
             $table->enum('permission', ['User', 'Admin'])->default('User');
             $table->boolean('banned')->default(false);
         });
