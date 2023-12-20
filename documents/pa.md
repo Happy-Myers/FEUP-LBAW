@@ -83,9 +83,17 @@ As the front-end input validation we used javascript. For example, when the quan
 
 ### 7. Revisions to the Project
 
----
----
----
+#### Database Schema
+* Timestamps added to all tables: 'created_at' and 'updated_at'.
+* Three attributes added to users table: 'image', 'remember_token' and 'banned'.
+* Two attributes added to addresses table: 'label' and 'deleted_at'.
+* Two attributes added to products table: 'stock' and 'image2'. 
+* One attribute removed from products table: 'hardware'.
+* Two attributes added to purchases table: 'product_id' and 'quantity'.
+* Removed purchase_product table.
+* Updated all triggers that used the purchase_product table to now use the purchases table.
+* New table for password reset tokens: 'password_reset_tokens'.
+* New table for notifications: 'notifications'.
 
 ### 8. Implementation Details
 
