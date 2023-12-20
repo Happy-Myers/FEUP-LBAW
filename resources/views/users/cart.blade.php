@@ -36,6 +36,14 @@
                             <label for="{{ $address }}">{{ $address->label }}, {{ $address->street }}, {{ $address->postal_code }}</label><br>
                         @endforeach
                         @csrf
+                        @if (!(count($addresses) > 0)) 
+                            <div class="info-container">
+                                <span class="info-icon" onclick="toggleInfoMessage()"><i class="fas fa-question-circle"></i></span>
+                                <div class="info-message" style="display: none;">
+                                    You don't have any addresses associated with your account. Please add one <a href="/users/{{auth()->user()->id}}">here</a> before checkout.
+                                </div>
+                            </div>
+                        @endif
                         <button class="button1" type="submit">
                             Checkout
                         </button>
@@ -54,4 +62,10 @@
 
         </section>
     </div>
+    <script>
+        function toggleInfoMessage() {
+            var infoMessage = document.querySelector('.info-message');
+            infoMessage.style.display = (infoMessage.style.display === 'none' || infoMessage.style.display === '') ? 'block' : 'none';
+        }
+    </script>
 </x-layout>

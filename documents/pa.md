@@ -84,17 +84,27 @@ COMPLETAR
 
 | US Identifier | Name    | Module | Priority                       | Team Members               | State  |
 | ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
-| US01 | Product Details |  M02 | High | **João Alves**, Gonçalo Marques | 100% | 
-| US02 | Search products |  M02 | High | **Gonçalo Marques** | 100% | 
-| US03 | Browse Product Categories | M02 | Medium | **João Alves** | 100% |
-| US05 | View Reviews | M03 | Medium | **Gonçalo Marques**, João Alves | 100% |
-| US06 | Home Page | M05 | Medium | **João Alves** | 100% |
-| US07 | About Page | M05 | Medium | **João Alves** | 100% |
-| US08 | FAQ Page | M05 | Medium | **João Alves** | 100% |
-| US09 | Consult Contacts | M05 | Medium | **João Alves**, Gonçalo Marques | 100% |
-| US10 | See User Profile | M06 | Medium | **Gonçalo Marques**, João Alves  | 100% |
-| US14 | Sign-in | M01 | High | **Gonçalo Marques** | 100% | 
-| US15 | Sign-up | M01 | High |  **Gonçalo Marques** | 100% | 
+| US01 | Product Details |   M02 | High | **João Alves**, Gonçalo Marques | 100%| 
+| US02 | Search products |   M02 | High | | 100%| 
+| US14 | Sign-in |  M01  | High | | 100%| 
+| US15 | Sign-up |   M01 | High | | 100%| 
+| US19 | Add to Shopping Cart |   M04 | High | | 100%| 
+| US20 | Manage Shopping Cart | M04 | High  | | 100%| 
+| US21 | Log out |   M01 | High | | 100%| 
+| US22 | View profile |  M01  | High | **Eduardo Sousa**, Gonçalo Marques, João Alves | 100%| 
+| US23 | Edit profile |  M01 | High | | 100% |
+| US24 | Delete account |  M01 | High | **Eduardo Sousa**, Gonçalo Marques | 100% |
+| US42 | Review a game |  M03 | High | | 100% | 
+| US43 | Give games a score |   M02 | High | | 100% |
+| US44 | Delete a game score |  M02  | High | | 100% |
+| US45 | Check purchase history |  M01 | High | | 100% |
+| US46 | Delete a game review |  M02 | High | | 100% |
+| US03 | Browse Product Categories | M02 | Medium | | 100% |
+| US05 | View Reviews | M03 | Medium | | 100% |
+| US06 | Home Page | M05 | Medium | | 100% |
+| US07 | About Page | M05 | Medium | | 100% |
+| US08 | FAQ Page | M05 | Medium | | 100% |
+| US09 | Consult Contacts | M05 | Medium | | 100% |
 | US16 | Recover Password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US19 | Add to Shopping Cart |  M04 | High | **Gonçalo Marques**, João Alves | 100%| 
 | US20 | Manage Shopping Cart | M04 | High  | **Gonçalo Marques**, João Alves| 100% | 
