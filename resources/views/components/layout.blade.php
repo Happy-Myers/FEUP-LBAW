@@ -54,6 +54,11 @@
                             </li>
                           @else
                             <li>
+                              <a class="nav-link" href="/credits">
+                                Credits: {{auth()->user()->credits}}
+                              </a>
+                            </li>
+                            <li>
                               <a class="nav-link" href="/wishlist">
                                 <i class="fa-solid fa-heart"></i>
                                 Wishlist

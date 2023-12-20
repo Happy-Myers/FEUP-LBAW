@@ -108,7 +108,7 @@ Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
 
 // Faq & About
 Route::get('/faqs', [FaqController::class, 'index']);
-Route::get('/about', function () { return view('users.about'); });
+Route::get('/about', function () { return view('static.about'); });
 
 //Notifications
 Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->middleware('auth', 'admin.forbidden');
