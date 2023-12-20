@@ -1,13 +1,13 @@
 # PA: Product and Presentation
 
 GameSpace is your gateway to the world of gaming, offering a convenient way to explore and acquire a wide variety of games across genres and game consoles, all in one place. In an era where gamers want something centralized, user-friendly, and personalized gaming experiences, we are here to provide just that.
-Never miss out on the bestsellers and your most-wanted titles! Add games to your wish list for future reference, and when you're sure of your choice, simply add them to your cart. Our user-friendly cart ensures a hassle-free checkout process.
+Never miss out on the bestsellers and your most-wanted titles! Add games to your wishlist for future reference, and when you're sure of your choice, simply add them to your cart. Our user-friendly cart ensures a hassle-free checkout process.
 
 ## A9: Product
 
-The GameSpace final product is the culmination of the comprehensive system designed in the preceding stages, utilizing HTML, CSS, and JavaScript for building interactive web pages and is built using Laravel Framework with PostgreSQL as a database, offering an all-in-one hub for gaming enthusiasts.
+The GameSpace final product is the culmination of the comprehensive system designed in the preceding stages, using HTML, CSS, and JavaScript to build interactive web pages and is built using the Laravel Framework with PostgreSQL as a database, offering an all-in-one hub for gaming enthusiasts.
 
-GameSpace's primary goal is to provide a seamless journey for game discovery, exploration, and purchase across various genres and consoles. This platform, ideal for all gamers, allows users to maintain a wish list and features a user-friendly shopping cart for easy checkout. After registration and user profile verification, gamers can start their ultimate gaming experience with GameSpace.
+GameSpace's primary goal is to provide a seamless journey for game discovery, exploration, and purchase across various genres and consoles. This platform, ideal for all gamers, allows users to maintain a wishlist and features an user-friendly shopping cart for easy checkout. After registration and user profile verification, gamers can start their ultimate gaming experience with GameSpace.
 
 ### 1. Installation
 
@@ -39,7 +39,13 @@ URL to the product: http://lbaw23154.lbaw.fe.up.pt
 
 ### 3. Application Help
 
-> Describe where help has been implemented, pointing to working examples.  
+We have implemented the About Us and FAQ pages, links to which are found in the footer, to help the user navigate the site. Contacts are also visible in the footer.
+
+In the FAQ page, we answer some recurring questions about how the website works along with its policies.
+IMAGEM FAQ
+
+In the About Us page, we present some general information and trivia about our team, journey and goals.
+IMAGEM ABOUT US
 
 ### 4. Input Validation
 
@@ -70,22 +76,10 @@ URL to the product: http://lbaw23154.lbaw.fe.up.pt
 
 > Include reference to all the libraries and frameworks used in the product.  
 > Include library name and reference, description of the use, and link to the example where it's used in the product.  
+We used the following libraries in this project:
+- 
 
 #### 8.2 User Stories
-
-> This subsection should include all high and medium priority user stories, sorted by order of implementation. Implementation should be sequential according to the order identified below. 
->
-> If there are new user stories, also include them in this table. 
-> The owner of the user story should have the name in **bold**.
-> This table should be updated when a user story is completed and another one started. 
-
-
-M01: Authentication and Individual Profile
-M02: Products
-M03: Reviews and Wishlist
-M04: Cart
-M05: Static pages
-M06: Management Area
 
 | US Identifier | Name    | Module | Priority                       | Team Members               | State  |
 | ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
@@ -96,14 +90,39 @@ M06: Management Area
 | US19 | Add to Shopping Cart |   M04 | High | | 100%| 
 | US20 | Manage Shopping Cart | M04 | High  | | 100%| 
 | US21 | Log out |   M01 | High | | 100%| 
-| US22 | View profile |  M01  | High | | 100%| 
+| US22 | View profile |  M01  | High | **Eduardo Sousa**, Gonçalo Marques, João Alves | 100%| 
 | US23 | Edit profile |  M01 | High | | 100% |
-| US24 | Delete account |  M01 | High | | 100% |
+| US24 | Delete account |  M01 | High | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US42 | Review a game |  M03 | High | | 100% | 
 | US43 | Give games a score |   M02 | High | | 100% |
 | US44 | Delete a game score |  M02  | High | | 100% |
 | US45 | Check purchase history |  M01 | High | | 100% |
 | US46 | Delete a game review |  M02 | High | | 100% |
+| US03 | Browse Product Categories | M02 | Medium | | 100% |
+| US05 | View Reviews | M03 | Medium | | 100% |
+| US06 | Home Page | M05 | Medium | | 100% |
+| US07 | About Page | M05 | Medium | | 100% |
+| US08 | FAQ Page | M05 | Medium | | 100% |
+| US09 | Consult Contacts | ? | Medium | | 100% |
+| US16 | Recover Password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
+| US26 | View Wishlist | M03 | Medium |  | 100% |
+| US25 | Add to Wishlist | M03 | Medium |  | 100% |
+| US27 | Remove from  Wishlist | M03 | Medium |  | 100% |
+| US29 | Review Voting | M03 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
+| US30 | View Notifications | M01 | Medium |  | 100% |
+| US31 | Product Price Change | M01 | Low |  | 100% |
+| US33 | Unban Account | M06 | Medium |  | 100% |
+| US34 | Manage Catalog | M06 | Medium |  | 100% |
+| US35 | Manage Item Category | M06 | Medium |  | 100% |
+| US36 | Delete Review | M06 | Medium |  | 100% |
+| US37 | Ban Account | M06 | Medium |  | 100% |
+| US38 | Manage Stock | M06 | Medium |  | 100% |
+| US39 | View Users' Purchase History | M06 | Medium |  | 100% |
+| US40 | Manage Order Status | M06 | Medium |  | 100% |
+| US41 | Manage Item Description | M06 | Medium |  | 100% |
+| US50 | Change in Order Status | M01 | Low |  | 100% |
+| US51 | Track Order | M01 | Low |  | 100% |
+| US52 | Address Options | M01 | Low | **Eduardo Sousa**, Gonçalo Marques | 100% |
 
 ---
 
