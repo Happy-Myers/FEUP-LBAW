@@ -86,6 +86,7 @@ As the front-end input validation we used javascript. For example, when the quan
 #### Database Schema
 * Timestamps added to all tables: 'created_at' and 'updated_at'.
 * Three attributes added to users table: 'image', 'remember_token' and 'banned'.
+* Credits attribute for the user table is now an unsigned float.
 * Two attributes added to addresses table: 'label' and 'deleted_at'.
 * Two attributes added to products table: 'stock' and 'image2'. 
 * One attribute removed from products table: 'hardware'.
@@ -155,8 +156,9 @@ As the front-end input validation we used javascript. For example, when the quan
 ## A10: Presentation
 
 ### 1. Product presentation
+GameSpace is a new videogame store! We have a varied selection of products across many different genres and platforms. You can buy credit through PayPal and exchange it for whatever you put into your shopping cart. You can also review any product in our selection and much more.
 
-# Adicionar Descrição
+GameSpace was developed using a combination of HTML5, JavaScript, and CSS. The user interface was enhanced with the Bootstrap framework, while the back-end and page content were implemented using the Laravel framework, which utilizes PHP. The platform also incorporates an adaptive design. For further details, refer to the information provided on the static pages and if your questions persist, feel free to contact us through the provided contacts.
 
 - URL to the product: http://lbaw23154.lbaw.fe.up.pt  
 
