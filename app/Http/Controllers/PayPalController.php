@@ -33,6 +33,8 @@ class PayPalController extends Controller
         if(isset($response['id']) && $response['id'] != 'null'){
             foreach($response['links'] as $link){
                 if($link['rel'] === 'approve' ){
+                    
+
                     return redirect()->away($link['href']);
                 }
             }
@@ -45,15 +47,22 @@ class PayPalController extends Controller
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
         $paypalToken = $provider->getAccessToken();
-        $response = $provider->capturePaymentOrder(request()->token);    
+        $response = $provider->capturePaymentOrder(request()->token);  
+        
+        if(isset($response['purchase_units'][0]['payments']['captures'][0]['amount']['value'])){
+            $credits = floatval($response['purchase_units'][0]['payments']['captures'][0]['amount']['value']);
+            auth()->user()->credits += $credits;
+            auth()->user()->update();
+        }
+        
         
         if(isset($response['status']) && $response['status'] == "COMPLETED")
-            return "Payment successful";
+            return view('paypal.success');
         else 
             return redirect("/payment/cancel")->with('message', 'payment failed');
     }
 
     public function cancel(){
-        return "payment canceled";
+        return view('paypal.cancel');
     }
 }

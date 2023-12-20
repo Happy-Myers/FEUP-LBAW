@@ -10,7 +10,13 @@
     <div class="d-flex align-items-center">
         <img src="{{asset(($user != NULL && $user->image) ? 'storage/' . $user->image : 'images/users/no-image.png')}}" alt="Reviewer" class="img-fluid rounded-circle" style="width: 50px;">
         <div class="ms-3">
-            <h4 class="text-white align-middle mb-0">{{$user != NULL ? $user->name : "Deleted User"}}</h4>
+            <h4 class="text-white align-middle mb-0">
+                @if($user != NULL)
+                    <a href="/users/{{$user->id}}">{{$user->name}}</a>
+                @else
+                    Deleted User
+                @endif
+            </h4>
         </div>
         <div class="ms-3">
             <small class="text-white align-middle">{{$date}}</small>

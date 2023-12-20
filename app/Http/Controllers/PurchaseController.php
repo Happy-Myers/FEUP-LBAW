@@ -36,6 +36,9 @@ class PurchaseController extends Controller
             return back()->with('message', 'You do not have enough credits to make this purchase.');
         }
 
+        $user->credits -= $total;
+        $user->update();
+
         foreach ($cart as $product) {
             $total = $product->pivot->quantity * $product->price;
             $addressId = request()->input('addressId');
