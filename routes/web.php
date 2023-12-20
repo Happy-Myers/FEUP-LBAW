@@ -102,7 +102,6 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middle
 Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth');
 Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth');
 
-
 //Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
 
