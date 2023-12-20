@@ -20,7 +20,6 @@ return new class extends Migration
             $table->dateTime('date')->default(now());
             $table->longText('comment')->nullable();
             $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('set null');

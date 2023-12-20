@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
-use Illuminate\Auth\Events\PasswordReset;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class UserController extends Controller
 {
@@ -90,6 +90,8 @@ class UserController extends Controller
                     'password' => bcrypt($password)
                 ])->setRememberToken(Str::random(60));
      
+                DB::table('password_reset_tokens')->where('email', $user->email)->delete();
+
                 $user->save();
      
                 event(new PasswordReset($user));

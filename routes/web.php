@@ -25,15 +25,6 @@ use App\Http\Controllers\NotificationController;
 |
 */
 
-//Common Resource Routes:
-// index - Show all listings
-// show - Show single listing
-// create - Show form to create new listing
-// store - Store new listing
-// edit - show form to edit listing
-// update - update listing
-// destroy - Delete listing
-
 // Login
 Route::get('/login', [UserController::class, 'login'])->middleware('guest');
 Route::post('/users/authenticate', [UserController::class, 'authenticate'])->middleware('guest');

@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'stock', 'price', 'score', 'description', 'hardware', 'publication_date'];
+    protected $fillable = ['name', 'stock', 'price', 'score', 'description', 'publication_date'];
 
     protected $searchable = ['name', 'description'];
 

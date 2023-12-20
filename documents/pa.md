@@ -16,7 +16,7 @@ The release with the final version of the source code in the group's Git reposit
 Full Docker command to launch the image available in the group's GitLab Container Registry using the production database:
 
 ```
-docker run -it -p 8000:80 --name=lbaw23154 -e DB_DATABASE="23154" -e DB_SCHEMA="lbaw23154" -e DB_USERNAME="lbaw23154" -e DB_PASSWORD="xdcPCrFY" git.fe.up.pt:5050/lbaw/lbaw23154/lbaw23154 
+docker run -it -p 8000:80 --name=lbaw23154 -e DB_DATABASE="23154" -e DB_SCHEMA="lbaw23154" -e DB_USERNAME="lbaw23154" -e DB_PASSWORD="xdcPCrFY" git.fe.up.pt:5050/lbaw/lbaw2324/lbaw23154 
 ```
 
 ### 2. Usage
@@ -35,6 +35,13 @@ URL to the product: http://lbaw23154.lbaw.fe.up.pt
 | ------------- | --------- | -------- |
 | User | test@test.com    | password |
 
+#### 2.3. PayPal Credentials
+
+| Type          | Email  | Password |
+| ------------- | --------- | -------- |
+| Client | sb-uxtjc28856733@personal.example.com    | sb493M)v |
+| Business | sb-x062v28583591@business.example.com | E!4w]xZ7 |
+
 
 ### 3. Application Help
 
@@ -42,17 +49,25 @@ We have implemented the About Us and FAQ pages, links to which are found in the 
 
 In the FAQ page, we answer some recurring questions about how the website works along with its policies.
 
-![FAQ](../public/images/FAQ.png)
+![FAQ](images/FAQ.png)
 
 In the About Us page, we present some general information and trivia about our team, journey and goals.
 
-![AboutUs](../public/images/AboutUs.png)
+![AboutUs](images/AboutUs.png)
+
+We have implemented success and error flash messages after most actions that result in a redirect.
+
+![FlashMessage](images/flash_message.png)
 
 ### 4. Input Validation
 
 For backend input validation in our project, we leveraged the Illuminate\\Http\\Request, allowing us to utilize the "validate" function with various validation types. This capability was utilized to validate form inputs, such as those in the login/register form, and the edit user/group profile form, as demonstrated in the following examples:
 
-COMPLETAR
+![backend_validation1](images/backend_validation1.png)
+
+![backend_validation2](images/backend_validation2.png)
+
+As the front-end input validation we used javascript. For example, when the quantity of an item in the cart or when editing the stock of an item, invalid inputs are rolled back.
 
 ### 5. Check Accessibility and Usability
 
@@ -68,9 +83,18 @@ COMPLETAR
 
 ### 7. Revisions to the Project
 
----
----
----
+#### Database Schema
+* Timestamps added to all tables: 'created_at' and 'updated_at'.
+* Three attributes added to users table: 'image', 'remember_token' and 'banned'.
+* Credits attribute for the user table is now an unsigned float.
+* Two attributes added to addresses table: 'label' and 'deleted_at'.
+* Two attributes added to products table: 'stock' and 'image2'. 
+* One attribute removed from products table: 'hardware'.
+* Two attributes added to purchases table: 'product_id' and 'quantity'.
+* Removed purchase_product table.
+* Updated all triggers that used the purchase_product table to now use the purchases table.
+* New table for password reset tokens: 'password_reset_tokens'.
+* New table for notifications: 'notifications'.
 
 ### 8. Implementation Details
 
@@ -92,6 +116,9 @@ COMPLETAR
 | US07 | About Page | M05 | Medium | **João Alves**| 100% |
 | US08 | FAQ Page | M05 | Medium | **João Alves**| 100% |
 | US09 | Consult Contacts | M05 | Medium | **João Alves**| 100% |
+| US10 | See User Profile | M01 | Medium | **Eduardo Sousa**, João Alves | 100% |
+| US14 | Sign-in | M01 | High | **Gonçalo Marques** | 100% |
+| US15 | Sign-up | M01 | High | **Gonçalo Marques** | 100% |
 | US16 | Recover Password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US19 | Add to Shopping Cart |  M04 | High | **Gonçalo Marques**, João Alves | 100%| 
 | US20 | Manage Shopping Cart | M04 | High  | **Gonçalo Marques**, João Alves| 100% | 
@@ -102,7 +129,7 @@ COMPLETAR
 | US25 | Add to Wishlist | M03 | Medium |  **Gonçalo Marques**, João Alves | 100% |
 | US26 | View Wishlist | M03 | Medium |  **João Alves** | 100% |
 | US27 | Remove from  Wishlist | M03 | Medium | **João Alves** | 100% |
-| US28 | Update password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 50% | 
+| US28 | Update password | M01 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% | 
 | US29 | Review Voting | M03 | Medium | **Eduardo Sousa**, Gonçalo Marques | 100% |
 | US30 | View Notifications | M01 | Medium | **Gonçalo Marques**, João Alves | 100% |
 | US31 | Product Price Change | M01 | Low | **Gonçalo Marques** | 100% |
@@ -120,6 +147,7 @@ COMPLETAR
 | US44 | Delete a game score |  M02  | High | **Gonçalo Marques** | 100% |
 | US45 | Check purchase history |  M01 | High | **João Alves** | 100% |
 | US46 | Delete a game review |  M02 | High | **Gonçalo Marques** | 100% |
+| US48 | Payment approval | M04 | Low | **Gonçalo Marques**, João Alves | 100% |
 | US50 | Change in Order Status | M01 | Low |  **Gonçalo Marques** | 100% |
 | US51 | Track Order | M01 | Low |  **Gonçalo Marques** | 100% |
 | US52 | Address Options | M01 | Low | **Eduardo Sousa**, Gonçalo Marques | 100% |
@@ -128,8 +156,9 @@ COMPLETAR
 ## A10: Presentation
 
 ### 1. Product presentation
+GameSpace is a new videogame store! We have a varied selection of products across many different genres and platforms. You can buy credit through PayPal and exchange it for whatever you put into your shopping cart. You can also review any product in our selection and much more.
 
-# Adicionar Descrição
+GameSpace was developed using a combination of HTML5, JavaScript, and CSS. The user interface was enhanced with the Bootstrap framework, while the back-end and page content were implemented using the Laravel framework, which utilizes PHP. The platform also incorporates an adaptive design. For further details, refer to the information provided on the static pages and if your questions persist, feel free to contact us through the provided contacts.
 
 - URL to the product: http://lbaw23154.lbaw.fe.up.pt  
 
