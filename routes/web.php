@@ -83,7 +83,7 @@ Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth')
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile')->where('user', '[0-9]+');;
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
-Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin')->where('product', '[0-9]+');;
+Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin')->where('user', '[0-9]+');;
 Route::get('/credits', [UserController::class, 'credit_options'])->middleware('auth', 'admin.forbidden');
 
 //paypal
@@ -93,14 +93,14 @@ Route::get('/payment/cancel', [PayPalController::class, 'cancel'])->middleware('
 
 //Address
 Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth')->where('address', '[0-9]+');;
-Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth')->where('product', '[0-9]+');;
+Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth')->where('address', '[0-9]+');;
 Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth');
 
 //Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth')->where('review', '[0-9]+');;
-Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth')->where('product', '[0-9]+');;
-Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth')->where('product', '[0-9]+');;
+Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth')->where('review', '[0-9]+');;
+Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth')->where('review', '[0-9]+');;
 
 //Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
