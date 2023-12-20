@@ -26,10 +26,12 @@ class CartController extends Controller {
     $cart = $user->cart()->where('product_id', $product->id)->first();
 
     if(!$cart){
-      $user->cart()->attach($product->id, ['quantity' => 1]);
+      if($product->stock > 0)
+        $user->cart()->attach($product->id, ['quantity' => 1]);
+      else return back()->with('message', 'Product out of stock');
     }
     else{
-      $cart->pivot->update(['quantity' => $cart->pivot->quantity + 1]);
+      return back()->with('message', 'Product already in cart');
     }
 
     return back()->with('message', 'Product added to cart!');
@@ -54,6 +56,10 @@ class CartController extends Controller {
 
     $cart = $user->cart()->where('product_id', $product->id)->first();
     if($cart){
+      if($quantity['quantity'] > $product->stock){
+        return response()->json('quantity cannot go over product stock.', 422);
+      }
+
       $cart->pivot->update($quantity);
 
       return response()->json(['message' => 'Quantity updated successfully', 'price' => $product->price], 200);
