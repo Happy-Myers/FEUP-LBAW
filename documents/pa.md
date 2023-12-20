@@ -49,17 +49,25 @@ We have implemented the About Us and FAQ pages, links to which are found in the 
 
 In the FAQ page, we answer some recurring questions about how the website works along with its policies.
 
-![FAQ](../public/images/FAQ.png)
+![FAQ](images/FAQ.png)
 
 In the About Us page, we present some general information and trivia about our team, journey and goals.
 
-![AboutUs](../public/images/AboutUs.png)
+![AboutUs](images/AboutUs.png)
+
+We have implemented success and error flash messages after most actions that result in a redirect.
+
+![FlashMessage](images/flash_message.png)
 
 ### 4. Input Validation
 
 For backend input validation in our project, we leveraged the Illuminate\\Http\\Request, allowing us to utilize the "validate" function with various validation types. This capability was utilized to validate form inputs, such as those in the login/register form, and the edit user/group profile form, as demonstrated in the following examples:
 
-COMPLETAR
+![backend_validation1](images/backend_validation1.png)
+
+![backend_validation2](images/backend_validation2.png)
+
+As the front-end input validation we used javascript. For example, when the quantity of an item in the cart or when editing the stock of an item, invalid inputs are rolled back.
 
 ### 5. Check Accessibility and Usability
 
