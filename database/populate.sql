@@ -148,16 +148,16 @@ VALUES
 
 INSERT INTO purchases (user_id, product_id, quantity, total, delivery_progress, address_id)
 VALUES
-  (1, 3, 1, 79.98, 'Shipped', 1),
-  (4, 4, 2, 99.99, 'Delivered', 4),
-  (1, 1, 2, 129.98, 'Delivered', 1),
-  (2, 2, 1, 199.99, 'Processing', 2),
-  (5, 2, 3, 59.99, 'Shipped', 5),
-  (3, 4, 2, 199.98, 'Delivered', 3),
-  (4, 7, 1, 99.99, 'Shipped', 4),
-  (2, 5, 2, 49.99, 'Delivered', 2),
-  (1, 4, 3, 79.99, 'Delivered', 1),
-  (3, 6, 2, 29.99, 'Processing', 3);
+  (1, 3, 1, 59.99, 'Shipped', 1),
+  (4, 4, 2, 19.5, 'Delivered', 4),
+  (1, 1, 2, 55.98, 'Delivered', 1),
+  (2, 2, 1, 59.99, 'Processing', 2),
+  (5, 2, 3, 179.97, 'Shipped', 5),
+  (3, 4, 2, 19.5, 'Delivered', 3),
+  (4, 7, 1, 69.99, 'Shipped', 4),
+  (2, 5, 2, 119.98, 'Delivered', 2),
+  (1, 4, 3, 29.35, 'Delivered', 1),
+  (3, 6, 2, 79.98, 'Processing', 3);
 
 
 INSERT INTO faqs (question, answer)
