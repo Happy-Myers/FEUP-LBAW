@@ -79,7 +79,8 @@ As the front-end input validation we used javascript. For example, when the quan
 > Provide the results of the validation of the HTML and CSS code using the following tools. Include the results as PDF files in the group's repository. Add individual links to those files here.
 >   
 > HTML: https://validator.w3.org/nu/  
-> CSS: https://jigsaw.w3.org/css-validator/  
+
+* [CSS Validation](/documents/Resultados%20da%20validação%20CSS%20do%20W3C%20para%20TextArea%20(CSS%20nível%203%20+%20SVG).pdf)
 
 ### 7. Revisions to the Project
 
