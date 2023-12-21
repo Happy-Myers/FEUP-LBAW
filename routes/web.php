@@ -60,21 +60,21 @@ Route::patch('/cart/{product}', [CartController::class, 'update'])->middleware('
 
 // Wishlist
 Route::get('/wishlist', [WishlistController::class, 'index'])->middleware('auth', 'admin.forbidden');
-Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth', 'admin.forbidden')->where('product', '[0-9]+');;
-Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth', 'admin.forbidden')->where('product', '[0-9]+');;
+Route::post('/wishlist/{product}', [WishlistController::class, 'store'])->middleware('auth', 'admin.forbidden')->where('product', '[0-9]+');
+Route::delete('/wishlist/{product}', [WishlistController::class, 'destroy'])->middleware('auth', 'admin.forbidden')->where('product', '[0-9]+');
 
 // Purchase
 Route::post('/checkout', [PurchaseController::class, 'store'])->middleware('auth');
 Route::get('/admin/orders', [PurchaseController::class, 'index'])->middleware('admin');
-Route::patch('/admin/orders/{purchase}', [PurchaseController::class, 'update'])->middleware('admin')->where('purchase', '[0-9]+');;
+Route::patch('/admin/orders/{purchase}', [PurchaseController::class, 'update'])->middleware('admin')->where('purchase', '[0-9]+');
 
 // User
 Route::get('/users/edit', [UserController::class, 'edit'])->middleware('auth');
 Route::put('/users/edit', [UserController::class, 'update'])->middleware('auth');
-Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile')->where('user', '[0-9]+');;
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware('admin.profile')->where('user', '[0-9]+');
 Route::delete('/users', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/admin/users', [UserController::class, 'index'])->middleware('admin');
-Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin')->where('user', '[0-9]+');;
+Route::patch('/users/{user}', [UserController::class, 'toggle_ban'])->middleware('admin')->where('user', '[0-9]+');
 Route::get('/credits', [UserController::class, 'credit_options'])->middleware('auth', 'admin.forbidden');
 
 // Paypal
@@ -83,15 +83,15 @@ Route::get('/payment/success', [PayPalController::class, 'success'])->middleware
 Route::get('/payment/cancel', [PayPalController::class, 'cancel'])->middleware('auth', 'admin.forbidden');
 
 // Address
-Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth')->where('address', '[0-9]+');;
-Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth')->where('address', '[0-9]+');;
+Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->middleware('auth')->where('address', '[0-9]+');
+Route::put('/addresses/{address}', [AddressController::class, 'update'])->middleware('auth')->where('address', '[0-9]+');
 Route::post('/addresses', [AddressController::class, 'store'])->middleware('auth');
 
 // Reviews
 Route::post('/reviews', [ReviewController::class, 'store']);
-Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth')->where('review', '[0-9]+');;
-Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth')->where('review', '[0-9]+');;
-Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth')->where('review', '[0-9]+');;
+Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->middleware('auth')->where('review', '[0-9]+');
+Route::post('/reviews/{review}/up', [ReviewController::class, 'vote_up'])->middleware('auth')->where('review', '[0-9]+');
+Route::post('/reviews/{review}/down', [ReviewController::class, 'vote_down'])->middleware('auth')->where('review', '[0-9]+');
 
 // Admin
 Route::get('/admin', [AdminController::class, 'show'])->middleware('admin');
@@ -101,4 +101,4 @@ Route::get('/faqs', [FaqController::class, 'index']);
 Route::get('/about', function () { return view('static.about'); });
 
 // Notifications
-Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->middleware('auth', 'admin.forbidden')->where('notification', '[0-9]+');;
+Route::post('/notifications/{notification}', [NotificationController::class, 'markAsRead'])->middleware('auth', 'admin.forbidden');
