@@ -76,10 +76,8 @@ As the front-end input validation we used javascript. For example, when the quan
 
 ### 6. HTML & CSS Validation
 
-> Provide the results of the validation of the HTML and CSS code using the following tools. Include the results as PDF files in the group's repository. Add individual links to those files here.
->   
-> HTML: https://validator.w3.org/nu/  
-> CSS: https://jigsaw.w3.org/css-validator/  
+* [HTML home page:](/documents/Showing%20results%20for%20contents%20of%20text-input%20area%20-%20Nu%20Html%20Checker.pdf)  
+* [CSS:](/documents/Resultados%20da%20validação%20CSS%20do%20W3C%20para%20TextArea%20(CSS%20nível%203%20+%20SVG).pdf)
 
 ### 7. Revisions to the Project
 
@@ -105,13 +103,6 @@ As the front-end input validation we used javascript. For example, when the quan
 * [Laravel-Paypal](https://github.com/srmklive/laravel-paypal), to implement a way to insert money into the user account
 
 #### 8.2 User Stories
-
-M01tication and profile
-M02 Products
-M3 Reviews and wishlist
-M4 cart
-M5 static pages
-m6 Management 
 
 | US Identifier | Name    | Module | Priority                       | Team Members               | State  |
 | ------------- | ------- | ------ | ------------------------------ | -------------------------- | ------ |
@@ -180,17 +171,8 @@ GameSpace was developed using a combination of HTML5, JavaScript, and CSS. The u
 
 ### 2. Video presentation
 
-> Screenshot of the video plus the link to the lbawYYgg.mp4 file.
-
-> - Upload the lbawYYgg.mp4 file to Moodle.
-> - The video must not exceed 2 minutes.
-
-
----
-
-
-## Revision history
-
+![Video](/documents/images/video.png)
+- URL to the video: https://www.youtube.com/watch?v=KAYF-B0ljUQ&ab_channel=Jo%C3%A3oAlves
 
 
 ## GROUP23154, 19/12/2023
