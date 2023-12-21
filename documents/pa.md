@@ -11,7 +11,7 @@ GameSpace's primary goal is to provide a seamless journey for game discovery, ex
 
 ### 1. Installation
 
-The release with the final version of the source code in the group's Git repository is available [ADICIONAR O LINK](), in PA tag.
+The release with the final version of the source code in the group's Git repository is available [PA](https://git.fe.up.pt/lbaw/lbaw2324/lbaw23154/-/tags/EAP), in PA tag.
 
 Full Docker command to launch the image available in the group's GitLab Container Registry using the production database:
 
@@ -109,7 +109,7 @@ As the front-end input validation we used javascript. For example, when the quan
 | US01 | Product Details |   M02 | High | **João Alves**, Gonçalo Marques | 100%| 
 | US02 | Search products |   M02 | High | **Gonçalo Marques** | 100%| 
 | US03 | Browse Product Categories | M02 | Medium | **João Alves**| 100% |
-| US04 | Search Products | M02 | Medium | - | 0% |
+| US04 | Search by Filters | M02 | Medium | - | 0% |
 | US05 | View Reviews | M03 | Medium | **Gonçalo Marques**, João Alves | 100% |
 | US06 | Home Page | M05 | Medium | **João Alves** | 100% |
 | US07 | About Page | M05 | Medium | **João Alves**| 100% |
@@ -171,7 +171,7 @@ GameSpace was developed using a combination of HTML5, JavaScript, and CSS. The u
 
 ### 2. Video presentation
 
-![Video](/documents/images/video.png)
+![Video](images/video.png)
 - URL to the video: https://www.youtube.com/watch?v=KAYF-B0ljUQ&ab_channel=Jo%C3%A3oAlves
 
 

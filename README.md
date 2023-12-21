@@ -2,7 +2,7 @@
 
 ### Installation
 
-The release with the final version of the source code in the group's Git repository is available [ADICIONAR O LINK](), in PA tag.
+The release with the final version of the source code in the group's Git repository is available [PA](https://git.fe.up.pt/lbaw/lbaw2324/lbaw23154/-/tags/EAP), in PA tag.
 
 Full Docker command to launch the image available in the group's GitLab Container Registry using the production database:
 
