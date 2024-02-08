@@ -55,10 +55,13 @@
         <p class="mb-0 text-white">
             {{$review->comment}}
         </p>
+        @auth
         <div class="d-flex flex-row align-items-end mt-2">
+            
             @php
                 $vote = auth()->user()->review_vote()->where('review_id', $review->id)->first();
             @endphp
+            
             <button class="btn btn-lg  {{ ($vote != NULL && $vote->pivot->vote==true) ? 'text-success':'text-white' }} upvote" data-review-id={{$review->id}}>
                 ⬆
             </button>
@@ -69,5 +72,6 @@
                 ⬇
             </button>
         </div>
+        @endauth
     </div>
 </div>
